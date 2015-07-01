@@ -1,0 +1,20 @@
+{
+  "name": "cell-structure",
+  "version": "1.0.0-dev.1",
+  "license": "GPLv3",
+  "simTitleStringKey": "CELL_STRUCTURE/cell-structure.name",
+  "phetLibs": [
+    "cell-structure"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srujankumar/cell-structure.git"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-requirejs": "~0.4.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "uglify-js": "~2.4.0",
+    "requirejs": "~2.1.8"
+  }
+}
