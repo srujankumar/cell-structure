@@ -28,7 +28,7 @@ define( function( require ) {
     Screen.call( this, cellStructureSimString, icon,
       function() { return new CellStructureModel(); },
       function( model ) { return new CellStructureScreenView( model ); },
-      { backgroundColor: 'white' }
+      { backgroundColor: 'grey' }
     );
   }
 
