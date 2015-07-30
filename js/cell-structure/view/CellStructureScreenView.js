@@ -40,7 +40,6 @@ define( function( require ) {
     cellStructureScreenView.addChild( new ObjectKit( cellStructureModel, { x:50, y: 350}, modelViewTransform ) );
     cellStructureScreenView.addChild( new MagnifierViewNode());
 
-
     cellStructureScreenView.addChild( resetAllButton );
   }
 

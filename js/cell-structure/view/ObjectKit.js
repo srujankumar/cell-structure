@@ -4,8 +4,7 @@
 define( function( require ) {
   'use strict';
   var inherit = require( 'PHET_CORE/inherit' );
-  var AnimalCellNode = require( 'CELL_STRUCTURE/cell-structure/view/AnimalCellNode');
-  var PlantCellNode = require( 'CELL_STRUCTURE/cell-structure/view/PlantCellNode');
+  var CellNode = require( 'CELL_STRUCTURE/cell-structure/view/CellNode');
   var Rectangle = require( 'SCENERY/nodes/Rectangle');
   var Node = require( 'SCENERY/nodes/Node');
 
@@ -13,8 +12,8 @@ define( function( require ) {
   function ObjectKit( model, options, modelViewTransform ) {
 
     var objectKit = this;
-    var plantCellNode = new PlantCellNode(model, modelViewTransform);
-    var animalCellNode = new AnimalCellNode(model, modelViewTransform);
+    var plantCellNode = new CellNode(model.plantCell, modelViewTransform);
+    var animalCellNode = new CellNode(model.animalCell, modelViewTransform);
     var rect = new Rectangle( options.x, options.y, 200, 100, 5, 5, { fill: '#ffffff', stroke: 'orange', lineWidth:5 });
 
     rect.addChild(animalCellNode);
