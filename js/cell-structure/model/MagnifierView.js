@@ -18,9 +18,8 @@ define( function( require ) {
    * @param {Dimension2} size, the size of the magnifier view panel in model coordinates
    * @constructor
    */
-  function MagnifierView( location, size ) {
-    PropertySet.call( this, { location: location } );
-    this.size = size;
+  function MagnifierView() {
+    PropertySet.call( this, { location: undefined, image: undefined } );
   }
 
   return inherit( PropertySet, MagnifierView );

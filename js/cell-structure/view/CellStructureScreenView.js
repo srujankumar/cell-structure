@@ -38,7 +38,7 @@ define( function( require ) {
 
     cellStructureScreenView.addChild( new MicroscopeNode( cellStructureModel.microscope, modelViewTransform ) );
     cellStructureScreenView.addChild( new ObjectKit( cellStructureModel, { x:50, y: 350}, modelViewTransform ) );
-    cellStructureScreenView.addChild( new MagnifierViewNode());
+    cellStructureScreenView.addChild( new MagnifierViewNode( cellStructureModel.magnifierView, modelViewTransform ));
 
     cellStructureScreenView.addChild( resetAllButton );
   }

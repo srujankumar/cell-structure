@@ -6,17 +6,22 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle');
   var Node = require( 'SCENERY/nodes/Node');
+  var Image = require( 'SCENERY/nodes/Image' );
 
 
   function MagnifierViewNode( model, options, modelViewTransform ) {
 
-    var magnifierViewNode = this;
     var rect = new Rectangle( 20, 20, 300, 250, 5, 5, { fill: '#000000', stroke: 'orange', lineWidth:5 });
 
-    Node.call(magnifierViewNode);
+    Node.call(this);
 
-    magnifierViewNode.addChild(rect);
-
+    this.addChild(rect);
+    model.imageProperty.link(function( image ) {
+      if ( !image ) { return; }
+      var imageNode = new Image( image, { centerX: 80, centerY: 80 } );
+      rect.removeAllChildren();
+      rect.addChild(imageNode);
+    }.bind(this));
   }
 
   return inherit ( Node, MagnifierViewNode);

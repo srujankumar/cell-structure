@@ -8,6 +8,7 @@ define( function( require ) {
   // modules
   var Microscope = require( 'CELL_STRUCTURE/cell-structure/model/Microscope' );
   var Cell = require( 'CELL_STRUCTURE/cell-structure/model/Cell' );
+  var MagnifierView = require( 'CELL_STRUCTURE/cell-structure/model/MagnifierView' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var Vector2 = require( 'DOT/Vector2' );
   var inherit = require( 'PHET_CORE/inherit' );
@@ -20,9 +21,10 @@ define( function( require ) {
     var plantCellImage = require( 'image!CELL_STRUCTURE/plant-cell-small.png' );
 
     //models
-    this.microscope = new Microscope( new Vector2( 600, 300 ), new Dimension2( 200, 200 ), 0 );
+    this.microscope = new Microscope( new Vector2( 600, 300 ), new Dimension2( 200, 200 ), this );
     this.animalCell = new Cell( { location: new Vector2( 50, 350 ), size: new Dimension2( 80, 80 ), image: animalCellImage, text: "Animal Cell", zoomedInImage: animalCellImage, parentModel: this } );
     this.plantCell = new Cell( { location: new Vector2( 150, 350 ), size: new Dimension2( 80, 80 ), image: plantCellImage, text: "Plant Cell", zoomedInImage: plantCellImage, parentModel: this } );
+    this.magnifierView = new MagnifierView();
   }
 
   return inherit( Object, CellStructureModel, {

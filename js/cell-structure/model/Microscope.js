@@ -18,8 +18,8 @@ define( function( require ) {
    * @param {Dimension2} size the size of the microscope in model coordinates
    * @constructor
    */
-  function Microscope( location, size ) {
-    PropertySet.call( this, { location: location, objectUnderLens: null } );
+  function Microscope( location, size, parentModel ) {
+    PropertySet.call( this, { location: location, objectUnderLens: null, parentModel: parentModel } );
     this.size = size;
   }
 
