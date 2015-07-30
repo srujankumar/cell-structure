@@ -62,8 +62,11 @@ define( function( require ) {
         allowTouchSnag: true,
 
         // Translate on drag events
-        translate: function( args ) {
-          if(positionDelta( args.position, model.microscope.location, model.microscope.size.width, model.microscope.size.height)) {
+        translate: function (args) {
+          model.animalCell.location = modelViewTransform.viewToModelPosition( args.position );
+        },
+        end: function( event ) {
+          if(positionDelta( model.animalCell.location, model.microscope.location, model.microscope.size.width, model.microscope.size.height)) {
             if(model.microscope.objectUnderLens !== null) {
               model.microscope.objectUnderLens.reset();
               model.microscope.objectUnderLens.setVisible(true);
@@ -71,7 +74,6 @@ define( function( require ) {
             model.microscope.objectUnderLens = model.animalCell;
             animalCellNode.setVisible(false);
           }
-          model.animalCell.location = modelViewTransform.viewToModelPosition( args.position );
         }
       } ) );
 
