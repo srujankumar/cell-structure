@@ -1,5 +1,3 @@
-// Copyright 2002-2015, University of Colorado Boulder
-
 /**
  * RequireJS configuration file for the sim.
  *

@@ -1,8 +1,6 @@
-// Copyright 2002-2015, University of Colorado Boulder
-
 /**
  *
- * @author Srujan Kumar Bojjam <srujan@swecha.net>
+ * @author Srujan Kumar Bojjam ( BalaSwecha )
  */
 define( function( require ) {
   'use strict';
@@ -14,12 +12,9 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var MicroscopeNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeNode' );
-  var AnimalCellNode = require( 'CELL_STRUCTURE/cell-structure/view/AnimalCellNode' );
-  var PlantCellNode = require( 'CELL_STRUCTURE/cell-structure/view/PlantCellNode' );
+  var MagnifierViewNode = require( 'CELL_STRUCTURE/cell-structure/view/MagnifierViewNode' );
   var ObjectKit = require( 'CELL_STRUCTURE/cell-structure/view/ObjectKit');
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
-  //var Shape = require( 'KITE/Shape' );
-  //var Rectangle = require( 'SCENERY/nodes/Rectangle');
 
   /**
    * @param {CellStructureModel} cellStructureModel
@@ -39,26 +34,12 @@ define( function( require ) {
       bottom: this.layoutBounds.maxY - 10
     } );
 
-    //var rect = Shape();
-    //  rect.roundRect(100,100,50,50,5,5);
-
-    //var rect = new Rectangle(100,100,120,120,5,5, { fill: '#ffffff', stroke: 'orange', lineWidth: 5 });
-
-    // model-view transform
-    //var modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( new Vector2( cellStructureScreenView.layoutBounds.width / 2, cellStructureScreenView.layoutBounds.height / 2 ), 1 );
-
     var modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( new Vector2( 10, 10 ), 1 );
 
     cellStructureScreenView.addChild( new MicroscopeNode( cellStructureModel.microscope, modelViewTransform ) );
-
-    //cellStructureScreenView.addChild( new AnimalCellNode( cellStructureModel.animalCell, modelViewTransform ) );
-
-    //cellStructureScreenView.addChild( new PlantCellNode( cellStructureModel.plantCell, modelViewTransform ) );
-    //var animalCellNode = new AnimalCellNode(model.animalCell, modelViewTransform);
-
-    //cellStructureScreenView.addChild(rect);
-
     cellStructureScreenView.addChild( new ObjectKit( cellStructureModel, { x:50, y: 350}, modelViewTransform ) );
+    cellStructureScreenView.addChild( new MagnifierViewNode());
+
 
     cellStructureScreenView.addChild( resetAllButton );
   }

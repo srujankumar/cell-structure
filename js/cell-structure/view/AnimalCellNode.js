@@ -1,10 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
-
 /**
- * View for the bar magnet object, which can be dragged to translate.
+ * View for the Animal Cell object, which can be dragged to translate.
  *
- * @author Chris Malley (PixelZoom, Inc.)
- * @author Sam Reid (PhET Interactive Simulations)
+ * @author Srujan Kumar ( BalaSwecha)
  */
 define( function( require ) {
   'use strict';
@@ -24,23 +21,20 @@ define( function( require ) {
   var animalCellImage = require( 'image!CELL_STRUCTURE/animal-cell-small.png' );
 
   /**
-   * Constructor for the BarMagnetNode which renders the bar magnet as a scenery node.
-   * @param {BarMagnet} microscope the model of the bar magnet
+   * Constructor for the AnimalCellNode which renders the animal cell object as a scenery node.
+   * @param {AnimalCellNode} animalCell, the model of the animal cell
    * @param {ModelViewTransform2} modelViewTransform the coordinate transform between model coordinates and view coordinates
    * @constructor
    */
-  function AnimalCellNode( animalCell, modelViewTransform ) {
+  function AnimalCellNode( model, modelViewTransform ) {
 
     var animalCellNode = this;
 
-    // Call the super constructor
     Node.call( animalCellNode, {
 
-      // Show a cursor hand over the bar magnet
       cursor: 'pointer'
     } );
 
-    // Add the centered bar magnet image
     var animalCellIcon = new Image( animalCellImage, { centerX: 80, centerY: 80 } );
     var animalCellIconText = new Text("Animal Cell",{ font: new PhetFont(14), fill: 'orange'});
 
@@ -54,11 +48,14 @@ define( function( require ) {
 
     animalCellNode.addChild(rect);
 
-    // Scale it so it matches the model width and height
-    animalCellNode.scale( modelViewTransform.modelToViewDeltaX( animalCell.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( animalCell.size.height ) / this.height );
+    var positionDelta = function( position1, position2, deltaX, deltaY){
+      return ( Math.abs(position1.x - position2.x) <=  deltaX) && ( Math.abs(position1.y - position2.y) <= deltaY);
+    };
 
-    // When dragging, move the bar magnet
+    // Scale it so it matches the model width and height
+    animalCellNode.scale( modelViewTransform.modelToViewDeltaX( model.animalCell.size.width ) / this.width,
+      modelViewTransform.modelToViewDeltaY( model.animalCell.size.height ) / this.height );
+
     animalCellNode.addInputListener( new SimpleDragHandler(
       {
         // When dragging across it in a mobile device, pick it up
@@ -66,19 +63,23 @@ define( function( require ) {
 
         // Translate on drag events
         translate: function( args ) {
-          animalCell.location = modelViewTransform.viewToModelPosition( args.position );
+          if(positionDelta( args.position, model.microscope.location, model.microscope.size.width, model.microscope.size.height)) {
+            if(model.microscope.objectUnderLens !== null) {
+              model.microscope.objectUnderLens.reset();
+              model.microscope.objectUnderLens.setVisible(true);
+            }
+            model.microscope.objectUnderLens = model.animalCell;
+            animalCellNode.setVisible(false);
+          }
+          model.animalCell.location = modelViewTransform.viewToModelPosition( args.position );
         }
       } ) );
 
     // Register for synchronization with model.
-    animalCell.locationProperty.link( function( location ) {
+    model.animalCell.locationProperty.link( function( location ) {
       animalCellNode.translation = modelViewTransform.modelToViewPosition( location );
-    } );
 
-    // Register for synchronization with model
-    //animalCell.orientationProperty.link( function( orientation ) {
-    //  animalCellNode.rotation = orientation;
-    //} );
+    } );
   }
 
   return inherit( Node, AnimalCellNode );

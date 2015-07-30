@@ -1,11 +1,8 @@
-// Copyright 2002-2013, University of Colorado Boulder
-
 /**
- * Model of a simple bar magnet.
- * The magnet has fixed size, and mutable location and orientation.
+ * Model of an animal cell object.
+ * The magnet has fixed size, and mutable location.
  *
- * @author Chris Malley (PixelZoom, Inc.)
- * @author Sam Reid (PhET Interactive Simulations)
+ * @author Srujan Kumar (BalaSwecha)
  */
 define( function( require ) {
   'use strict';
@@ -15,11 +12,10 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
 
   /**
-   * Create a new bar magnet model.  The magnet has fixed size, and mutable location and orientation.
+   * Create a new animal cell model.  The object has fixed size, and mutable location.
    *
-   * @param {Vector2} location the position of the bar magnet in model coordinates
-   * @param {Dimension2} size the size of the bar magnet in model coordinates
-   * @param {number} orientation in radians
+   * @param {Vector2} location, the position of the animal cell object in model coordinates
+   * @param {Dimension2} size, the size of the animal cell object in model coordinates
    * @constructor
    */
   function AnimalCell( location, size ) {

@@ -1,10 +1,7 @@
-// Copyright 2002-2013, University of Colorado Boulder
-
 /**
- * View for the bar magnet object, which can be dragged to translate.
+ * View for the plant cell object, which can be dragged to translate.
  *
- * @author Chris Malley (PixelZoom, Inc.)
- * @author Sam Reid (PhET Interactive Simulations)
+ * @author Srujan Kumar ( BalaSwecha )
  */
 define( function( require ) {
   'use strict';
@@ -24,60 +21,61 @@ define( function( require ) {
   var plantCellImage = require( 'image!CELL_STRUCTURE/plant-cell-small.png' );
 
   /**
-   * Constructor for the BarMagnetNode which renders the bar magnet as a scenery node.
-   * @param {BarMagnet} microscope the model of the bar magnet
-   * @param {ModelViewTransform2} modelViewTransform the coordinate transform between model coordinates and view coordinates
+   * Constructor for the PlantCellNode which renders the plant cell object as a scenery node.
+   * @param {PlantCellNode} plantCell, the model of the plant cell object
+   * @param {ModelViewTransform2} modelViewTransform, the coordinate transform between model coordinates and view coordinates
    * @constructor
    */
-  function PlantCellNode( plantCell, modelViewTransform ) {
+  function PlantCellNode( model, modelViewTransform ) {
 
-    var PlantCellNode = this;
+    var plantCellNode = this;
 
-    // Call the super constructor
-    Node.call( PlantCellNode, {
+    Node.call( plantCellNode, {
 
-      // Show a cursor hand over the bar magnet
       cursor: 'pointer'
     } );
 
-    // Add the centered bar magnet image
     var plantCellIcon = new Image( plantCellImage, { centerX: 80, centerY: 80 } );
     var plantCellIconText = new Text("Plant Cell",{ font: new PhetFont(14), fill: 'orange'});
-
     var line = new Line(0,0,120,0, {});
-
     var content = new VBox( { align: 'center', spacing: 10, children: [ line, plantCellIcon, plantCellIconText ] } );
-
     var rect = new Rectangle(0,0,120,120,5,5, { fill: '#000000', stroke: 'orange', lineWidth:1 });
     rect.addChild(content);
 
-    PlantCellNode.addChild(rect);
+    plantCellNode.addChild(rect);
+
+    var positionDelta = function( position1, position2, deltaX, deltaY){
+      return ( Math.abs(position1.x - position2.x) <=  deltaX) && ( Math.abs(position1.y - position2.y) <= deltaY);
+    };
 
     // Scale it so it matches the model width and height
-    PlantCellNode.scale( modelViewTransform.modelToViewDeltaX( plantCell.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( plantCell.size.height ) / this.height );
+    plantCellNode.scale( modelViewTransform.modelToViewDeltaX( model.plantCell.size.width ) / this.width,
+      modelViewTransform.modelToViewDeltaY( model.plantCell.size.height ) / this.height );
 
-    // When dragging, move the bar magnet
-    PlantCellNode.addInputListener( new SimpleDragHandler(
+    plantCellNode.addInputListener( new SimpleDragHandler(
       {
         // When dragging across it in a mobile device, pick it up
         allowTouchSnag: true,
 
         // Translate on drag events
         translate: function( args ) {
-          plantCell.location = modelViewTransform.viewToModelPosition( args.position );
+          if(positionDelta( args.position, model.microscope.location, model.microscope.size.width, model.microscope.size.height)) {
+            if(model.microscope.objectUnderLens !== null) {
+              model.microscope.objectUnderLens.reset();
+              model.microscope.objectUnderLens.setVisible(true);
+            }
+            model.microscope.objectUnderLens = model.plantCell;
+            plantCellNode.setVisible(false);
+          }
+          model.plantCell.location = modelViewTransform.viewToModelPosition( args.position );
         }
       } ) );
 
     // Register for synchronization with model.
-    plantCell.locationProperty.link( function( location ) {
-      PlantCellNode.translation = modelViewTransform.modelToViewPosition( location );
+    model.plantCell.locationProperty.link( function( location ) {
+      plantCellNode.translation = modelViewTransform.modelToViewPosition( location );
     } );
 
-    // Register for synchronization with model
-    //plantCell.orientationProperty.link( function( orientation ) {
-    //  PlantCellNode.rotation = orientation;
-    //} );
   }
 
   return inherit( Node, PlantCellNode );

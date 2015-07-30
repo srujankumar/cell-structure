@@ -1,5 +1,3 @@
-// Copyright 2002-2015, University of Colorado Boulder
-
 /**
  *
  * @author Srujan Kumar Bojjam <srujan@swecha.net>
@@ -14,20 +12,16 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Vector2 = require( 'DOT/Vector2' );
   var inherit = require( 'PHET_CORE/inherit' );
-  //var PropertySet = require( 'AXON/PropertySet' );
 
   /**
    * @constructor
    */
   function CellStructureModel() {
 
-    //PropertySet.call( this, {} );
-
     //models
     this.microscope = new Microscope( new Vector2( 600, 300 ), new Dimension2( 200, 200 ), 0 );
     this.animalCell = new AnimalCell( new Vector2( 50, 350 ), new Dimension2( 80, 80 ));
     this.plantCell = new PlantCell( new Vector2( 150, 350 ), new Dimension2( 80, 80 ));
-
   }
 
   return inherit( Object, CellStructureModel, {

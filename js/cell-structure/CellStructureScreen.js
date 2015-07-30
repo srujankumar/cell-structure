@@ -1,8 +1,6 @@
-// Copyright 2002-2015, University of Colorado Boulder
-
 /**
  *
- * @author Srujan Kumar Bojjam <srujan@swecha.net>
+ * @author Srujan Kumar ( BalaSwecha )
  */
 define( function( require ) {
   'use strict';
