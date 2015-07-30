@@ -21,8 +21,8 @@ define( function( require ) {
 
     //models
     this.microscope = new Microscope( new Vector2( 600, 300 ), new Dimension2( 200, 200 ), 0 );
-    this.animalCell = new Cell( new Vector2( 50, 350 ), new Dimension2( 80, 80 ), animalCellImage, "Animal Cell", this);
-    this.plantCell = new Cell( new Vector2( 150, 350 ), new Dimension2( 80, 80 ), plantCellImage, "Plant Cell", this);
+    this.animalCell = new Cell( { location: new Vector2( 50, 350 ), size: new Dimension2( 80, 80 ), image: animalCellImage, text: "Animal Cell", zoomedInImage: animalCellImage, parentModel: this } );
+    this.plantCell = new Cell( { location: new Vector2( 150, 350 ), size: new Dimension2( 80, 80 ), image: plantCellImage, text: "Plant Cell", zoomedInImage: plantCellImage, parentModel: this } );
   }
 
   return inherit( Object, CellStructureModel, {

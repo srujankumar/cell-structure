@@ -19,9 +19,8 @@ define( function( require ) {
    * @constructor
    */
   function Microscope( location, size ) {
-    PropertySet.call( this, { location: location } );
+    PropertySet.call( this, { location: location, objectUnderLens: null } );
     this.size = size;
-    this.objectUnderLens = null;
   }
 
   return inherit( PropertySet, Microscope );

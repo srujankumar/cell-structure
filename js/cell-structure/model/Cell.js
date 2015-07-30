@@ -17,9 +17,10 @@ define( function( require ) {
    * @param {Dimension2} size, the size of the cell in model coordinates
    * @constructor
    */
-  function Cell( location, size, image, text, parentModel ) {
-    PropertySet.call( this, { location: location, image: image, text: text, parentModel: parentModel } );
-    this.size = size;
+  function Cell( properties ) {
+    var defaults = { location: '', image: '', text: '', zoomedInImage: '', parentModel: '', size: '', visibility: true };
+    var values = _.merge( defaults, properties )
+    PropertySet.call( this, values );
   }
 
   return inherit( PropertySet, Cell );

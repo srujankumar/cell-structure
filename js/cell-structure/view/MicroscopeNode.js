@@ -23,35 +23,30 @@ define( function( require ) {
    */
   function MicroscopeNode( microscope, modelViewTransform ) {
 
-    var microscopeNode = this;
+    this.objectUnderLensNode = null;
 
-    Node.call( microscopeNode, {
-
+    Node.call( this, {
       cursor: 'pointer'
     } );
 
-    microscopeNode.addChild( new Image( microscopeImage, { centerX: 0, centerY: 0 } ) );
+    this.addChild( new Image( microscopeImage, { centerX: 0, centerY: 0 } ) );
 
     // Scale it so it matches the model width and height
-    microscopeNode.scale( modelViewTransform.modelToViewDeltaX( microscope.size.width ) / this.width,
+    this.scale( modelViewTransform.modelToViewDeltaX( microscope.size.width ) / this.width,
       modelViewTransform.modelToViewDeltaY( microscope.size.height ) / this.height );
-
-    microscopeNode.addInputListener( new SimpleDragHandler(
-      {
-        // When dragging across it in a mobile device, pick it up
-        allowTouchSnag: true,
-
-        // Translate on drag events
-        translate: function( args ) {
-          console.log(args.position);
-          microscope.location = modelViewTransform.viewToModelPosition( args.position );
-        }
-      } ) );
-
     // Register for synchronization with model.
     microscope.locationProperty.link( function( location ) {
-      microscopeNode.translation = modelViewTransform.modelToViewPosition( location );
-    } );
+      this.translation = modelViewTransform.modelToViewPosition( location );
+    }.bind(this) );
+
+    microscope.objectUnderLensProperty.link( function( cell ) {
+      if(this.objectUnderLensNode) {
+        this.removeChild(this.objectUnderLensNode);
+      }
+      if (!cell) { return; }
+      this.objectUnderLensNode = new Image( cell.image, { x: -80, y: 20 } );
+      this.addChild(this.objectUnderLensNode);
+    }.bind(this) );
 
   }
 

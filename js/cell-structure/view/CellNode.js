@@ -16,6 +16,8 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle');
   var Line = require( 'SCENERY/nodes/Line');
+  var Dimension2 = require( 'DOT/Dimension2' );
+  var Vector2 = require( 'DOT/Vector2' );
 
   /**
    * Constructor for the CellNode which renders the cell object as a scenery node.
@@ -61,12 +63,12 @@ define( function( require ) {
         },
         end: function( event ) {
           if(positionDelta( model.location, model.parentModel.microscope.location, model.parentModel.microscope.size.width, model.parentModel.microscope.size.height)) {
-            if(model.parentModel.microscope.objectUnderLens !== null) {
-              model.parentModel.microscope.objectUnderLens.reset();
-              //model.parentModel.microscope.objectUnderLens.setVisible(true);
+            if( model.parentModel.microscope.objectUnderLens ) {
+              model.parentModel.microscope.objectUnderLens.visibilityProperty.set(true);
             }
-            model.parentModel.microscope.objectUnderLens = model;
-            this.setVisible(false);
+            model.parentModel.microscope.objectUnderLensProperty.set(model);
+            model.reset();
+            model.visibilityProperty.set(false);
           }
         }.bind(this)
       } ) );
@@ -74,6 +76,10 @@ define( function( require ) {
     // Register for synchronization with model.
     model.locationProperty.link( function( location ) {
       this.translation = modelViewTransform.modelToViewPosition( location );
+    }.bind(this) );
+
+    model.visibilityProperty.link( function( visibility ) {
+      this.setVisible(visibility);
     }.bind(this) );
   }
 
