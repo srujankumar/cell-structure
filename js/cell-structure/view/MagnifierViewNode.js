@@ -16,9 +16,9 @@ define( function( require ) {
     Node.call(this);
 
     this.addChild(rect);
-    model.imageProperty.link(function( image ) {
+    model.magnifiedImageProperty.link(function( image ) {
       if ( !image ) { return; }
-      var imageNode = new Image( image, { centerX: 80, centerY: 80 } );
+      var imageNode = new Image( image.image, { centerX: 80, centerY: 80 } );
       rect.removeAllChildren();
       rect.addChild(imageNode);
     }.bind(this));

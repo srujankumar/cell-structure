@@ -48,7 +48,7 @@ define( function( require ) {
       this.objectUnderLensNode = new Image( cell.image, { x: -80, y: 20 } );
       this.addChild(this.objectUnderLensNode);
 
-      microscope.parentModel.magnifierView.imageProperty.set(cell.zoomedInImage);
+      microscope.parentModel.magnifierView.magnifiedImageProperty.set(cell.magnifiedImage);
     }.bind(this) );
 
   }

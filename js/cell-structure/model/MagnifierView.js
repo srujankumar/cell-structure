@@ -19,7 +19,7 @@ define( function( require ) {
    * @constructor
    */
   function MagnifierView() {
-    PropertySet.call( this, { location: undefined, image: undefined } );
+    PropertySet.call( this, { location: undefined, magnifiedImage: undefined } );
   }
 
   return inherit( PropertySet, MagnifierView );

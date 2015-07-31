@@ -1,5 +1,5 @@
 /**
- * Model of an animal cell object.
+ * Model of a Magnified Image
  *
  * @author Srujan Kumar (BalaSwecha)
  */
@@ -11,17 +11,15 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
 
   /**
-   * Create a new cell model.  The object has fixed size, and mutable location.
+   * Create a new magnified image.
    *
    * @param {Vector2} location, the position of the cell in model coordinates
    * @param {Dimension2} size, the size of the cell in model coordinates
    * @constructor
    */
-  function Cell( properties ) {
-    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true };
-    var values = _.merge( defaults, properties )
-    PropertySet.call( this, values );
+  function MagnifiedImage( image ) {
+    PropertySet.call( this, {image: image} );
   }
 
-  return inherit( PropertySet, Cell );
+  return inherit( PropertySet, MagnifiedImage );
 } );
