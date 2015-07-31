@@ -22,10 +22,10 @@ define( function( require ) {
     //}.bind(this) );
 
     var circle = new Circle(model.radius, {x: model.location.x, y: model.location.y, fill: 'transparent', stroke: 'orange', lineWidth:5 });
-    circle.addInputListener( new DownUpListener( { 
+    circle.addInputListener( new DownUpListener( {
       up: function( event ) {
         model.parentModel.magnifierView.magnifiedImageProperty.set(model.magnifiedImage);
-      } 
+      }
     } ) );
     this.addChild(circle);
   }

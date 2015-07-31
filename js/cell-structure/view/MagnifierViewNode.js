@@ -8,6 +8,8 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node');
   var Image = require( 'SCENERY/nodes/Image' );
   var MagnifiedImageNode = require( 'CELL_STRUCTURE/cell-structure/view/MagnifiedImageNode' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var TextPushButton = require( 'SUN/buttons/TextPushButton' );
 
   function MagnifierViewNode( model, options, modelViewTransform ) {
 
@@ -23,6 +25,21 @@ define( function( require ) {
       var magnifiedImageNode = new MagnifiedImageNode( image, modelViewTransform );
       rect.addChild(magnifiedImageNode);
     }.bind(this));
+
+
+    var flipButton = new TextPushButton( "<", {
+      font: new PhetFont( 16 ),
+      baseColor: 'yellow',
+      xMargin: 10,
+      x: 0,
+      y: 270,
+      listener: function() {
+        if ( model.magnifiedImage.parentImage ) {
+          model.magnifiedImageProperty.set( model.magnifiedImage.parentImage )
+        }
+      }
+    } );
+    this.addChild(flipButton);
   }
 
   return inherit ( Node, MagnifierViewNode);
