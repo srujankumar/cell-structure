@@ -5,6 +5,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
   var Circle = require( 'SCENERY/nodes/Circle' );
+  var DownUpListener = require( 'SCENERY/input/DownUpListener' );
 
   function OverlayNode( model, modelViewTransform ) {
 
@@ -21,6 +22,11 @@ define( function( require ) {
     //}.bind(this) );
 
     var circle = new Circle(model.radius, {x: model.location.x, y: model.location.y, fill: 'transparent', stroke: 'orange', lineWidth:5 });
+    circle.addInputListener( new DownUpListener( { 
+      up: function( event ) {
+        model.parentModel.magnifierView.magnifiedImageProperty.set(model.magnifiedImage);
+      } 
+    } ) );
     this.addChild(circle);
   }
 
