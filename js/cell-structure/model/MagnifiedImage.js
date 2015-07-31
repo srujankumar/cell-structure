@@ -17,8 +17,8 @@ define( function( require ) {
    * @param {Dimension2} size, the size of the cell in model coordinates
    * @constructor
    */
-  function MagnifiedImage( image ) {
-    PropertySet.call( this, {image: image} );
+  function MagnifiedImage( image, overlay ) {
+    PropertySet.call( this, {image: image, overlay: overlay} );
   }
 
   return inherit( PropertySet, MagnifiedImage );
