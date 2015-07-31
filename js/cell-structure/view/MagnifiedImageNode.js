@@ -13,8 +13,12 @@ define( function( require ) {
     var imageNode = new Image( model.image, { x: 0, y: 0 } );
     this.addChild(imageNode);
 
-    var overlayNode = new OverlayNode(model.overlay);
-    this.addChild(overlayNode);
+    if(model.overlays) {
+      model.overlays.forEach(function(overlay) {
+        var overlayNode = new OverlayNode(overlay);
+        this.addChild(overlayNode);
+      }.bind(this));
+    }
   }
 
   return inherit ( Node, MagnifiedImageNode);

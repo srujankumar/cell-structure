@@ -23,8 +23,8 @@ define( function( require ) {
     var plantCellImage = require( 'image!CELL_STRUCTURE/plant-cell-small.png' );
 
     //models
-    var animalCellMagnifiedImage = new MagnifiedImage(animalCellImage, new Overlay(10, new Vector2(0,0), undefined, this));
-    var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, new Overlay(10, new Vector2(10,10), animalCellMagnifiedImage, this));
+    var animalCellMagnifiedImage = new MagnifiedImage(animalCellImage, [new Overlay(10, new Vector2(0,0), undefined, this)]);
+    var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(10, new Vector2(10,10), animalCellMagnifiedImage, this)]);
     this.microscope = new Microscope( new Vector2( 600, 300 ), new Dimension2( 200, 200 ), this );
     this.animalCell = new Cell( { location: new Vector2( 50, 350 ), size: new Dimension2( 80, 80 ), image: animalCellImage, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
     this.plantCell = new Cell( { location: new Vector2( 150, 350 ), size: new Dimension2( 80, 80 ), image: plantCellImage, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );

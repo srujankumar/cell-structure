@@ -17,14 +17,16 @@ define( function( require ) {
    * @param {Dimension2} size, the size of the cell in model coordinates
    * @constructor
    */
-  function MagnifiedImage( image, overlay, parentImage ) {
-    if( overlay ) {
-      if( overlay.magnifiedImage ) {
-        overlay.magnifiedImage.parentImage = this;
-      }
+  function MagnifiedImage( image, overlays, parentImage ) {
+    if(overlays) {
+      overlays.forEach(function(overlay) {
+        if(overlay.magnifiedImage) {
+          overlay.magnifiedImage.parentImage = this;
+        }
+      }.bind(this));
     }
 
-    PropertySet.call( this, { image: image, overlay: overlay, parentImage: parentImage } );
+    PropertySet.call( this, { image: image, overlays: overlays, parentImage: parentImage } );
   }
 
   return inherit( PropertySet, MagnifiedImage );
