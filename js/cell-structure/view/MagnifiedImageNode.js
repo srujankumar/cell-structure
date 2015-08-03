@@ -6,12 +6,15 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var OverlayNode = require( 'CELL_STRUCTURE/cell-structure/view/OverlayNode' );
 
-  function MagnifiedImageNode( model, options, modelViewTransform ) {
+  function MagnifiedImageNode( model, modelViewTransform ) {
 
     Node.call(this);
     if ( !model.image ) { return; }
     var imageNode = new Image( model.image, { x: 0, y: 0 } );
     this.addChild(imageNode);
+
+    this.scale( modelViewTransform.modelToViewDeltaX( 300 ) / this.width,
+      modelViewTransform.modelToViewDeltaY( 250  ) / this.height );
 
     if(model.overlays) {
       model.overlays.forEach(function(overlay) {

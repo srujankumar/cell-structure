@@ -19,15 +19,17 @@ define( function( require ) {
    * @constructor
    */
   function CellStructureModel() {
-    var animalCellImage = require( 'image!CELL_STRUCTURE/animal-cell-small.png' );
-    var plantCellImage = require( 'image!CELL_STRUCTURE/plant-cell-small.png' );
+    var animalCellIcon = require( 'image!CELL_STRUCTURE/animal-cell-small.png' );
+    var plantCellIcon = require( 'image!CELL_STRUCTURE/plant-cell-small.png' );
+    var animalCellImage = require( 'image!CELL_STRUCTURE/animal-cell-big.png' );
+    var plantCellImage = require( 'image!CELL_STRUCTURE/plant-cell-big.png' );
 
     //models
     var animalCellMagnifiedImage = new MagnifiedImage(animalCellImage, [new Overlay(10, new Vector2(0,0), undefined, this)]);
     var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(10, new Vector2(10,10), animalCellMagnifiedImage, this)]);
     this.microscope = new Microscope( new Vector2( 600, 300 ), new Dimension2( 200, 200 ), this );
-    this.animalCell = new Cell( { location: new Vector2( 50, 350 ), size: new Dimension2( 80, 80 ), image: animalCellImage, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
-    this.plantCell = new Cell( { location: new Vector2( 150, 350 ), size: new Dimension2( 80, 80 ), image: plantCellImage, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );
+    this.animalCell = new Cell( { location: new Vector2( 50, 350 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
+    this.plantCell = new Cell( { location: new Vector2( 150, 350 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );
     this.magnifierView = new MagnifierView();
   }
 
