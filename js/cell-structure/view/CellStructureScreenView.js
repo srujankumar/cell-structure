@@ -11,16 +11,15 @@ define( function( require ) {
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var Vector2 = require( 'DOT/Vector2' );
   var Bounds2 = require( 'DOT/Bounds2' );
-  var MicroscopeInstrumentNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeInstrumentNode' );
-  var MagnifierViewNode = require( 'CELL_STRUCTURE/cell-structure/view/MagnifierViewNode' );
+  var MicroscopeNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeNode' );
   var ObjectKit = require( 'CELL_STRUCTURE/cell-structure/view/ObjectKit');
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
 
   /**
-   * @param {CellStructureModel} cellStructureModel
+   * @param {CellStructureModel} model
    * @constructor
    */
-  function CellStructureScreenView( cellStructureModel ) {
+  function CellStructureScreenView( model ) {
 
     var cellStructureScreenView = this;
     ScreenView.call( cellStructureScreenView, { layoutBounds: new Bounds2( 0, 0, 768, 504 ) } );
@@ -28,7 +27,7 @@ define( function( require ) {
     // Reset All button
     var resetAllButton = new ResetAllButton( {
       listener: function() {
-        cellStructureModel.reset();
+        model.reset();
       },
       right:  this.layoutBounds.maxX - 10,
       bottom: this.layoutBounds.maxY - 10
@@ -36,9 +35,8 @@ define( function( require ) {
 
     var modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( new Vector2( 10, 10 ), 1 );
 
-    cellStructureScreenView.addChild( new MicroscopeInstrumentNode( cellStructureModel.microscopeInstrument, modelViewTransform ) );
-    cellStructureScreenView.addChild( new ObjectKit( cellStructureModel, { x:50, y: 350}, modelViewTransform ) );
-    cellStructureScreenView.addChild( new MagnifierViewNode( cellStructureModel.magnifierView, {x: 20, y: 0}, modelViewTransform ));
+    cellStructureScreenView.addChild( new MicroscopeNode( model.microscope, {}, modelViewTransform ));
+    cellStructureScreenView.addChild( new ObjectKit( model, { x:50, y: 350}, modelViewTransform ) );
 
     cellStructureScreenView.addChild( resetAllButton );
   }

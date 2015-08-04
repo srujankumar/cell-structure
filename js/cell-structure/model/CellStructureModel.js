@@ -6,10 +6,9 @@ define( function( require ) {
   'use strict';
 
   // modules
-  var MicroscopeInstrument = require( 'CELL_STRUCTURE/cell-structure/model/MicroscopeInstrument' );
   var Cell = require( 'CELL_STRUCTURE/cell-structure/model/Cell' );
-  var MagnifierView = require( 'CELL_STRUCTURE/cell-structure/model/MagnifierView' );
   var MagnifiedImage = require( 'CELL_STRUCTURE/cell-structure/model/MagnifiedImage' );
+  var Microscope = require( 'CELL_STRUCTURE/cell-structure/model/Microscope' );
   var Overlay = require( 'CELL_STRUCTURE/cell-structure/model/Overlay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -32,10 +31,9 @@ define( function( require ) {
     var golgiApparatusMagnifiedImage = new MagnifiedImage(golgiApparatusImage, []);
 
     var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, this), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage, this)]);
-    this.microscopeInstrument = new MicroscopeInstrument( new Vector2( 600, 300 ), new Dimension2( 200, 200 ), this );
+    this.microscope = new Microscope();
     this.animalCell = new Cell( { location: new Vector2( 50, 350 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
     this.plantCell = new Cell( { location: new Vector2( 150, 350 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );
-    this.magnifierView = new MagnifierView();
   }
 
   return inherit( Object, CellStructureModel, {
@@ -46,7 +44,7 @@ define( function( require ) {
     },
     // Resets all model elements
     reset: function() {
-      this.microscopeInstrument.reset();
+      this.microscope.reset();
       this.animalCell.reset();
       this.plantCell.reset();
       this.magnifierView.reset();

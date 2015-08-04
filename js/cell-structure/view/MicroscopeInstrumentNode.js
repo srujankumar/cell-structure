@@ -1,5 +1,5 @@
 /**
- * View for the microscope object, which can be dragged to translate.
+ * View for the model object, which can be dragged to translate.
  *
  * @author Srujan Kumar ( BalaSwecha )
  */
@@ -13,15 +13,15 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   // images
-  var microscopeImage = require( 'image!CELL_STRUCTURE/microscope.png' );
+  var instrumentImage = require( 'image!CELL_STRUCTURE/microscope.png' );
 
   /**
-   * Constructor for the MicroscopeNode which renders the microscope as a scenery node.
-   * @param {Microscope} microscope, the model of the microscope
+   * Constructor for the modelNode which renders the model as a scenery node.
+   * @param {model} model, the model of the model
    * @param {ModelViewTransform2} modelViewTransform, the coordinate transform between model coordinates and view coordinates
    * @constructor
    */
-  function MicroscopeInstrumentNode( microscope, modelViewTransform ) {
+  function MicroscopeInstrumentNode( model, options, modelViewTransform ) {
 
     this.objectUnderLensNode = null;
 
@@ -29,17 +29,17 @@ define( function( require ) {
       cursor: 'pointer'
     } );
 
-    this.addChild( new Image( microscopeImage, { centerX: 0, centerY: 0 } ) );
+    this.addChild( new Image( instrumentImage, { centerX: 0, centerY: 0 } ) );
 
     // Scale it so it matches the model width and height
-    this.scale( modelViewTransform.modelToViewDeltaX( microscope.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( microscope.size.height ) / this.height );
+    this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
+      modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
     // Register for synchronization with model.
-    microscope.locationProperty.link( function( location ) {
+    model.locationProperty.link( function( location ) {
       this.translation = modelViewTransform.modelToViewPosition( location );
     }.bind(this) );
 
-    microscope.objectUnderLensProperty.link( function( cell ) {
+    model.objectUnderLensProperty.link( function( cell ) {
       if(this.objectUnderLensNode) {
         this.removeChild(this.objectUnderLensNode);
       }
@@ -48,7 +48,7 @@ define( function( require ) {
       this.objectUnderLensNode = new Image( cell.image, { x: -80, y: 20 } );
       this.addChild(this.objectUnderLensNode);
 
-      microscope.parentModel.magnifierView.magnifiedImageProperty.set(cell.magnifiedImage);
+      //model.parentModel.magnifierView.magnifiedImageProperty.set(cell.magnifiedImage);
     }.bind(this) );
 
   }
