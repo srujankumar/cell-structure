@@ -62,11 +62,11 @@ define( function( require ) {
           model.location = modelViewTransform.viewToModelPosition( args.position );
         },
         end: function( event ) {
-          if(positionDelta( model.location, model.parentModel.microscope.location, model.parentModel.microscope.size.width, model.parentModel.microscope.size.height)) {
-            if( model.parentModel.microscope.objectUnderLens ) {
-              model.parentModel.microscope.objectUnderLens.visibilityProperty.set(true);
+          if(positionDelta( model.location, model.parentModel.microscopeInstrument.location, model.parentModel.microscopeInstrument.size.width, model.parentModel.microscopeInstrument.size.height)) {
+            if( model.parentModel.microscopeInstrument.objectUnderLens ) {
+              model.parentModel.microscopeInstrument.objectUnderLens.visibilityProperty.set(true);
             }
-            model.parentModel.microscope.objectUnderLensProperty.set(model);
+            model.parentModel.microscopeInstrument.objectUnderLensProperty.set(model);
             model.reset();
             model.visibilityProperty.set(false);
           }

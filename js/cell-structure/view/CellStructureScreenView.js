@@ -11,7 +11,7 @@ define( function( require ) {
   var ModelViewTransform2 = require( 'PHETCOMMON/view/ModelViewTransform2' );
   var Vector2 = require( 'DOT/Vector2' );
   var Bounds2 = require( 'DOT/Bounds2' );
-  var MicroscopeNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeNode' );
+  var MicroscopeInstrumentNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeInstrumentNode' );
   var MagnifierViewNode = require( 'CELL_STRUCTURE/cell-structure/view/MagnifierViewNode' );
   var ObjectKit = require( 'CELL_STRUCTURE/cell-structure/view/ObjectKit');
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
@@ -36,7 +36,7 @@ define( function( require ) {
 
     var modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( new Vector2( 10, 10 ), 1 );
 
-    cellStructureScreenView.addChild( new MicroscopeNode( cellStructureModel.microscope, modelViewTransform ) );
+    cellStructureScreenView.addChild( new MicroscopeInstrumentNode( cellStructureModel.microscopeInstrument, modelViewTransform ) );
     cellStructureScreenView.addChild( new ObjectKit( cellStructureModel, { x:50, y: 350}, modelViewTransform ) );
     cellStructureScreenView.addChild( new MagnifierViewNode( cellStructureModel.magnifierView, {x: 20, y: 0}, modelViewTransform ));
 

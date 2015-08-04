@@ -21,7 +21,7 @@ define( function( require ) {
    * @param {ModelViewTransform2} modelViewTransform, the coordinate transform between model coordinates and view coordinates
    * @constructor
    */
-  function MicroscopeNode( microscope, modelViewTransform ) {
+  function MicroscopeInstrumentNode( microscope, modelViewTransform ) {
 
     this.objectUnderLensNode = null;
 
@@ -53,5 +53,5 @@ define( function( require ) {
 
   }
 
-  return inherit( Node, MicroscopeNode );
+  return inherit( Node, MicroscopeInstrumentNode );
 } );
