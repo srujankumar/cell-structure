@@ -21,7 +21,7 @@ define( function( require ) {
     //  this.translation = modelViewTransform.modelToViewPosition( location );
     //}.bind(this) );
 
-    var circle = new Circle(model.radius, {x: model.location.x, y: model.location.y, fill: 'transparent', stroke: 'orange', lineWidth:5 });
+    var circle = new Circle(model.radius, {x: model.location.x, y: model.location.y, fill: 'transparent', stroke: 'black', lineWidth:3 });
     circle.addInputListener( new DownUpListener( {
       up: function( event ) {
         model.parentModel.magnifierView.magnifiedImageProperty.set(model.magnifiedImage);
