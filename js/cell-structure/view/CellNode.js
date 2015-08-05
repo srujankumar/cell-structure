@@ -62,6 +62,7 @@ define( function( require ) {
           model.location = modelViewTransform.viewToModelPosition( args.position );
         },
         end: function( event ) {
+          CS.onDrop(model);
           /* TODO: Eventing
           if(positionDelta( model.location, model.parentModel.microscopeInstrument.location, model.parentModel.microscopeInstrument.size.width, model.parentModel.microscopeInstrument.size.height)) {
             if( model.parentModel.microscopeInstrument.objectUnderLens ) {
