@@ -12,7 +12,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Bounds2 = require( 'DOT/Bounds2' );
   var MicroscopeNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeNode' );
-  var ObjectKit = require( 'CELL_STRUCTURE/cell-structure/view/ObjectKit');
+  var KitNode = require( 'CELL_STRUCTURE/cell-structure/view/KitNode');
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
 
   /**
@@ -36,7 +36,7 @@ define( function( require ) {
     var modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( new Vector2( 10, 10 ), 1 );
 
     cellStructureScreenView.addChild( new MicroscopeNode( model.microscope, {}, modelViewTransform ));
-    cellStructureScreenView.addChild( new ObjectKit( model, { x:50, y: 350}, modelViewTransform ) );
+    cellStructureScreenView.addChild( new KitNode( model.objectKit, { x:50, y: 350}, modelViewTransform ));
 
     cellStructureScreenView.addChild( resetAllButton );
   }

@@ -19,7 +19,8 @@ define( function( require ) {
    */
   function Cell( properties ) {
     var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true };
-    var values = _.merge( defaults, properties )
+    var values = _.merge( defaults, properties );
+    values.kitImage = values.image;
     PropertySet.call( this, values );
   }
 
