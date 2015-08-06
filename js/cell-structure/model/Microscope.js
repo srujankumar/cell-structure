@@ -5,14 +5,15 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var MagnifierView = require( 'CELL_STRUCTURE/cell-structure/model/MagnifierView' );
   var MicroscopeInstrument = require( 'CELL_STRUCTURE/cell-structure/model/MicroscopeInstrument' );
+  var Apparatus = require( 'CELL_STRUCTURE/cell-structure/model/Apparatus' );
   var Vector2 = require( 'DOT/Vector2' );
   var Dimension2 = require( 'DOT/Dimension2' );
 
   function Microscope() {
-    var instrument = new MicroscopeInstrument( new Vector2( 600, 300 ), new Dimension2( 200, 200 ) );
+    var instrument = new MicroscopeInstrument( new Vector2( 0, 0 ), new Dimension2( 200, 200 ) );
     var magnifierView = new MagnifierView();
     instrument.parent = magnifierView.parent = this;
-    PropertySet.call( this, {instrument: instrument, magnifierView: magnifierView} );
+    Apparatus.call( this, {instrument: instrument, magnifierView: magnifierView, image: instrument.image, size: new Dimension2( 50, 50 ), location: new Vector2(675,365) } );
 
     this.onReceiveDrop = function(model) {
       if( instrument.objectUnderLens ) {
@@ -25,7 +26,10 @@ define( function( require ) {
       model.reset();
       model.visibilityProperty.set(false);
     };
+    this.onDragEnd = function() {
+      CS.model.apparatusKit.removeChild(this);
+    };
   }
 
-  return inherit( PropertySet, Microscope );
+  return inherit( Apparatus, Microscope );
 } );

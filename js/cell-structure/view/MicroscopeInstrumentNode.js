@@ -12,9 +12,6 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
-  // images
-  var instrumentImage = require( 'image!CELL_STRUCTURE/microscope.png' );
-
   /**
    * Constructor for the modelNode which renders the model as a scenery node.
    * @param {model} model, the model of the model
@@ -29,7 +26,7 @@ define( function( require ) {
       cursor: 'pointer'
     } );
 
-    this.addChild( new Image( instrumentImage, { centerX: 0, centerY: 0 } ) );
+    this.addChild( new Image( model.image, { centerX: 0, centerY: 0 } ) );
 
     // Scale it so it matches the model width and height
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,

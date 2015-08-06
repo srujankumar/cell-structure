@@ -41,8 +41,9 @@ define( function( require ) {
     //If this is a single-screen sim, then no icon is necessary.
     //If there are multiple screens, then the icon must be provided here.
     var icon = null;
+    CS.model = new CellStructureModel();
     Screen.call( this, cellStructureSimString, icon,
-      function() { return new CellStructureModel(); },
+      function() { return CS.model; },
       function( model ) { return new CellStructureScreenView( model ); },
       { backgroundColor: 'grey' }
     );

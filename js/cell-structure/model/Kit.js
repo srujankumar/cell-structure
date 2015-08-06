@@ -12,6 +12,11 @@ define( function( require ) {
     this.addChild = function(child){
       this.children.push(child);
     };
+
+    this.removeChild = function(child) {
+      var newChildren = this.children.filter(function(c) { return c !== child; });
+      this.childrenProperty.set(newChildren);
+    };
   }
 
   return inherit( PropertySet, Kit );

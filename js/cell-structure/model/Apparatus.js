@@ -17,16 +17,12 @@ define( function( require ) {
    * @param {Dimension2} size, the size of the cell in model coordinates
    * @constructor
    */
-  function Cell( properties ) {
-    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: true };
+  function Apparatus( properties ) {
+    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false };
     var values = _.merge( defaults, properties );
     values.kitImage = values.image;
     PropertySet.call( this, values );
-
-    this.onDragEnd = function() {
-      CS.onDrop(model);
-    };
   }
 
-  return inherit( PropertySet, Cell );
+  return inherit( PropertySet, Apparatus );
 } );

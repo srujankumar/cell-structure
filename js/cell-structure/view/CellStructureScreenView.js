@@ -35,8 +35,8 @@ define( function( require ) {
 
     var modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( new Vector2( 10, 10 ), 1 );
 
-    cellStructureScreenView.addChild( new MicroscopeNode( model.microscope, {}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.objectKit, { x:50, y: 350}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.objectKit, {}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.apparatusKit, {}, modelViewTransform ));
 
     cellStructureScreenView.addChild( resetAllButton );
   }

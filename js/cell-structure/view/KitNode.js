@@ -12,14 +12,19 @@ define( function( require ) {
 
     Node.call(this);
 
-    var rect = new Rectangle( options.x, options.y, 200, 100, 5, 5, { fill: '#ffffff', stroke: 'orange', lineWidth:5 });
+    var rect = new Rectangle( model.location.x, model.location.y, 200, 100, 5, 5, { fill: '#ffffff', stroke: 'orange', lineWidth:5 });
 
-    model.children.forEach( function(child){
-      var childNode = new KitObjectNode(child, modelViewTransform);
-      rect.addChild(childNode);
-    }.bind(this));
+    var resetChildren = function() {
+      rect.removeAllChildren();
+      model.children.forEach( function(child){
+        var childNode = new KitObjectNode(child, modelViewTransform);
+        rect.addChild(childNode);
+      }.bind(this));
+    };
 
     this.addChild(rect);
+
+    model.childrenProperty.link(resetChildren);
 
   }
 

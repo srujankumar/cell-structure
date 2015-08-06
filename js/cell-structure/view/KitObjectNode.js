@@ -28,6 +28,8 @@ define( function( require ) {
   function KitObjectNode( model, modelViewTransform ) {
 
     Node.call( this, {
+      x: model.location.x,
+      y: model.location.y,
       cursor: 'pointer'
     } );
 
@@ -38,11 +40,14 @@ define( function( require ) {
 
     var content = new VBox( { align: 'center', spacing: 10, children: [ line, cellIcon, cellIconText ] } );
 
+    if( model.showOutline ) {
+      var rect = new Rectangle(0,0,120,120,5,5, { fill: '#000000', stroke: 'orange', lineWidth:1 });
+      rect.addChild(content);
+      this.addChild(rect);
+    } else {
+      this.addChild(content);
+    }
 
-    var rect = new Rectangle(0,0,120,120,5,5, { fill: '#000000', stroke: 'orange', lineWidth:1 });
-    rect.addChild(content);
-
-    this.addChild(rect);
 
     var positionDelta = function( position1, position2, deltaX, deltaY){
       return ( Math.abs(position1.x - position2.x) <=  deltaX) && ( Math.abs(position1.y - position2.y) <= deltaY);
@@ -62,17 +67,9 @@ define( function( require ) {
           model.location = modelViewTransform.viewToModelPosition( args.position );
         },
         end: function( event ) {
-          CS.onDrop(model);
-          /* TODO: Eventing
-          if(positionDelta( model.location, model.parentModel.microscopeInstrument.location, model.parentModel.microscopeInstrument.size.width, model.parentModel.microscopeInstrument.size.height)) {
-            if( model.parentModel.microscopeInstrument.objectUnderLens ) {
-              model.parentModel.microscopeInstrument.objectUnderLens.visibilityProperty.set(true);
-            }
-            model.parentModel.microscopeInstrument.objectUnderLensProperty.set(model);
-            model.reset();
-            model.visibilityProperty.set(false);
+          if( typeof model.onDragEnd == "function" ) {
+            model.onDragEnd();
           }
-          */
         }.bind(this)
       } ) );
 
