@@ -9,6 +9,7 @@ define( function( require ) {
   var Cell = require( 'CELL_STRUCTURE/cell-structure/model/Cell' );
   var MagnifiedImage = require( 'CELL_STRUCTURE/cell-structure/model/MagnifiedImage' );
   var Microscope = require( 'CELL_STRUCTURE/cell-structure/model/Microscope' );
+  var ExperimentArea = require( 'CELL_STRUCTURE/cell-structure/model/ExperimentArea' );
   var Overlay = require( 'CELL_STRUCTURE/cell-structure/model/Overlay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -39,6 +40,8 @@ define( function( require ) {
 
     var microscope = new Microscope();
     this.apparatusKit = new Kit({ location: new Vector2(660,350), size: new Dimension2(200,100), children: [ microscope ]});
+
+    this.experimentArea = new ExperimentArea({location: new Vector2(0,0), size: new Dimension2(768,504)});
   }
 
   return inherit( Object, CellStructureModel, {

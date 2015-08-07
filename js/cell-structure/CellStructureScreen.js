@@ -6,6 +6,7 @@ CS.addDroppable = function(model) {
 
 CS.onDrop = function(model) {
   CS.droppables.forEach( function( droppable){
+    if(model == droppable) return;
     if(CS.positionDelta( model.location, droppable.location, droppable.size.width, droppable.size.height)) {
       if(typeof droppable.onReceiveDrop == "function")
         droppable.onReceiveDrop(model);
@@ -27,6 +28,7 @@ define( function( require ) {
   // modules
   var CellStructureModel = require( 'CELL_STRUCTURE/cell-structure/model/CellStructureModel' );
   var CellStructureScreenView = require( 'CELL_STRUCTURE/cell-structure/view/CellStructureScreenView' );
+  var MicroscopeNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -42,6 +44,9 @@ define( function( require ) {
     //If there are multiple screens, then the icon must be provided here.
     var icon = null;
     CS.model = new CellStructureModel();
+    CS.views = {
+      'Microscope': MicroscopeNode
+    };
     Screen.call( this, cellStructureSimString, icon,
       function() { return CS.model; },
       function( model ) { return new CellStructureScreenView( model ); },

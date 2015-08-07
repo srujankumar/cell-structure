@@ -24,7 +24,7 @@ define( function( require ) {
     PropertySet.call( this, values );
 
     this.onDragEnd = function() {
-      CS.onDrop(model);
+      CS.onDrop(this);
     };
   }
 

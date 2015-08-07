@@ -19,7 +19,8 @@ define( function( require ) {
 
     this.addChild(rect);
     model.magnifiedImageProperty.link(function( image ) {
-      if ( !image ) { return; }
+      if ( !image ) { this.setVisible(false); return; }
+      this.setVisible(true);
       rect.removeAllChildren();
 
       var magnifiedImageNode = new MagnifiedImageNode( image, modelViewTransform );
@@ -35,7 +36,7 @@ define( function( require ) {
       y: 270,
       listener: function() {
         if ( model.magnifiedImage.parentImage ) {
-          model.magnifiedImageProperty.set( model.magnifiedImage.parentImage )
+          model.magnifiedImageProperty.set( model.magnifiedImage.parentImage );
         }
       }
     } );

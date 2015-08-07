@@ -15,6 +15,7 @@ define( function( require ) {
     instrument.parent = magnifierView.parent = this;
     Apparatus.call( this, {instrument: instrument, magnifierView: magnifierView, image: instrument.image, size: new Dimension2( 50, 50 ), location: new Vector2(675,365) } );
 
+    CS.addDroppable(this);
     this.onReceiveDrop = function(model) {
       if( instrument.objectUnderLens ) {
         instrument.objectUnderLens.visibilityProperty.set(true);
@@ -28,6 +29,7 @@ define( function( require ) {
     };
     this.onDragEnd = function() {
       CS.model.apparatusKit.removeChild(this);
+      CS.onDrop(this);
     };
   }
 

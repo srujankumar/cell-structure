@@ -8,9 +8,6 @@ define( function( require ) {
   function MicroscopeInstrument( location, size, parentModel ) {
     PropertySet.call( this, { location: location, objectUnderLens: null, parentModel: parentModel, image: instrumentImage } );
     this.size = size;
-    this.onReceiveDrop = function(model){
-      this.parent.onReceiveDrop(model);
-    };
   }
 
   return inherit( PropertySet, MicroscopeInstrument );
