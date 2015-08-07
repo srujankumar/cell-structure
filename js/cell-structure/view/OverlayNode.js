@@ -24,7 +24,7 @@ define( function( require ) {
     var circle = new Circle(model.radius, {x: model.location.x, y: model.location.y, fill: 'transparent', stroke: 'black', lineWidth:3 });
     circle.addInputListener( new DownUpListener( {
       up: function( event ) {
-        model.parentModel.microscope.magnifierView.magnifiedImageProperty.set(model.magnifiedImage);
+        CS.trigger('MagnifiedImageChanged', model.magnifiedImage);
       }
     } ) );
     this.addChild(circle);

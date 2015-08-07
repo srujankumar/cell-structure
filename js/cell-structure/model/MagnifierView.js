@@ -20,6 +20,9 @@ define( function( require ) {
    */
   function MagnifierView() {
     PropertySet.call( this, { location: undefined, magnifiedImage: undefined } );
+    CS.addEventHandler('MagnifiedImageChanged', function(magnifiedImage){
+      this.magnifiedImageProperty.set(magnifiedImage);
+    }.bind(this));
   }
 
   return inherit( PropertySet, MagnifierView );

@@ -4,6 +4,21 @@ CS.addDroppable = function(model) {
   CS.droppables.push(model);
 };
 
+CS.eventHandlers = {};
+CS.addEventHandler = function(eventName, handler) {
+  CS.eventHandlers[eventName] = CS.eventHandlers[eventName] || [];
+  CS.eventHandlers[eventName].push(handler);
+};
+
+CS.trigger = function(eventName, eventObj) {
+  var handlers = CS.eventHandlers[eventName];
+  if(!handlers) return;
+
+  handlers.forEach(function(handler) {
+    handler(eventObj);
+  });
+};
+
 CS.onDrop = function(model) {
   CS.droppables.forEach( function( droppable){
     if(model == droppable) return;
