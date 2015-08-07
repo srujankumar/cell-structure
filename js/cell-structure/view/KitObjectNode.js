@@ -33,7 +33,7 @@ define( function( require ) {
       cursor: 'pointer'
     } );
 
-    var cellIcon = new Image( model.kitImage, { centerX: 80, centerY: 80 } );
+    var cellIcon = new Image( model.kitImage, { x: 0, y: 0 } );
     var cellIconText = new Text( model.text, { font: new PhetFont(14), fill: 'orange'});
 
     var line = new Line(0,0,120,0);
@@ -54,8 +54,8 @@ define( function( require ) {
     };
 
     // Scale it so it matches the model width and height
-    this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+    this.scale( modelViewTransform.modelToViewDeltaX( 80 ) / this.width,
+      modelViewTransform.modelToViewDeltaY( 80 ) / this.height );
 
     this.addInputListener( new SimpleDragHandler(
       {
@@ -64,6 +64,7 @@ define( function( require ) {
 
         // Translate on drag events
         translate: function (args) {
+          //this.translation = args.position;
           model.location = modelViewTransform.viewToModelPosition( args.position );
         },
         end: function( event ) {

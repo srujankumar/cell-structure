@@ -39,8 +39,8 @@ define( function( require ) {
 
 
     cellStructureScreenView.addChild( new ExperimentAreaNode( model.experimentArea, {}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.objectKit, {}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.apparatusKit, {}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.objectKit, { x:50, y: 350}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.apparatusKit,{ x:650, y: 350}, modelViewTransform ));
 
     cellStructureScreenView.addChild( resetAllButton );
   }

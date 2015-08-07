@@ -9,8 +9,10 @@ define( function( require ) {
     var defaults = { location: '', text: '', size: '', visibility: true, children: []};
     var values = _.merge( defaults, properties );
     PropertySet.call( this, values );
+
     this.addChild = function(child){
-      this.children.push(child);
+      var newChildren = this.children.concat([child]);
+      this.childrenProperty.set(newChildren);
     };
 
     this.removeChild = function(child) {

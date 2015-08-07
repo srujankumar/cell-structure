@@ -16,14 +16,17 @@ define( function( require ) {
     // Scale it so it matches the model width and height
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
-    model.newChildProperty.link(function(child) {
+    model.onAddChild = function(child) {
       if(!child) { return; }
       var view = CS.views[child.constructor.name];
       if(view) {
         this.addChild(new view(child, modelViewTransform));
       }
-      model.newChild = undefined;
-    }.bind(this));
+    }.bind(this);
+
+    model.onRemoveChild = function(index) {
+      this.removeChildAt(index + 1);
+    }.bind(this);
   }
 
 
