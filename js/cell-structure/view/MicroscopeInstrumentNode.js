@@ -23,10 +23,12 @@ define( function( require ) {
     this.objectUnderLensNode = null;
 
     Node.call( this, {
-      cursor: 'pointer'
+      cursor: 'pointer',
+      x: model.location.x,
+      y: model.location.y
     } );
 
-    this.addChild( new Image( model.image, { centerX: 0, centerY: 0 } ) );
+    this.addChild( new Image( model.image, { x: 0, y: 0 } ) );
 
     // Scale it so it matches the model width and height
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
@@ -42,7 +44,7 @@ define( function( require ) {
       }
 
       if (!cell) { return; }
-      this.objectUnderLensNode = new Image( cell.image, { x: -80, y: 20 } );
+      this.objectUnderLensNode = new Image( cell.image, { x: 175, y: 275 } );
       this.addChild(this.objectUnderLensNode);
 
       //model.parentModel.magnifierView.magnifiedImageProperty.set(cell.magnifiedImage);
