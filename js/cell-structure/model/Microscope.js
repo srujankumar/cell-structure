@@ -10,26 +10,26 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
 
   function Microscope() {
-    var instrument = new MicroscopeInstrument( new Vector2( -200, 0 ), new Dimension2( 200, 200 ) );
-    var magnifierView = new MagnifierView();
-    instrument.parent = magnifierView.parent = this;
-    Apparatus.call( this, {instrument: instrument, magnifierView: magnifierView, image: instrument.image, size: new Dimension2( 50, 50 ), location: new Vector2(675,365) } );
+    Apparatus.call( this, {size: new Dimension2( 50, 50 ), location: new Vector2(675,365), objectUnderLens: null } );
+
+    this.instrument = new MicroscopeInstrument( new Vector2( -200, 0 ), new Dimension2( 200, 200 ), this );
+    this.magnifierView = new MagnifierView(this);
+
+    this.kitImage = this.image = this.instrument.image;
 
     CS.addDroppable(this);
     this.onReceiveDrop = function(model) {
-      if( instrument.objectUnderLens ) {
-        instrument.objectUnderLens.visibilityProperty.set(true);
-      }
-      instrument.objectUnderLensProperty.set(model);
-
-      magnifierView.magnifiedImageProperty.set(model.magnifiedImage);
-
-      model.reset();
-      model.visibilityProperty.set(false);
+      this.objectUnderLensProperty.set(model);
     };
     this.onDragEnd = function() {
       CS.model.apparatusKit.removeChild(this);
       CS.onDrop(this);
+    };
+
+    this.onRemove = function() {
+      if(!this.instrument.objectUnderLens){ return; }
+      this.instrument.objectUnderLens.visibilityProperty.set(true);
+      this.instrument.objectUnderLensProperty.set(null);
     };
   }
 

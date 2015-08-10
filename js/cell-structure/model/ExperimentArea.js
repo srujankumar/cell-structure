@@ -21,9 +21,12 @@ define( function( require ) {
       }
     };
 
-    CS.addEventHandler('ApparatusRemoved', function(model){
-      CS.model.apparatusKit.addChild(model);
-      this.removeChild(model);
+    CS.addEventHandler('ApparatusRemoved', function(child){
+      CS.model.apparatusKit.addChild(child);
+      this.removeChild(child);
+      if(typeof child.onRemove == "function") {
+        child.onRemove();
+      }
     }.bind(this));
 
     this.removeChild = function(child) {

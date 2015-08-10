@@ -18,10 +18,18 @@ define( function( require ) {
    * @param {Dimension2} size, the size of the magnifier view panel in model coordinates
    * @constructor
    */
-  function MagnifierView() {
+  function MagnifierView(microscope) {
     PropertySet.call( this, { location: undefined, magnifiedImage: undefined } );
+    this.microscope = microscope;
+
     CS.addEventHandler('MagnifiedImageChanged', function(magnifiedImage){
       this.magnifiedImageProperty.set(magnifiedImage);
+    }.bind(this));
+
+
+    this.microscope.objectUnderLensProperty.link(function(object) {
+      var image = object && object.magnifiedImage;
+      this.magnifiedImageProperty.set(image);
     }.bind(this));
   }
 
