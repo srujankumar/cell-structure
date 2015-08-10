@@ -14,6 +14,7 @@ define( function( require ) {
 
     CS.addDroppable(this);
     this.onReceiveDrop = function(model) {
+      if(model.type !== "apparatus") return;
       this.children.push(model);
 
       if(typeof this.onAddChild == "function") {

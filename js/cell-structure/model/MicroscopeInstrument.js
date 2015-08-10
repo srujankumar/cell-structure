@@ -14,8 +14,8 @@ define( function( require ) {
       if( this.objectUnderLens ) {
         this.objectUnderLens.visibilityProperty.set(true);
       }
-      if(!object) return;
       this.objectUnderLensProperty.set(object);
+      if(!object) return;
 
       object.reset();
       object.visibilityProperty.set(false);

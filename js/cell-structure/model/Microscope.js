@@ -27,9 +27,7 @@ define( function( require ) {
     };
 
     this.onRemove = function() {
-      if(!this.instrument.objectUnderLens){ return; }
-      this.instrument.objectUnderLens.visibilityProperty.set(true);
-      this.instrument.objectUnderLensProperty.set(null);
+      this.objectUnderLensProperty.set(null);
     };
   }
 

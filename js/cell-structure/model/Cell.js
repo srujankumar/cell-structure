@@ -22,6 +22,7 @@ define( function( require ) {
     var values = _.merge( defaults, properties );
     values.kitImage = values.image;
     PropertySet.call( this, values );
+    this.type = "cell";
 
     this.onDragEnd = function() {
       CS.onDrop(this);
