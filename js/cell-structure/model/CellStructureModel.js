@@ -32,7 +32,7 @@ define( function( require ) {
     var roughERMagnifiedImage = new MagnifiedImage(roughEndoplasmicReticulumImage, []);
     var golgiApparatusMagnifiedImage = new MagnifiedImage(golgiApparatusImage, []);
 
-    var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, this), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage, this)]);
+    var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, "Rough ER Magnified Image is rough. <br/>Second line"), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage)]);
 
     var animalCell = new Cell( { location: new Vector2( 50, 350 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
     var plantCell = new Cell( { location: new Vector2( 150, 350 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );

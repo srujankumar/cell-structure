@@ -4,8 +4,8 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
 
-  function Overlay( radius, location, magnifiedImage, parentModel ) {
-    PropertySet.call( this, { location: location, radius: radius, magnifiedImage: magnifiedImage, parentModel: parentModel } );
+  function Overlay( radius, location, magnifiedImage, tooltip ) {
+    PropertySet.call( this, { location: location, radius: radius, magnifiedImage: magnifiedImage, tooltip: tooltip } );
   }
 
   return inherit( PropertySet, Overlay );
