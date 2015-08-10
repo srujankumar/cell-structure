@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg3018"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="beaker.svg">
+  <defs
+     id="defs3020" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3023">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       transform="matrix(17.260271,0,0,22.395297,-22.165443,17.96461)"
+       id="g3">
+      <path
+         inkscape:connector-curvature="0"
+         d="M 40.899,0 H 5.013 C 3.087,0 1.532,1.544 1.532,3.472 c 0,1.927 1.558,3.471 3.495,3.471 v 32.448 c 0,3.594 2.911,6.547 6.506,6.547 h 22.848 c 3.595,0 6.554,-2.953 6.554,-6.547 V 6.942 c 1.867,0 3.471,-1.544 3.471,-3.471 C 44.405,1.544 42.826,0 40.899,0 z M 36.92,39.391 c 0,1.396 -1.146,2.535 -2.54,2.535 H 11.533 c -1.396,0 -2.563,-1.139 -2.563,-2.535 v -4.177 h 9.002 c 1.102,0 1.994,-0.905 1.994,-2.006 0,-1.101 -0.893,-2.006 -1.994,-2.006 H 8.97 v -4.981 h 9.002 c 1.102,0 1.994,-0.871 1.994,-1.972 0,-1.101 -0.893,-1.972 -1.994,-1.972 H 8.97 v -4.981 h 9.002 c 1.102,0 1.994,-0.905 1.994,-2.006 0,-1.101 -0.893,-2.006 -1.994,-2.006 H 8.97 V 6.918 h 27.95 v 32.473 z"
+         id="path5" />
+    </g>
+  </g>
+</svg>

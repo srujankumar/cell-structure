@@ -44,6 +44,7 @@ define( function( require ) {
   var CellStructureModel = require( 'CELL_STRUCTURE/cell-structure/model/CellStructureModel' );
   var CellStructureScreenView = require( 'CELL_STRUCTURE/cell-structure/view/CellStructureScreenView' );
   var MicroscopeNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeNode' );
+  var BeakerNode = require( 'CELL_STRUCTURE/cell-structure/view/BeakerNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
 
@@ -60,7 +61,8 @@ define( function( require ) {
     var icon = null;
     CS.model = new CellStructureModel();
     CS.views = {
-      'Microscope': MicroscopeNode
+      'Microscope': MicroscopeNode,
+      'Beaker': BeakerNode
     };
     Screen.call( this, cellStructureSimString, icon,
       function() { return CS.model; },

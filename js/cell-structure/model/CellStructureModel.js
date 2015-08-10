@@ -9,6 +9,7 @@ define( function( require ) {
   var Cell = require( 'CELL_STRUCTURE/cell-structure/model/Cell' );
   var MagnifiedImage = require( 'CELL_STRUCTURE/cell-structure/model/MagnifiedImage' );
   var Microscope = require( 'CELL_STRUCTURE/cell-structure/model/Microscope' );
+  var Beaker = require( 'CELL_STRUCTURE/cell-structure/model/Beaker' );
   var ExperimentArea = require( 'CELL_STRUCTURE/cell-structure/model/ExperimentArea' );
   var Overlay = require( 'CELL_STRUCTURE/cell-structure/model/Overlay' );
   var Dimension2 = require( 'DOT/Dimension2' );
@@ -39,7 +40,8 @@ define( function( require ) {
     this.objectKit = new Kit({ location: new Vector2(50,350), size: new Dimension2(200,100), children: [ animalCell, plantCell]});
 
     var microscope = new Microscope();
-    this.apparatusKit = new Kit({ location: new Vector2(660,350), size: new Dimension2(200,100), children: [ microscope ]});
+    var beaker = new Beaker();
+    this.apparatusKit = new Kit({ location: new Vector2(660,350), size: new Dimension2(200,100), children: [ microscope, beaker ]});
 
     this.experimentArea = new ExperimentArea({location: new Vector2(0,0), size: new Dimension2(768,504)});
   }
@@ -52,10 +54,10 @@ define( function( require ) {
     },
     // Resets all model elements
     reset: function() {
-      this.microscope.reset();
-      this.animalCell.reset();
-      this.plantCell.reset();
-      this.magnifierView.reset();
+      //this.microscope.reset();
+      //this.animalCell.reset();
+      // this.plantCell.reset();
+      //this.magnifierView.reset();
     }
   } );
 } );
