@@ -8,6 +8,8 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
+  var TextPushButton = require( 'SUN/buttons/TextPushButton' );
+  var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function BeakerNode( model, modelViewTransform ) {
     model.location = new Vector2(200, 100);
@@ -20,6 +22,17 @@ define( function( require ) {
     } );
 
     this.addChild( new Image( model.image, { x: 0, y: 0 } ) );
+
+    var removeButton = new TextPushButton( "X", {
+      font: new PhetFont( 100 ),
+      baseColor: 'yellow',
+      x: -150,
+      y: 0,
+      listener: function() {
+        CS.trigger('ApparatusRemoved',model);
+      }
+    } );
+    this.addChild(removeButton);
 
     // Scale it so it matches the model width and height
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
