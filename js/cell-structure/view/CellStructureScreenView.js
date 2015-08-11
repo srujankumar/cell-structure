@@ -14,6 +14,7 @@ define( function( require ) {
   var MicroscopeNode = require( 'CELL_STRUCTURE/cell-structure/view/MicroscopeNode' );
   var KitNode = require( 'CELL_STRUCTURE/cell-structure/view/KitNode');
   var ExperimentAreaNode = require( 'CELL_STRUCTURE/cell-structure/view/ExperimentAreaNode');
+  var LiquidKitObjectNode = require( 'CELL_STRUCTURE/cell-structure/view/LiquidKitObjectNode');
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
 
   /**
@@ -39,8 +40,9 @@ define( function( require ) {
 
 
     cellStructureScreenView.addChild( new ExperimentAreaNode( model.experimentArea, {}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.objectKit, { x:50, y: 350}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.apparatusKit,{ x:650, y: 350}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.objectKit, { x:50, y: 390}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.apparatusKit, { x:350, y: 390}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.liquidKit, { x:50, y: 10}, modelViewTransform, LiquidKitObjectNode ));
 
     cellStructureScreenView.addChild( resetAllButton );
   }

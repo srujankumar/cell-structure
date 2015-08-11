@@ -11,6 +11,7 @@ define( function( require ) {
   var Microscope = require( 'CELL_STRUCTURE/cell-structure/model/Microscope' );
   var Beaker = require( 'CELL_STRUCTURE/cell-structure/model/Beaker' );
   var ExperimentArea = require( 'CELL_STRUCTURE/cell-structure/model/ExperimentArea' );
+  var Liquid = require( 'CELL_STRUCTURE/cell-structure/model/Liquid' );
   var Overlay = require( 'CELL_STRUCTURE/cell-structure/model/Overlay' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var Vector2 = require( 'DOT/Vector2' );
@@ -35,14 +36,16 @@ define( function( require ) {
 
     var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, "Rough ER Magnified Image is rough. <br/>Second line"), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage)]);
 
-    var animalCell = new Cell( { location: new Vector2( 50, 350 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
-    var plantCell = new Cell( { location: new Vector2( 150, 350 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );
-    this.objectKit = new Kit({ location: new Vector2(50,350), size: new Dimension2(200,100), children: [ animalCell, plantCell]});
+    var animalCell = new Cell( { location: new Vector2( 50, 390 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
+    var plantCell = new Cell( { location: new Vector2( 150, 390 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );
+    this.objectKit = new Kit({ location: new Vector2(50,390), size: new Dimension2(200,100), children: [ animalCell, plantCell]});
 
     var microscope = new Microscope();
     var beaker = new Beaker();
-    this.apparatusKit = new Kit({ location: new Vector2(660,350), size: new Dimension2(200,100), children: [ microscope, beaker ]});
-
+    this.apparatusKit = new Kit({ location: new Vector2(360,390), size: new Dimension2(200,100), children: [ microscope, beaker ]});
+    var ammoniaBottle = new Liquid({ location: new Vector2(50,10), text: "Ammonia", color: '#ffff00'});
+    var iodineBottle = new Liquid({ location: new Vector2(150,10), text: "Iodine", color: "brown"});
+    this.liquidKit = new Kit({ location: new Vector2(50,10), size: new Dimension2(200,100), children: [ ammoniaBottle, iodineBottle ]});
     this.experimentArea = new ExperimentArea({location: new Vector2(0,0), size: new Dimension2(768,504)});
   }
 

@@ -9,7 +9,7 @@ define( function( require ) {
   var KitObjectNode = require( 'CELL_STRUCTURE/cell-structure/view/KitObjectNode' );
   var Vector2 = require( 'DOT/Vector2' );
 
-  function KitNode( model, options, modelViewTransform ) {
+  function KitNode( model, options, modelViewTransform, childNode ) {
 
     Node.call(this);
 
@@ -19,10 +19,11 @@ define( function( require ) {
       rect.removeAllChildren();
       var x = options.x || 0;
       var y = options.y || 0;
+      childNode = childNode || KitObjectNode;
       model.children.forEach( function(child){
         child.locationProperty.set(new Vector2(x, y));
-        var childNode = new KitObjectNode(child, modelViewTransform);
-        rect.addChild(childNode);
+        var childNodeObj = new childNode(child, modelViewTransform);
+        rect.addChild(childNodeObj);
         x += 100;
       }.bind(this));
     };
