@@ -19,6 +19,7 @@ define( function( require ) {
 
     CS.addDroppable(this);
     this.onReceiveDrop = function(model) {
+      if(model.type !== "cell") return;
       this.objectUnderLensProperty.set(model);
     };
     this.onDragEnd = function() {

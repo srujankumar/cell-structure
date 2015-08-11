@@ -5,9 +5,13 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Node = require( 'SCENERY/nodes/Node' );
+  var Vector2 = require( 'DOT/Vector2' );
+  var Dimension2 = require( 'DOT/Dimension2' );
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
 
   function BeakerNode( model, modelViewTransform ) {
+    model.location = new Vector2(200, 100);
+    model.size = new Dimension2(100, 100);
 
     Node.call( this, {
       cursor: 'pointer',
