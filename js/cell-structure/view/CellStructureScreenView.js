@@ -24,7 +24,7 @@ define( function( require ) {
   function CellStructureScreenView( model ) {
 
     var cellStructureScreenView = this;
-    ScreenView.call( cellStructureScreenView, { layoutBounds: new Bounds2( 0, 0, 768, 504 ) } );
+    ScreenView.call( cellStructureScreenView, { layoutBounds: new Bounds2( 0, 0, 1024, 768 ) } );
 
     // Reset All button
     var resetAllButton = new ResetAllButton( {
@@ -40,9 +40,9 @@ define( function( require ) {
 
 
     cellStructureScreenView.addChild( new ExperimentAreaNode( model.experimentArea, {}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.objectKit, { x:50, y: 390}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.apparatusKit, { x:350, y: 390}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.liquidKit, { x:50, y: 10}, modelViewTransform, LiquidKitObjectNode ));
+    cellStructureScreenView.addChild( new KitNode( model.liquidKit, { x:810, y: 10}, modelViewTransform, LiquidKitObjectNode ));
+    cellStructureScreenView.addChild( new KitNode( model.objectKit, { x:810, y: 120}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.apparatusKit, { x:810, y: 230}, modelViewTransform ));
 
     cellStructureScreenView.addChild( resetAllButton );
   }

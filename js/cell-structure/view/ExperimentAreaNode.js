@@ -5,12 +5,15 @@ define( function( require ) {
   'use strict';
   var inherit = require( 'PHET_CORE/inherit' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle');
+  var Image = require( 'SCENERY/nodes/Image');
   var Node = require( 'SCENERY/nodes/Node');
+  var texture = require( 'image!CELL_STRUCTURE/wood-texture.jpg' );
 
   function ExperimentAreaNode( model, options, modelViewTransform ) {
     Node.call(this, options);
 
-    var bounds = new Rectangle(0,0,600,400,5,5, { fill: 'transparent', stroke: 'orange', lineWidth:1 });
+    var bounds = new Rectangle(0,0,800,768,0,0, { fill: 'transparent', stroke: 'orange', lineWidth:10 });
+    bounds.addChild(new Image(texture, {x: 0, y: 0}));
     this.addChild(bounds);
 
     // Scale it so it matches the model width and height

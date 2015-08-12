@@ -12,7 +12,7 @@ define( function( require ) {
   function Microscope() {
     Apparatus.call( this, {size: new Dimension2( 50, 50 ), location: new Vector2(375,365), objectUnderLens: null } );
 
-    this.instrument = new MicroscopeInstrument( new Vector2( 0, 0 ), new Dimension2( 200, 200 ), this );
+    this.instrument = new MicroscopeInstrument( new Vector2( -200, 0 ), new Dimension2( 200, 200 ), this );
     this.magnifierView = new MagnifierView(this);
 
     this.kitImage = this.image = this.instrument.image;
