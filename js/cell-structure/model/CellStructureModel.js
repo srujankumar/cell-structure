@@ -36,15 +36,15 @@ define( function( require ) {
 
     var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, "Rough ER Magnified Image is rough. <br/>Second line"), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage)]);
 
-    var animalCell = new Cell( { location: new Vector2( 850, 190 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
-    var plantCell = new Cell( { location: new Vector2( 950, 190 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );
+    var animalCell = new Cell( { location: new Vector2( 810, 120 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, text: "Animal Cell", magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
+    var plantCell = new Cell( { location: new Vector2( 910, 120 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, text: "Plant Cell", magnifiedImage: plantCellMagnifiedImage, parentModel: this } );
     this.objectKit = new Kit({ location: new Vector2(810,120), size: new Dimension2(200,100), children: [ animalCell, plantCell]});
 
     var microscope = new Microscope();
     var beaker = new Beaker();
     this.apparatusKit = new Kit({ location: new Vector2(810,230), size: new Dimension2(200,100), children: [ microscope, beaker ]});
-    var ammoniaBottle = new Liquid({ location: new Vector2(850,10), text: "Ammonia", color: '#ffff00'});
-    var iodineBottle = new Liquid({ location: new Vector2(950,10), text: "Iodine", color: "brown"});
+    var ammoniaBottle = new Liquid({ location: new Vector2(810,10), text: "Ammonia", color: '#ffff00'});
+    var iodineBottle = new Liquid({ location: new Vector2(910,10), text: "Iodine", color: "brown"});
     this.liquidKit = new Kit({ location: new Vector2(810,10), size: new Dimension2(200,100), children: [ ammoniaBottle, iodineBottle ]});
     this.experimentArea = new ExperimentArea({location: new Vector2(0,0), size: new Dimension2(800,768)});
   }
