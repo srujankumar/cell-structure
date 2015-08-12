@@ -48,6 +48,7 @@ define( function( require ) {
   var FillerNode = require( 'CELL_STRUCTURE/cell-structure/view/FillerNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
+  require( 'CELL_STRUCTURE/cell-structure/helpers/utils' );
 
   // strings
   var cellStructureSimString = require( 'string!CELL_STRUCTURE/cell-structure.name' );

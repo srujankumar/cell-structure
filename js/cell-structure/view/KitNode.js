@@ -13,18 +13,23 @@ define( function( require ) {
 
     Node.call(this);
 
-    var rect = new Rectangle( model.location.x, model.location.y, 200, 100, 5, 5, { fill: '#ffffff', stroke: 'orange', lineWidth:5 });
+    var rect = new Rectangle( model.location.x, model.location.y, model.size.width, model.size.height, 5, 5, { fill: '#ffffff', stroke: 'orange', lineWidth:5 });
 
     var resetChildren = function() {
       rect.removeAllChildren();
       var x = options.x || 0;
+      var initialX = x;
       var y = options.y || 0;
       childNode = childNode || KitObjectNode;
-      model.children.forEach( function(child){
-        child.locationProperty.set(new Vector2(x, y));
-        var childNodeObj = new childNode(child, modelViewTransform);
-        rect.addChild(childNodeObj);
-        x += 100;
+      CS.utils.slice(model.children, 2).forEach( function(childRows){
+        childRows.forEach(function(child) {
+          child.locationProperty.set(new Vector2(x, y));
+          var childNodeObj = new childNode(child, modelViewTransform);
+          rect.addChild(childNodeObj);
+          x += 100;
+        });
+        x = initialX;
+        y += 100;
       }.bind(this));
     };
 
