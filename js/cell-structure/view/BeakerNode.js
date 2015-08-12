@@ -25,9 +25,9 @@ define( function( require ) {
     var image = new Image( model.image, { x: 0, y: 0 } );
 
     var removeButton = new TextPushButton( "X", {
-      font: new PhetFont( 16 ),
+      font: new PhetFont( 50 ),
       baseColor: 'yellow',
-      x: -150,
+      x: 0,
       y: 0,
       listener: function() {
         CS.trigger('ApparatusRemoved',model);
@@ -38,6 +38,7 @@ define( function( require ) {
     var liquidNode;
     model.liquidProperty.link( function( liquid ) {
       this.removeChild(image);
+      this.removeChild(removeButton);
       if(liquidNode) {
         this.removeChild(liquidNode);
       }
@@ -46,6 +47,7 @@ define( function( require ) {
         this.addChild(liquidNode);
       }
       this.addChild(image);
+      this.addChild(removeButton);
     }.bind(this) );
 
     // Scale it so it matches the model width and height
