@@ -10,6 +10,7 @@ define( function( require ) {
   var MagnifiedImage = require( 'CELL_STRUCTURE/cell-structure/model/MagnifiedImage' );
   var Microscope = require( 'CELL_STRUCTURE/cell-structure/model/Microscope' );
   var Beaker = require( 'CELL_STRUCTURE/cell-structure/model/Beaker' );
+  var Filler = require( 'CELL_STRUCTURE/cell-structure/model/Filler' );
   var ExperimentArea = require( 'CELL_STRUCTURE/cell-structure/model/ExperimentArea' );
   var Liquid = require( 'CELL_STRUCTURE/cell-structure/model/Liquid' );
   var Overlay = require( 'CELL_STRUCTURE/cell-structure/model/Overlay' );
@@ -42,7 +43,8 @@ define( function( require ) {
 
     var microscope = new Microscope();
     var beaker = new Beaker();
-    this.apparatusKit = new Kit({ location: new Vector2(810,230), size: new Dimension2(200,100), children: [ microscope, beaker ]});
+    var filler = new Filler();
+    this.apparatusKit = new Kit({ location: new Vector2(810,230), size: new Dimension2(200,100), children: [ microscope, beaker, filler ]});
     var ammoniaBottle = new Liquid({ location: new Vector2(810,10), text: "Ammonia", color: '#ffff00'});
     var iodineBottle = new Liquid({ location: new Vector2(910,10), text: "Iodine", color: "brown"});
     this.liquidKit = new Kit({ location: new Vector2(810,10), size: new Dimension2(200,100), children: [ ammoniaBottle, iodineBottle ]});
