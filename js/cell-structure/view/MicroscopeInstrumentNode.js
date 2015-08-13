@@ -45,9 +45,9 @@ define( function( require ) {
 
       if (!cell) { return; }
       this.objectUnderLensNode = new Image( cell.image, { x: 175, y: 275 } );
+      this.objectUnderLensNode.scale( modelViewTransform.modelToViewDeltaX( 30 ) / this.width,
+        modelViewTransform.modelToViewDeltaY( 30 ) / this.height );
       this.addChild(this.objectUnderLensNode);
-
-      //model.parentModel.magnifierView.magnifiedImageProperty.set(cell.magnifiedImage);
     }.bind(this) );
 
   }

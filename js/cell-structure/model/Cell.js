@@ -18,7 +18,7 @@ define( function( require ) {
    * @constructor
    */
   function Cell( properties ) {
-    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: true };
+    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false };
     var values = _.merge( defaults, properties );
     values.kitImage = values.image;
     PropertySet.call( this, values );
