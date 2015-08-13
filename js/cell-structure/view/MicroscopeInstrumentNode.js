@@ -44,9 +44,9 @@ define( function( require ) {
       }
 
       if (!cell) { return; }
-      this.objectUnderLensNode = new Image( cell.image, { x: 175, y: 275 } );
-      this.objectUnderLensNode.scale( modelViewTransform.modelToViewDeltaX( 30 ) / this.width,
-        modelViewTransform.modelToViewDeltaY( 30 ) / this.height );
+      this.objectUnderLensNode = new Image( cell.image, { x: 150, y: 260, align: 'bottom' } );
+      this.objectUnderLensNode.scale( modelViewTransform.modelToViewDeltaX( 200 ) / this.width,
+        modelViewTransform.modelToViewDeltaY( 200 ) / this.height );
       this.addChild(this.objectUnderLensNode);
     }.bind(this) );
 

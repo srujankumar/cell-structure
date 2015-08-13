@@ -23,7 +23,7 @@ define( function( require ) {
    * @constructor
    */
   function CellStructureModel() {
-    var animalCellIcon = require( 'image!CELL_STRUCTURE/animal-cell-small.png' );
+    var animalCellIcon = require( 'image!CELL_STRUCTURE/meat.svg' );
     var plantCellIcon = require( 'image!CELL_STRUCTURE/leaf.svg' );
     var animalCellImage = require( 'image!CELL_STRUCTURE/animal-cell-big.png' );
     var plantCellImage = require( 'image!CELL_STRUCTURE/plant-cell-big.png' );
