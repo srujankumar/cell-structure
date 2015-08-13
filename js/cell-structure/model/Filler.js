@@ -22,6 +22,9 @@ define( function( require ) {
       if(model.type !== "liquid") return;
       this.liquidProperty.set(model);
     };
+    this.onRemove = function() {
+      this.liquidProperty.set(null);
+    };
   }
 
   return inherit( Apparatus, Filler );
