@@ -23,6 +23,7 @@ define( function( require ) {
     } );
 
     var image = new Image( model.image, { x: 0, y: 0 } );
+    //this.addChild(image);
 
     var removeButton = new TextPushButton( "X", {
       font: new PhetFont( 50 ),
@@ -36,20 +37,23 @@ define( function( require ) {
     this.addChild(removeButton);
 
     var liquidNode;
-    model.liquidProperty.link( function( liquid ) {
+    var redraw = function() {
       this.removeChild(image);
       this.removeChild(removeButton);
       if(liquidNode) {
         this.removeChild(liquidNode);
       }
-      if(liquid) {
-        liquidNode = new Rectangle(103, 175, 313, 295, 0, 0, {lineWidth: 0, stroke: '#000', fill: liquid.color });
+      if(model.liquid) {
+        liquidNode = new Rectangle(103, 175, 313, 295, 0, 0, {lineWidth: 0, stroke: '#000', fill: model.liquid.color });
         this.addChild(liquidNode);
       }
       this.addChild(image);
       this.addChild(removeButton);
-    }.bind(this) );
+    }.bind(this);
 
+    model.liquidProperty.link( function() {
+      redraw();
+    }.bind(this) );
     // Scale it so it matches the model width and height
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );

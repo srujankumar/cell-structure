@@ -27,6 +27,10 @@ define( function( require ) {
     this.onDragEnd = function() {
       CS.onDrop(this);
     };
+
+    this.onDippedInLiquid = function(liquid) {
+      console.log("It's a " + liquid.color + " now!");
+    };
   }
 
   return inherit( PropertySet, Cell );
