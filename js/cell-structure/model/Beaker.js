@@ -32,6 +32,7 @@ define( function( require ) {
       this.cellProperty.set(model);
       model.locationProperty.set(new Vector2(85, 630));
       model.size = new Dimension2(50, 50);
+      model.attachedToProperty.set(this);
 
       if(this.liquid && (typeof this.cell.onDippedInLiquid == "function")) {
         model.onDippedInLiquid(this.liquid);
