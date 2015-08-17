@@ -27,6 +27,7 @@ define( function( require ) {
     var plantCellIcon = require( 'image!CELL_STRUCTURE/leaf.svg' );
     var animalCellImage = require( 'image!CELL_STRUCTURE/animal-cell-big.png' );
     var plantCellImage = require( 'image!CELL_STRUCTURE/plant-cell-big.png' );
+    var plantCellImageIodine = require( 'image!CELL_STRUCTURE/plant-cell-big-iodine.png' );
     var roughEndoplasmicReticulumImage = require( 'image!CELL_STRUCTURE/rough-endoplasmic-reticulum.jpg' );
     var golgiApparatusImage = require( 'image!CELL_STRUCTURE/golgi-apparatus.png' );
 
@@ -35,10 +36,12 @@ define( function( require ) {
     var roughERMagnifiedImage = new MagnifiedImage(roughEndoplasmicReticulumImage, []);
     var golgiApparatusMagnifiedImage = new MagnifiedImage(golgiApparatusImage, []);
 
+    var plantCellMagnifiedImageIodine = new MagnifiedImage(plantCellImageIodine, []);
+
     var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, "Rough ER Magnified Image is rough. <br/>Second line"), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage)]);
 
     var animalCell = new Cell( { location: new Vector2( 810, 120 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
-    var plantCell = new Cell( { location: new Vector2( 910, 120 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, magnifiedImage: plantCellMagnifiedImage, parentModel: this } );
+    var plantCell = new Cell( { location: new Vector2( 910, 120 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, magnifiedImage: plantCellMagnifiedImage, parentModel: this, magnifiedImageIodine: plantCellMagnifiedImageIodine } );
     this.objectKit = new Kit({ location: new Vector2(810,120), size: new Dimension2(200,100), children: [ animalCell, plantCell]});
 
     var microscope = new Microscope();

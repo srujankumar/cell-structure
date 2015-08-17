@@ -37,19 +37,6 @@ define( function( require ) {
     model.locationProperty.link( function( location ) {
       this.translation = modelViewTransform.modelToViewPosition( location );
     }.bind(this) );
-
-    model.objectUnderLensProperty.link( function( cell ) {
-      if(this.objectUnderLensNode) {
-        this.removeChild(this.objectUnderLensNode);
-      }
-
-      if (!cell) { return; }
-      this.objectUnderLensNode = new Image( cell.image, { x: 150, y: 260, align: 'bottom' } );
-      this.objectUnderLensNode.scale( modelViewTransform.modelToViewDeltaX( 200 ) / this.width,
-        modelViewTransform.modelToViewDeltaY( 200 ) / this.height );
-      this.addChild(this.objectUnderLensNode);
-    }.bind(this) );
-
   }
 
   return inherit( Node, MicroscopeInstrumentNode );

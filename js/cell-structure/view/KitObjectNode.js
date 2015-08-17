@@ -54,8 +54,10 @@ define( function( require ) {
     };
 
     // Scale it so it matches the model width and height
-    this.scale( modelViewTransform.modelToViewDeltaX( 80 ) / this.width,
-      modelViewTransform.modelToViewDeltaY( 80 ) / this.height );
+    model.sizeProperty.link(function() {
+      this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
+        modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+    }.bind(this));
 
     this.addInputListener( new SimpleDragHandler(
       {

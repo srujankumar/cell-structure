@@ -10,13 +10,6 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
 
-  /**
-   * Create a new cell model.  The object has fixed size, and mutable location.
-   *
-   * @param {Vector2} location, the position of the cell in model coordinates
-   * @param {Dimension2} size, the size of the cell in model coordinates
-   * @constructor
-   */
   function Cell( properties ) {
     var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false };
     var values = _.merge( defaults, properties );
@@ -26,11 +19,13 @@ define( function( require ) {
 
     this.onDragEnd = function() {
       CS.onDrop(this);
-    };
+    }.bind(this);
 
     this.onDippedInLiquid = function(liquid) {
-      console.log("It's a " + liquid.color + " now!");
-    };
+      if(liquid.text === "Iodine") {
+        this.magnifiedImageProperty.set(this.magnifiedImageIodine);
+      }
+    }.bind(this);
   }
 
   return inherit( PropertySet, Cell );
