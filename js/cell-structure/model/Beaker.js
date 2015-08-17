@@ -28,6 +28,7 @@ define( function( require ) {
 
     var handleCell = function(model) {
       if(model.type !== "cell") return;
+      if(this.cell) this.cell.reset();
       this.cellProperty.set(model);
       model.locationProperty.set(new Vector2(85, 630));
       model.size = new Dimension2(50, 50);
@@ -43,6 +44,10 @@ define( function( require ) {
     };
     this.onRemove = function() {
       this.liquidProperty.set(null);
+    };
+
+    this.onChildRemoved = function(child) {
+      this.cellProperty.set(null);
     };
   }
 
