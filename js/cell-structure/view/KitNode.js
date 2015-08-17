@@ -8,6 +8,7 @@ define( function( require ) {
   var Node = require( 'SCENERY/nodes/Node');
   var KitObjectNode = require( 'CELL_STRUCTURE/cell-structure/view/KitObjectNode' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Dimension2 = require( 'DOT/Dimension2' );
 
   function KitNode( model, options, modelViewTransform, childNode ) {
 
@@ -24,6 +25,7 @@ define( function( require ) {
       CS.utils.slice(model.children, 2).forEach( function(childRows){
         childRows.forEach(function(child) {
           child.locationProperty.set(new Vector2(x, y));
+          child.sizeProperty.set(new Dimension2( 80, 80 ));
           var childNodeObj = new childNode(child, modelViewTransform);
           rect.addChild(childNodeObj);
           x += 100;

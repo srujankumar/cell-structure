@@ -10,7 +10,7 @@ define( function( require ) {
   var fillerImage = require( 'image!CELL_STRUCTURE/filler.svg' );
 
   function Filler( location, size ) {
-    Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2(50, 100), visibility: true, liquid: null} );
+    Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2( 50, 80 ), visibility: true, liquid: null} );
     this.image = this.kitImage = fillerImage;
     this.onDragEnd = function() {
       CS.model.apparatusKit.removeChild(this);

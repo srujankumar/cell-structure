@@ -13,8 +13,8 @@ define( function( require ) {
 
   function MicroscopeNode( model, modelViewTransform ) {
 
-    model.location = new Vector2(400, 100);
-    model.size = new Dimension2(300, 200);
+    model.location = new Vector2(450, 450);
+    model.size = new Dimension2(500, 300);
     Node.call(this, {x: model.location.x, y: model.location.y});
     var instrumentNode = new MicroscopeInstrumentNode(model.instrument, {}, modelViewTransform);
     var magnifierViewNode = new MagnifierViewNode(model.magnifierView, {}, modelViewTransform);
@@ -22,7 +22,7 @@ define( function( require ) {
       font: new PhetFont( 16 ),
       baseColor: 'yellow',
       x: -150,
-      y: 0,
+      y: 50,
       listener: function() {
         CS.trigger('ApparatusRemoved',model);
       }

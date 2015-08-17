@@ -9,7 +9,7 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   function Beaker( location, size ) {
-    Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2(100, 100), visibility: true, liquid: null, cell: null} );
+    Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, liquid: null, cell: null} );
     this.image = this.kitImage = beakerImage;
     this.onDragEnd = function() {
       CS.model.apparatusKit.removeChild(this);
@@ -29,7 +29,7 @@ define( function( require ) {
     var handleCell = function(model) {
       if(model.type !== "cell") return;
       this.cellProperty.set(model);
-      model.locationProperty.set(new Vector2(260, 212));
+      model.locationProperty.set(new Vector2(85, 630));
       model.size = new Dimension2(50, 50);
 
       if(this.liquid && (typeof this.cell.onDippedInLiquid == "function")) {
