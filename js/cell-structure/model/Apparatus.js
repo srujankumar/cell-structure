@@ -18,7 +18,7 @@ define( function( require ) {
    * @constructor
    */
   function Apparatus( properties ) {
-    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false };
+    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false, attachedTo: null };
     var values = _.merge( defaults, properties );
     values.kitImage = values.image;
     PropertySet.call( this, values );

@@ -13,9 +13,6 @@ define( function( require ) {
     this.size = size;
 
     this.microscope.objectUnderLensProperty.link(function(object) {
-      if( this.objectUnderLens ) {
-        this.objectUnderLens.reset();
-      }
       this.objectUnderLensProperty.set(object);
 
       if(!object) return;

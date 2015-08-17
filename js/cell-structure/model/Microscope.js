@@ -19,7 +19,9 @@ define( function( require ) {
 
     CS.addDroppable(this);
     this.onReceiveDrop = function(model) {
+      model.attachedToProperty.set(this);
       if(model.type !== "cell") return;
+      if(this.objectUnderLens) this.objectUnderLens.reset();
       this.objectUnderLensProperty.set(model);
     };
     this.onDragEnd = function() {
@@ -28,6 +30,11 @@ define( function( require ) {
     };
 
     this.onRemove = function() {
+      this.objectUnderLens.reset();
+      this.objectUnderLensProperty.set(null);
+    };
+
+    this.onChildRemoved = function(child) {
       this.objectUnderLensProperty.set(null);
     };
   }

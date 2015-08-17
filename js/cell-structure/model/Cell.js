@@ -9,9 +9,10 @@ define( function( require ) {
   // modules
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
+  var Dimension2 = require( 'DOT/Dimension2' );
 
   function Cell( properties ) {
-    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false };
+    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false, attachedTo: null };
     var values = _.merge( defaults, properties );
     values.kitImage = values.image;
     PropertySet.call( this, values );
@@ -26,6 +27,11 @@ define( function( require ) {
         this.magnifiedImageProperty.set(this.magnifiedImageIodine);
       }
     }.bind(this);
+
+    this.attachedToProperty.link( function(attachedTo) {
+      // Increase it's size if it's floating
+      if(!attachedTo) this.sizeProperty.set(new Dimension2( 100, 100 ));
+    }.bind(this) );
   }
 
   return inherit( PropertySet, Cell );

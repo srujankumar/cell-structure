@@ -69,6 +69,11 @@ define( function( require ) {
           //this.translation = args.position;
           model.location = modelViewTransform.viewToModelPosition( args.position );
         },
+        start: function( event ) {
+          if(!model.attachedTo) return;
+          model.attachedTo.onChildRemoved(model);
+          model.attachedToProperty.set(null);
+        },
         end: function( event ) {
           if( typeof model.onDragEnd == "function" ) {
             model.onDragEnd();
