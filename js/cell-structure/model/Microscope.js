@@ -10,9 +10,9 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
 
   function Microscope() {
-    Apparatus.call( this, {size: new Dimension2( 80, 80 ), location: new Vector2(300,500), objectUnderLens: null } );
+    Apparatus.call( this, {size: new Dimension2( 80, 80 ), location: new Vector2(200,500), objectUnderLens: null } );
 
-    this.instrument = new MicroscopeInstrument( new Vector2( -200, 50 ), new Dimension2( 200, 200 ), this );
+    this.instrument = new MicroscopeInstrument( new Vector2( 0, 50 ), new Dimension2( 200, 200 ), this );
     this.magnifierView = new MagnifierView(this);
 
     this.kitImage = this.image = this.instrument.image;
