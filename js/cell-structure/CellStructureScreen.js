@@ -30,7 +30,10 @@ CS.onDrop = function(model) {
 };
 
 CS.positionDelta = function( position1, position2, deltaX, deltaY){
-  return ( Math.abs(position1.x - position2.x) <=  deltaX) && ( Math.abs(position1.y - position2.y) <= deltaY);
+  var within = function(value, lowerBound, upperBound) {
+    return lowerBound < value && value < upperBound;
+  };
+  return within(position1.x, position2.x, position2.x + deltaX) && within(position1.y, position2.y, position2.y + deltaY);
 };
 
 /**
