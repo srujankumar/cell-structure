@@ -13,8 +13,8 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function FillerNode( model, modelViewTransform ) {
-    model.location = new Vector2(100, 100);
-    model.size = new Dimension2(100, 200);
+    //model.location = new Vector2(10, 10);
+    model.size = new Dimension2(150, 300);
 
     Node.call( this, {
       cursor: 'pointer',
@@ -58,6 +58,22 @@ define( function( require ) {
       this.translation = modelViewTransform.modelToViewPosition( location );
     }.bind(this) );
 
+    this.addInputListener( new SimpleDragHandler(
+      {
+        // When dragging across it in a mobile device, pick it up
+        allowTouchSnag: true,
+
+        // Translate on drag events
+        translate: function (args) {
+          //this.translation = args.position;
+          model.location = modelViewTransform.viewToModelPosition( args.position );
+        },
+        end: function( event ) {
+          if( typeof model.onDragEnd == "function" ) {
+            model.onDragEnd();
+          }
+        }.bind(this)
+      } ) );
   }
 
   return inherit( Node, FillerNode );
