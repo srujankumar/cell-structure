@@ -22,7 +22,13 @@ CS.trigger = function(eventName, eventObj) {
 CS.onDrop = function(model) {
   CS.droppables.forEach( function( droppable){
     if(model == droppable) return;
-    if(CS.positionDelta( model.location, droppable.location, droppable.size.width, droppable.size.height)) {
+    if(typeof droppable.collidesWith == "function") {
+      if(droppable.collidesWith(model)) {
+        if(typeof droppable.onReceiveDrop == "function")
+          droppable.onReceiveDrop(model);
+      }
+    }
+    else if(CS.positionDelta( model.location, droppable.location, droppable.size.width, droppable.size.height)) {
       if(typeof droppable.onReceiveDrop == "function")
         droppable.onReceiveDrop(model);
     }

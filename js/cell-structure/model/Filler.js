@@ -19,11 +19,22 @@ define( function( require ) {
     };
 
     this.onReceiveDrop = function(model) {
+      console.log('got it');
       if(model.type !== "liquid") return;
       this.liquidProperty.set(model);
     };
     this.onRemove = function() {
       this.liquidProperty.set(null);
+    };
+
+    this.collidesWith = function(model) {
+      var areaUnderFiller = new Vector2(this.location.x, 330);
+      var size = new Dimension2(200, 200);
+      if(model.type == "liquid") {
+        areaUnderFiller = new Vector2(this.location.x, this.location.y);
+        size = new Dimension2(this.size.width, this.size.height);
+      }
+      return CS.positionDelta( model.location, areaUnderFiller, size.width, size.height)
     };
   }
 
