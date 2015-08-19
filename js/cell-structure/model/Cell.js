@@ -10,6 +10,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Dimension2 = require( 'DOT/Dimension2' );
+  var Filler = require( 'CELL_STRUCTURE/cell-structure/model/Filler' );
 
   function Cell( properties ) {
     var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false, attachedTo: null };
@@ -17,6 +18,13 @@ define( function( require ) {
     values.kitImage = values.image;
     PropertySet.call( this, values );
     this.type = "cell";
+
+    CS.addDroppable(this);
+    this.collidesWith = function(model) {
+      if(!(model instanceof Filler)) return;
+      model.collidesWith(this);
+      return false;
+    }
 
     this.onDragEnd = function() {
       CS.onDrop(this);

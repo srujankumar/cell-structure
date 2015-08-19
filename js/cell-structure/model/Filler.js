@@ -34,7 +34,8 @@ define( function( require ) {
         areaUnderFiller = new Vector2(this.location.x, this.location.y);
         size = new Dimension2(this.size.width, this.size.height);
       }
-      return CS.positionDelta( model.location, areaUnderFiller, size.width, size.height)
+      if(CS.positionDelta( model.location, areaUnderFiller, size.width, size.height))
+        this.onReceiveDrop(model);
     };
   }
 
