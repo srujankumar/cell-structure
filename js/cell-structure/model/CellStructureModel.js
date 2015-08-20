@@ -27,30 +27,37 @@ define( function( require ) {
     var plantCellIcon = require( 'image!CELL_STRUCTURE/leaf.svg' );
     var animalCellImage = require( 'image!CELL_STRUCTURE/animal-cell-big.png' );
     var plantCellImage = require( 'image!CELL_STRUCTURE/plant-cell-big.png' );
+    var onionCellImage = require( 'image!CELL_STRUCTURE/onion-peel-big.jpg' );
+    var onionCellImageJanus = require( 'image!CELL_STRUCTURE/onion-peel-big-janus.jpg' );
     var plantCellImageIodine = require( 'image!CELL_STRUCTURE/plant-cell-big-iodine.png' );
     var roughEndoplasmicReticulumImage = require( 'image!CELL_STRUCTURE/rough-endoplasmic-reticulum.jpg' );
     var golgiApparatusImage = require( 'image!CELL_STRUCTURE/golgi-apparatus.png' );
+    var onionCellIcon = require( 'image!CELL_STRUCTURE/onion.svg' );
 
     //models
     var animalCellMagnifiedImage = new MagnifiedImage(animalCellImage, [new Overlay(10, new Vector2(0,0), undefined, this)]);
+    var onionCellMagnifiedImage = new MagnifiedImage(onionCellImage, []);
     var roughERMagnifiedImage = new MagnifiedImage(roughEndoplasmicReticulumImage, []);
     var golgiApparatusMagnifiedImage = new MagnifiedImage(golgiApparatusImage, []);
 
     var plantCellMagnifiedImageIodine = new MagnifiedImage(plantCellImageIodine, []);
+    var onionCellMagnifiedImageJanus = new MagnifiedImage(onionCellImageJanus, []);
 
     var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, "Rough ER Magnified Image is rough. <br/>Second line"), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage)]);
 
-    var animalCell = new Cell( { location: new Vector2( 810, 120 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
-    var plantCell = new Cell( { location: new Vector2( 910, 120 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, magnifiedImage: plantCellMagnifiedImage, parentModel: this, magnifiedImageIodine: plantCellMagnifiedImageIodine } );
-    this.objectKit = new Kit({ location: new Vector2(810,120), size: new Dimension2(200,100), children: [ animalCell, plantCell]});
+    var animalCell = new Cell( { location: new Vector2( 810, 220 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
+    var onionCell = new Cell( { location: new Vector2( 810, 320 ), size: new Dimension2( 80, 80 ), image: onionCellIcon, magnifiedImage: onionCellMagnifiedImage, parentModel: this, magnifiedImageJanus: onionCellMagnifiedImageJanus } );
+    var plantCell = new Cell( { location: new Vector2( 910, 220 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, magnifiedImage: plantCellMagnifiedImage, parentModel: this, magnifiedImageIodine: plantCellMagnifiedImageIodine } );
+    this.objectKit = new Kit({ location: new Vector2(810,220), size: new Dimension2(200,200), children: [ animalCell, plantCell, onionCell ]});
 
     var microscope = new Microscope();
     var beaker = new Beaker();
     var filler = new Filler();
-    this.apparatusKit = new Kit({ location: new Vector2(810,230), size: new Dimension2(200,200), children: [ microscope, beaker, filler ]});
+    this.apparatusKit = new Kit({ location: new Vector2(810,430), size: new Dimension2(200,200), children: [ microscope, beaker, filler ]});
     var ammoniaBottle = new Liquid({ location: new Vector2(810,10), text: "Ammonia", color: '#ffff00'});
     var iodineBottle = new Liquid({ location: new Vector2(910,10), text: "Iodine", color: "brown"});
-    this.liquidKit = new Kit({ location: new Vector2(810,10), size: new Dimension2(200,100), children: [ ammoniaBottle, iodineBottle ]});
+    var janusBottle = new Liquid({ location: new Vector2(810,110), text: "Janus Green B", color: "green"});
+    this.liquidKit = new Kit({ location: new Vector2(810,10), size: new Dimension2(200,200), children: [ ammoniaBottle, iodineBottle, janusBottle ]});
     this.experimentArea = new ExperimentArea({location: new Vector2(0,0), size: new Dimension2(800,768)});
   }
 

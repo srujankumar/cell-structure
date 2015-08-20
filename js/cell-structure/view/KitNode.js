@@ -18,9 +18,9 @@ define( function( require ) {
 
     var resetChildren = function() {
       rect.removeAllChildren();
-      var x = options.x || 0;
+      var x = model.location.x || 0;
       var initialX = x;
-      var y = options.y || 0;
+      var y = model.location.y || 0;
       childNode = childNode || KitObjectNode;
       CS.utils.slice(model.children, 2).forEach( function(childRows){
         childRows.forEach(function(child) {
