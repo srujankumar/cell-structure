@@ -11,6 +11,7 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var TextPushButton = require( 'SUN/buttons/TextPushButton' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
+  var DropNode = require( 'CELL_STRUCTURE/cell-structure/view/DropNode' );
 
   function FillerNode( model, modelViewTransform ) {
     //model.location = new Vector2(10, 10);
@@ -23,9 +24,8 @@ define( function( require ) {
     } );
 
     var image = new Image( model.image, { x: 0, y: 0 } );
-
     var removeButton = new TextPushButton( "X", {
-      font: new PhetFont( 50 ),
+      font: new PhetFont( 20 ),
       baseColor: 'yellow',
       x: 0,
       y: 0,
@@ -35,9 +35,23 @@ define( function( require ) {
     } );
     this.addChild(removeButton);
 
+    var dropNode = new DropNode( model.drop, modelViewTransform );
+
+    var knobButton = new TextPushButton( "    ", {
+      font: new PhetFont( 50 ),
+      baseColor: 'black',
+      x: 35,
+      y: 50,
+      listener: function() {
+        model.onKnobPressed();
+      }
+    } );
+    this.addChild(knobButton);
+
     var liquidNode;
     model.liquidProperty.link( function( liquid ) {
       this.removeChild(image);
+      this.removeChild(knobButton);
       this.removeChild(removeButton);
       if(liquidNode) {
         this.removeChild(liquidNode);
@@ -47,25 +61,26 @@ define( function( require ) {
         this.addChild(liquidNode);
       }
       this.addChild(image);
+      this.addChild(knobButton);
       this.addChild(removeButton);
     }.bind(this) );
+    this.addChild( dropNode );
+
 
     // Scale it so it matches the model width and height
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
-    // Register for synchronization with model.
+               modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+               // Register for synchronization with model.
     model.locationProperty.link( function( location ) {
       this.translation = modelViewTransform.modelToViewPosition( location );
     }.bind(this) );
 
-    this.addInputListener( new SimpleDragHandler(
-      {
+    this.addInputListener( new SimpleDragHandler({
         // When dragging across it in a mobile device, pick it up
         allowTouchSnag: true,
 
         // Translate on drag events
         translate: function (args) {
-          //this.translation = args.position;
           model.location = modelViewTransform.viewToModelPosition( args.position );
         },
         end: function( event ) {

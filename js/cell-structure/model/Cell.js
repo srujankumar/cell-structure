@@ -36,6 +36,8 @@ define( function( require ) {
       }
     }.bind(this);
 
+    this.onLiquidDropped = this.onDippedInLiquid.bind(this);
+
     this.attachedToProperty.link( function(attachedTo) {
       // Increase it's size if it's floating
       if(!attachedTo) this.sizeProperty.set(new Dimension2( 100, 100 ));
