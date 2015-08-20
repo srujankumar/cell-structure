@@ -29,6 +29,7 @@ define( function( require ) {
 
     var handleCell = function(model) {
       if(model.type !== "cell") return;
+      console.log('cell');
       this.cellProperty.set(model);
       model.attachedToProperty.set(this);
       return true;

@@ -19,8 +19,8 @@ define( function( require ) {
 
     CS.addDroppable(this);
     this.onReceiveDrop = function(model) {
-      model.attachedToProperty.set(this);
       if(model.type !== "cell") return;
+      model.attachedToProperty.set(this);
       if(this.objectUnderLens) this.objectUnderLens.reset();
       this.objectUnderLensProperty.set(model);
     };

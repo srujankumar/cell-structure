@@ -31,7 +31,7 @@ define( function( require ) {
       y: 0,
       listener: function() {
         CS.trigger('ApparatusRemoved',model);
-      }
+      }.bind(this)
     } );
     this.addChild(removeButton);
 
@@ -79,11 +79,20 @@ define( function( require ) {
         // When dragging across it in a mobile device, pick it up
         allowTouchSnag: true,
 
+        start: function (event) {
+          this.dragStartPoint = event.pointer.point;
+        }.bind(this),
+
         // Translate on drag events
         translate: function (args) {
           model.location = modelViewTransform.viewToModelPosition( args.position );
         },
         end: function( event ) {
+          var dragStartPoint = this.dragStartPoint;
+          this.dragStartPoint = undefined;
+          if(dragStartPoint.x == event.pointer.point.x && dragStartPoint.y == event.pointer.point.y) {
+            return;
+          }
           if( typeof model.onDragEnd == "function" ) {
             model.onDragEnd();
           }
