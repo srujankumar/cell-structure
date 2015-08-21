@@ -21,7 +21,9 @@ define( function( require ) {
     this.onReceiveDrop = function(model) {
       if(model.type !== "cell") return;
       model.attachedToProperty.set(this);
-      if(this.objectUnderLens) this.objectUnderLens.reset();
+      if(this.objectUnderLens) 
+        CS.model.objectKit.addChild(this.objectUnderLens);
+      CS.model.objectKit.removeChild(model);
       this.objectUnderLensProperty.set(model);
     };
     this.onDragEnd = function() {
@@ -30,7 +32,7 @@ define( function( require ) {
     };
 
     this.onRemove = function() {
-      this.objectUnderLens.reset();
+      CS.model.objectKit.addChild(this.objectUnderLens);
       this.objectUnderLensProperty.set(null);
     };
 

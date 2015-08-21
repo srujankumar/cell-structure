@@ -32,8 +32,8 @@ define( function( require ) {
       font: new PhetFont( 16 ),
       baseColor: 'yellow',
       xMargin: 10,
-      x: 0,
-      y: 270,
+      x: -50,
+      y: 0,
       listener: function() {
         if ( model.magnifiedImage.parentImage ) {
           model.magnifiedImageProperty.set( model.magnifiedImage.parentImage );

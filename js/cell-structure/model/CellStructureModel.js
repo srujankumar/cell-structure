@@ -45,20 +45,20 @@ define( function( require ) {
 
     var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, "Rough ER Magnified Image is rough. <br/>Second line"), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage)]);
 
-    var animalCell = new Cell( { location: new Vector2( 810, 220 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
-    var onionCell = new Cell( { location: new Vector2( 810, 320 ), size: new Dimension2( 80, 80 ), image: onionCellIcon, magnifiedImage: onionCellMagnifiedImage, parentModel: this, magnifiedImageJanus: onionCellMagnifiedImageJanus } );
-    var plantCell = new Cell( { location: new Vector2( 910, 220 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, magnifiedImage: plantCellMagnifiedImage, parentModel: this, magnifiedImageIodine: plantCellMagnifiedImageIodine } );
-    this.objectKit = new Kit({ location: new Vector2(810,220), size: new Dimension2(200,200), children: [ animalCell, plantCell, onionCell ]});
+    var animalCell = new Cell( { location: new Vector2( 310, 10 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
+    var onionCell = new Cell( { location: new Vector2( 510, 10 ), size: new Dimension2( 80, 80 ), image: onionCellIcon, magnifiedImage: onionCellMagnifiedImage, parentModel: this, magnifiedImageJanus: onionCellMagnifiedImageJanus } );
+    var plantCell = new Cell( { location: new Vector2( 410, 10 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, magnifiedImage: plantCellMagnifiedImage, parentModel: this, magnifiedImageIodine: plantCellMagnifiedImageIodine } );
+    this.objectKit = new Kit({ location: new Vector2(330,10), size: new Dimension2(300,100), children: [ animalCell, plantCell, onionCell ]});
 
     var microscope = new Microscope();
     var beaker = new Beaker();
     var filler = new Filler();
-    this.apparatusKit = new Kit({ location: new Vector2(810,430), size: new Dimension2(200,200), children: [ microscope, beaker, filler ]});
-    var ammoniaBottle = new Liquid({ location: new Vector2(810,10), text: "Ammonia", color: '#ffff00'});
-    var iodineBottle = new Liquid({ location: new Vector2(910,10), text: "Iodine", color: "brown"});
-    var janusBottle = new Liquid({ location: new Vector2(810,110), text: "Janus Green B", color: "green"});
-    this.liquidKit = new Kit({ location: new Vector2(810,10), size: new Dimension2(200,200), children: [ ammoniaBottle, iodineBottle, janusBottle ]});
-    this.experimentArea = new ExperimentArea({location: new Vector2(0,0), size: new Dimension2(800,768)});
+    this.apparatusKit = new Kit({ location: new Vector2(660,10), size: new Dimension2(300,100), children: [ microscope, beaker, filler ]});
+    var ammoniaBottle = new Liquid({ location: new Vector2(10,10), text: "Ammonia", color: '#ffff00'});
+    var iodineBottle = new Liquid({ location: new Vector2(110,10), text: "Iodine", color: "brown"});
+    var janusBottle = new Liquid({ location: new Vector2(210,10), text: "Janus Green B", color: "green"});
+    this.liquidKit = new Kit({ location: new Vector2(10,10), size: new Dimension2(300,100), children: [ ammoniaBottle, iodineBottle, janusBottle ]});
+    this.experimentArea = new ExperimentArea({location: new Vector2(0,200), size: new Dimension2(1000,568)});
   }
 
   return inherit( Object, CellStructureModel, {

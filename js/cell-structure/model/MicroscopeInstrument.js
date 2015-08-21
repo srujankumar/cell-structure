@@ -16,7 +16,7 @@ define( function( require ) {
       this.objectUnderLensProperty.set(object);
 
       if(!object) return;
-      object.locationProperty.set(new Vector2( 310, 609 ));
+      object.locationProperty.set(new Vector2( 520, 475 ));
       object.sizeProperty.set(new Dimension2( 30, 30 ));
     }.bind(this));
   }

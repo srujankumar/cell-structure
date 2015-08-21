@@ -13,8 +13,8 @@ define( function( require ) {
 
   function MicroscopeNode( model, modelViewTransform ) {
 
-    model.location = new Vector2(250, 450);
-    model.size = new Dimension2(500, 300);
+    model.location = new Vector2(250, 292);
+    model.size = new Dimension2(250, 250);
     Node.call(this, {x: model.location.x, y: model.location.y});
     var instrumentNode = new MicroscopeInstrumentNode(model.instrument, {}, modelViewTransform);
     var magnifierViewNode = new MagnifierViewNode(model.magnifierView, {x: 200, y: 0}, modelViewTransform);
