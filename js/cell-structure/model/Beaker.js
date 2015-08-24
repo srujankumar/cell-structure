@@ -12,9 +12,8 @@ define( function( require ) {
     Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, liquid: null, cell: null} );
     this.image = this.kitImage = beakerImage;
     this.onDragEnd = function() {
-      CS.model.apparatusKit.removeChild(this);
-      CS.addDroppable(this);
       CS.onDrop(this);
+      CS.addDroppable(this);
     };
 
     var handleLiquid = function(model) {
@@ -30,7 +29,7 @@ define( function( require ) {
       if(model.type !== "cell") return;
       if(this.cell) this.cell.reset();
       this.cellProperty.set(model);
-      model.locationProperty.set(new Vector2(85, 630));
+      model.locationProperty.set(new Vector2(100, 505));
       model.size = new Dimension2(50, 50);
       model.attachedToProperty.set(this);
 

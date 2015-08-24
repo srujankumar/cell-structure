@@ -22,17 +22,18 @@ define( function( require ) {
       if(model.type !== "cell") return;
       model.attachedToProperty.set(this);
       if(this.objectUnderLens) 
-        CS.model.objectKit.addChild(this.objectUnderLens);
-      CS.model.objectKit.removeChild(model);
+        this.objectUnderLens.reset();
+        //CS.model.objectKit.addChild(this.objectUnderLens);
+      //CS.model.objectKit.removeChild(model);
       this.objectUnderLensProperty.set(model);
     };
     this.onDragEnd = function() {
-      CS.model.apparatusKit.removeChild(this);
       CS.onDrop(this);
     };
 
     this.onRemove = function() {
-      CS.model.objectKit.addChild(this.objectUnderLens);
+      if(!this.objectUnderLens) return;
+      this.objectUnderLens.reset();
       this.objectUnderLensProperty.set(null);
     };
 

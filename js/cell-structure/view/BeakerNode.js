@@ -13,8 +13,8 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function BeakerNode( model, modelViewTransform ) {
-    model.location = new Vector2(10, 500);
-    model.size = new Dimension2(200, 200);
+    model.location = new Vector2(0, 333);
+    model.size = new Dimension2(130, 200);
 
     Node.call( this, {
       cursor: 'pointer',

@@ -15,7 +15,7 @@ define( function( require ) {
 
   function FillerNode( model, modelViewTransform ) {
     //model.location = new Vector2(10, 10);
-    model.size = new Dimension2(150, 300);
+    model.size = new Dimension2(60, 150);
 
     Node.call( this, {
       cursor: 'pointer',

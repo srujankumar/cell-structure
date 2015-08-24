@@ -15,6 +15,7 @@ define( function( require ) {
     CS.addDroppable(this);
     this.onReceiveDrop = function(model) {
       if(model.type !== "apparatus") return;
+      CS.model.apparatusKit.removeChild(model);
 
       // Do not add duplicates
       var childIndex = this.children.indexOf(model);

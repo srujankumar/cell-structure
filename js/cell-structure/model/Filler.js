@@ -15,7 +15,6 @@ define( function( require ) {
     this.image = this.kitImage = fillerImage;
     CS.addDroppable(this);
     this.onDragEnd = function() {
-      CS.model.apparatusKit.removeChild(this);
       CS.onDrop(this);
     };
 
