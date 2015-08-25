@@ -13,8 +13,8 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function BeakerNode( model, modelViewTransform ) {
-    model.location = new Vector2(0, 333);
-    model.size = new Dimension2(130, 200);
+    model.locationProperty.set(new Vector2(200, 343));
+    model.size = new Dimension2(200, 200);
 
     Node.call( this, {
       cursor: 'pointer',
@@ -58,9 +58,9 @@ define( function( require ) {
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
     // Register for synchronization with model.
-    model.locationProperty.link( function( location ) {
+    /*model.locationProperty.link( function( location ) {
       this.translation = modelViewTransform.modelToViewPosition( location );
-    }.bind(this) );
+    }.bind(this) );*/
 
   }
 

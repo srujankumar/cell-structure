@@ -29,7 +29,7 @@ define( function( require ) {
       if(model.type !== "cell") return;
       if(this.cell) this.cell.reset();
       this.cellProperty.set(model);
-      model.locationProperty.set(new Vector2(100, 505));
+      model.locationProperty.set(new Vector2(260, 475));
       model.size = new Dimension2(50, 50);
       model.attachedToProperty.set(this);
 

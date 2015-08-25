@@ -13,7 +13,7 @@ define( function( require ) {
 
   function MicroscopeNode( model, modelViewTransform ) {
 
-    model.location = new Vector2(250, 292);
+    model.locationProperty.set(new Vector2(500, 295));
     model.size = new Dimension2(250, 250);
     Node.call(this, {x: model.location.x, y: model.location.y});
     var instrumentNode = new MicroscopeInstrumentNode(model.instrument, {}, modelViewTransform);
@@ -32,8 +32,9 @@ define( function( require ) {
     this.addChild(magnifierViewNode);
 
     // Scale it so it matches the model width and height
-    this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+    this.scale(1,1);
+    //this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
+      //modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
   }
   return inherit( Node, MicroscopeNode );
 });

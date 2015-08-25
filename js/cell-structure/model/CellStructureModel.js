@@ -58,7 +58,7 @@ define( function( require ) {
     var iodineBottle = new Liquid({ location: new Vector2(110,10), text: "Iodine", color: "brown"});
     var janusBottle = new Liquid({ location: new Vector2(210,10), text: "Janus Green B", color: "green"});
     this.liquidKit = new Kit({ location: new Vector2(10,10), size: new Dimension2(300,100), children: [ ammoniaBottle, iodineBottle, janusBottle ]});
-    this.experimentArea = new ExperimentArea({location: new Vector2(0,200), size: new Dimension2(1000,568)});
+    this.experimentArea = new ExperimentArea({location: new Vector2(10,200), size: new Dimension2(1000,568)});
   }
 
   return inherit( Object, CellStructureModel, {

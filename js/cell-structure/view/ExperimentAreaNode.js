@@ -12,11 +12,12 @@ define( function( require ) {
   function ExperimentAreaNode( model, options, modelViewTransform ) {
     Node.call(this, options);
 
-    this.addChild(new Image(table, {x: model.location.x, y: model.location.y + 200}));
+    var image = new Image(table, {x: model.location.x, y: model.location.y + 200});
+    image.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / image.width,
+      modelViewTransform.modelToViewDeltaY( model.size.height ) / image.height );
+    this.addChild(image);
 
-    // Scale it so it matches the model width and height
-    this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+    this.scale(1,1);
     model.onAddChild = function(child) {
       if(!child) { return; }
       var view = CS.views[child.constructor.name];
