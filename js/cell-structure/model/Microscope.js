@@ -21,15 +21,18 @@ define( function( require ) {
     this.onReceiveDrop = function(model) {
       if(model.type !== "cell") return;
       model.attachedToProperty.set(this);
-      if(this.objectUnderLens) this.objectUnderLens.reset();
+      if(this.objectUnderLens) 
+        this.objectUnderLens.reset();
+        //CS.model.objectKit.addChild(this.objectUnderLens);
+      //CS.model.objectKit.removeChild(model);
       this.objectUnderLensProperty.set(model);
     };
     this.onDragEnd = function() {
-      CS.model.apparatusKit.removeChild(this);
       CS.onDrop(this);
     };
 
     this.onRemove = function() {
+      if(!this.objectUnderLens) return;
       this.objectUnderLens.reset();
       this.objectUnderLensProperty.set(null);
     };

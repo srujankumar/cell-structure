@@ -7,18 +7,17 @@ define( function( require ) {
   var Rectangle = require( 'SCENERY/nodes/Rectangle');
   var Image = require( 'SCENERY/nodes/Image');
   var Node = require( 'SCENERY/nodes/Node');
-  var texture = require( 'image!CELL_STRUCTURE/wood-texture.jpg' );
+  var table = require( 'image!CELL_STRUCTURE/table.svg' );
 
   function ExperimentAreaNode( model, options, modelViewTransform ) {
     Node.call(this, options);
 
-    var bounds = new Rectangle(0,0,800,768,0,0, { fill: 'transparent', stroke: 'orange', lineWidth:10 });
-    bounds.addChild(new Image(texture, {x: 0, y: 0}));
-    this.addChild(bounds);
+    var image = new Image(table, {x: model.location.x, y: model.location.y + 200});
+    image.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / image.width,
+      modelViewTransform.modelToViewDeltaY( model.size.height ) / image.height );
+    this.addChild(image);
 
-    // Scale it so it matches the model width and height
-    this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+    this.scale(1,1);
     model.onAddChild = function(child) {
       if(!child) { return; }
       var view = CS.views[child.constructor.name];

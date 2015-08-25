@@ -14,18 +14,22 @@ define( function( require ) {
   var DropNode = require( 'CELL_STRUCTURE/cell-structure/view/DropNode' );
 
   function FillerNode( model, modelViewTransform ) {
-    //model.location = new Vector2(10, 10);
-    model.size = new Dimension2(150, 300);
+    model.location = new Vector2( 50, 350);
+    model.size = new Dimension2(60, 150);
 
+    var pos = modelViewTransform.modelToViewPosition(model.location);
     Node.call( this, {
       cursor: 'pointer',
-      x: model.location.x,
-      y: model.location.y
+      x: pos.x,
+      y: pos.y
     } );
+    debugger;
 
     var image = new Image( model.image, { x: 0, y: 0 } );
+    image.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / image.width,
+               modelViewTransform.modelToViewDeltaY( model.size.height ) / image.height );
     var removeButton = new TextPushButton( "X", {
-      font: new PhetFont( 20 ),
+      font: new PhetFont( 10 ),
       baseColor: 'yellow',
       x: 0,
       y: 0,
@@ -38,10 +42,10 @@ define( function( require ) {
     var dropNode = new DropNode( model.drop, modelViewTransform );
 
     var knobButton = new TextPushButton( "    ", {
-      font: new PhetFont( 50 ),
+      font: new PhetFont( 10 ),
       baseColor: 'black',
-      x: 35,
-      y: 50,
+      x: 17,
+      y: 30,
       listener: function() {
         model.onKnobPressed();
       }
@@ -64,40 +68,13 @@ define( function( require ) {
       this.addChild(knobButton);
       this.addChild(removeButton);
     }.bind(this) );
-    this.addChild( dropNode );
 
 
-    // Scale it so it matches the model width and height
-    this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-               modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+    this.scale(1,1);
                // Register for synchronization with model.
-    model.locationProperty.link( function( location ) {
+    /*model.locationProperty.link( function( location ) {
       this.translation = modelViewTransform.modelToViewPosition( location );
-    }.bind(this) );
-
-    this.addInputListener( new SimpleDragHandler({
-        // When dragging across it in a mobile device, pick it up
-        allowTouchSnag: true,
-
-        start: function (event) {
-          this.dragStartPoint = event.pointer.point;
-        }.bind(this),
-
-        // Translate on drag events
-        translate: function (args) {
-          model.location = modelViewTransform.viewToModelPosition( args.position );
-        },
-        end: function( event ) {
-          var dragStartPoint = this.dragStartPoint;
-          this.dragStartPoint = undefined;
-          if(dragStartPoint.x == event.pointer.point.x && dragStartPoint.y == event.pointer.point.y) {
-            return;
-          }
-          if( typeof model.onDragEnd == "function" ) {
-            model.onDragEnd();
-          }
-        }.bind(this)
-      } ) );
+    }.bind(this) );*/
   }
 
   return inherit( Node, FillerNode );

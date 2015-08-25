@@ -15,7 +15,6 @@ define( function( require ) {
     this.image = this.kitImage = fillerImage;
     CS.addDroppable(this);
     this.onDragEnd = function() {
-      CS.model.apparatusKit.removeChild(this);
       CS.onDrop(this);
     };
 
@@ -46,6 +45,7 @@ define( function( require ) {
       var areaUnderFiller = new Vector2(this.location.x, 430);
       var size = new Dimension2(200, 200);
       if(model.type == "liquid") {
+        debugger;
         areaUnderFiller = new Vector2(this.location.x, this.location.y);
         size = new Dimension2(this.size.width, this.size.height);
       }
@@ -53,7 +53,7 @@ define( function( require ) {
         this.onReceiveDrop(model);
     };
 
-    this.drop = new Drop({location: new Vector2(50, 300)});
+    this.drop = new Drop({location: new Vector2(50, 200)});
 
     this.onKnobPressed = function() {
       var intervalId = window.setInterval(function() {

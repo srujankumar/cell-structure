@@ -22,7 +22,7 @@ define( function( require ) {
       var initialX = x;
       var y = model.location.y || 0;
       childNode = childNode || KitObjectNode;
-      CS.utils.slice(model.children, 2).forEach( function(childRows){
+      CS.utils.slice(model.children, 3).forEach( function(childRows){
         childRows.forEach(function(child) {
           child.locationProperty.set(new Vector2(x, y));
           child.sizeProperty.set(new Dimension2( 80, 80 ));

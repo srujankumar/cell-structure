@@ -43,7 +43,7 @@ define( function( require ) {
 
     this.attachedToProperty.link( function(attachedTo) {
       // Increase it's size if it's floating
-      if(!attachedTo) this.sizeProperty.set(new Dimension2( 100, 100 ));
+      if(!attachedTo) this.sizeProperty.reset();
     }.bind(this) );
   }
 
