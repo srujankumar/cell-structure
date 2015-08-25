@@ -9,7 +9,7 @@ define( function( require ) {
   var stopWatchImage = require( 'image!CELL_STRUCTURE/stop-watch.svg' );
 
   function Stopwatch( callback ) {
-    Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, liquid: null, cell: null} );
+    Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, liquid: null, cell: null, time: "2:00"} );
     this.image = this.kitImage = stopWatchImage;
     this.onDragEnd = function() {
       CS.onDrop(this);

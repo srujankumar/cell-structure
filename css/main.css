@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Digital 7';
+  src: url('../fonts/digital-7.italic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/digital-7.italic.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/digital-7.italic.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../fonts/digital-7.italic.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/digital-7.italic.svg') format('svg'); /* Legacy iOS */
+}
