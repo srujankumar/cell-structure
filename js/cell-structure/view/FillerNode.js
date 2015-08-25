@@ -61,7 +61,7 @@ define( function( require ) {
         this.removeChild(liquidNode);
       }
       if(liquid) {
-        liquidNode = new Rectangle(25, 175, 90, 160, 30, 20, {lineWidth: 0, stroke: '#000', fill: liquid.color });
+        liquidNode = new Rectangle( 10, 80, 40, 67, 10, 20, {lineWidth: 0, stroke: '#000', fill: liquid.color });
         this.addChild(liquidNode);
       }
       this.addChild(image);
