@@ -29,8 +29,17 @@ define( function( require ) {
     image.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / image.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / image.height );
 
-    var time = new Text( model.time, { x: 36, y: 62, font: new LedFont(14), fill: 'red'});
-    this.addChild(time);
+    var timeNode = new Text( "", { x: 36, y: 62, font: new LedFont(14), fill: 'red'});
+    model.timeProperty.link(function(time) {
+      var formatTime = function(t) {
+        var hours = Math.floor(t / 60);
+        var minutes = t % 60;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        return hours + ":" + minutes;
+      };
+      timeNode.setText(formatTime(time));
+    });
+    this.addChild(timeNode);
   }
 
   return inherit( Node, StopwatchNode );
