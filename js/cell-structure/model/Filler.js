@@ -45,7 +45,6 @@ define( function( require ) {
       var areaUnderFiller = new Vector2(this.location.x, 430);
       var size = new Dimension2(200, 200);
       if(model.type == "liquid") {
-        debugger;
         areaUnderFiller = new Vector2(this.location.x, this.location.y);
         size = new Dimension2(this.size.width, this.size.height);
       }

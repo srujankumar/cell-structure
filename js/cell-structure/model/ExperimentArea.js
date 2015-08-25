@@ -6,16 +6,15 @@ define( function( require ) {
   var PropertySet = require( 'AXON/PropertySet' );
   var Dimension2 = require( 'DOT/Dimension2' );
   var Vector2 = require( 'DOT/Vector2' );
+  var Stopwatch = require( 'CELL_STRUCTURE/cell-structure/model/Stopwatch' );
 
   function ExperimentArea( properties ) {
     var defaults = { location: '', size: '', visibility: true, children: [], newChild: undefined};
     var values = _.merge( defaults, properties );
     PropertySet.call( this, values );
 
-    CS.addDroppable(this);
-    this.onReceiveDrop = function(model) {
+    var addChild = function(model) {
       if(model.type !== "apparatus") return;
-      CS.model.apparatusKit.removeChild(model);
 
       // Do not add duplicates
       var childIndex = this.children.indexOf(model);
@@ -26,6 +25,12 @@ define( function( require ) {
       if(typeof this.onAddChild == "function") {
         this.onAddChild(model);
       }
+    }.bind(this);
+
+    CS.addDroppable(this);
+    this.onReceiveDrop = function(model) {
+      addChild(model);
+      CS.model.apparatusKit.removeChild(model);
     };
 
     CS.addEventHandler('ApparatusRemoved', function(child){
@@ -43,6 +48,11 @@ define( function( require ) {
       if(typeof this.onRemoveChild == "function") {
         this.onRemoveChild(childIndex);
       }
+    };
+
+    this.createStopwatch = function(callback) {
+      var stopwatch = new Stopwatch(callback);
+      addChild(stopwatch);
     };
   }
 
