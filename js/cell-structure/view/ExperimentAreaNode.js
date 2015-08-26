@@ -8,6 +8,7 @@ define( function( require ) {
   var Image = require( 'SCENERY/nodes/Image');
   var Node = require( 'SCENERY/nodes/Node');
   var table = require( 'image!CELL_STRUCTURE/table.svg' );
+  var StopwatchNode = require( 'CELL_STRUCTURE/cell-structure/view/StopwatchNode' );
 
   function ExperimentAreaNode( model, options, modelViewTransform ) {
     Node.call(this, options);
@@ -29,6 +30,13 @@ define( function( require ) {
     model.onRemoveChild = function(index) {
       this.removeChildAt(index + 1);
     }.bind(this);
+
+    model.stopwatchProperty.link(function(stopwatch) {
+      if(!stopwatch) {
+        return;
+      }
+      this.addChild(new StopwatchNode(stopwatch, modelViewTransform));
+    }.bind(this));
   }
 
 

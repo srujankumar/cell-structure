@@ -12,13 +12,15 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Filler = require( 'CELL_STRUCTURE/cell-structure/model/Filler' );
   var Cell = require( 'CELL_STRUCTURE/cell-structure/model/Cell' );
+  var treeCellIcon = require( 'image!CELL_STRUCTURE/tree.svg' );
+  var treeRedImage = require( 'image!CELL_STRUCTURE/tree-red.svg' );
 
   function PlantRootCell( properties ) {
-    Cell.call( this, properties );
+    Cell.call( this, _.merge({image: treeCellIcon}, properties) );
 
     var onTimeout = function() {
-      console.log('timed out');
-    };
+      this.imageProperty.set(treeRedImage);
+    }.bind(this);
 
     this.onDippedInLiquid = function(liquid) {
       if(liquid.text === "Red Water") {

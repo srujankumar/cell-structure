@@ -89,6 +89,10 @@ define( function( require ) {
     model.visibilityProperty.link( function( visibility ) {
       this.setVisible(visibility);
     }.bind(this) );
+
+    model.imageProperty.link(function(image) {
+      cellIcon.setImage(image);
+    });
   }
 
   return inherit( Node, KitObjectNode );

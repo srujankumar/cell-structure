@@ -9,7 +9,7 @@ define( function( require ) {
   var Stopwatch = require( 'CELL_STRUCTURE/cell-structure/model/Stopwatch' );
 
   function ExperimentArea( properties ) {
-    var defaults = { location: '', size: '', visibility: true, children: [], newChild: undefined};
+    var defaults = { location: '', size: '', visibility: true, children: [], newChild: undefined, stopwatch: null};
     var values = _.merge( defaults, properties );
     PropertySet.call( this, values );
 
@@ -51,8 +51,8 @@ define( function( require ) {
     };
 
     this.createStopwatch = function(callback) {
-      var stopwatch = new Stopwatch(callback);
-      addChild(stopwatch);
+      if(this.stopwatch) return;
+      this.stopwatchProperty.set(new Stopwatch(callback));
     };
   }
 
