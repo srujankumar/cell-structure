@@ -40,9 +40,9 @@ define( function( require ) {
 
 
     cellStructureScreenView.addChild( new ExperimentAreaNode( model.experimentArea, {}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.liquidKit, { x:810, y: 10}, modelViewTransform, LiquidKitObjectNode ));
-    cellStructureScreenView.addChild( new KitNode( model.objectKit, { x:810, y: 120}, modelViewTransform ));
-    cellStructureScreenView.addChild( new KitNode( model.apparatusKit, { x:810, y: 230}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.liquidKit, { }, modelViewTransform, LiquidKitObjectNode ));
+    cellStructureScreenView.addChild( new KitNode( model.objectKit, {}, modelViewTransform ));
+    cellStructureScreenView.addChild( new KitNode( model.apparatusKit, {}, modelViewTransform ));
 
     cellStructureScreenView.addChild( resetAllButton );
   }

@@ -25,12 +25,13 @@ define( function( require ) {
       if(typeof this.onAddChild == "function") {
         this.onAddChild(model);
       }
+      CS.model.apparatusKit.removeChild(model);
     }.bind(this);
 
     CS.addDroppable(this);
+
     this.onReceiveDrop = function(model) {
       addChild(model);
-      CS.model.apparatusKit.removeChild(model);
     };
 
     CS.addEventHandler('ApparatusRemoved', function(child){

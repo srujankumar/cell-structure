@@ -12,6 +12,7 @@ define( function( require ) {
   var Microscope = require( 'CELL_STRUCTURE/cell-structure/model/Microscope' );
   var Beaker = require( 'CELL_STRUCTURE/cell-structure/model/Beaker' );
   var Filler = require( 'CELL_STRUCTURE/cell-structure/model/Filler' );
+  var Cutter = require( 'CELL_STRUCTURE/cell-structure/model/Cutter' );
   var ExperimentArea = require( 'CELL_STRUCTURE/cell-structure/model/ExperimentArea' );
   var Stopwatch = require( 'CELL_STRUCTURE/cell-structure/model/Stopwatch' );
   var Liquid = require( 'CELL_STRUCTURE/cell-structure/model/Liquid' );
@@ -56,7 +57,9 @@ define( function( require ) {
     var microscope = new Microscope();
     var beaker = new Beaker();
     var filler = new Filler();
-    this.apparatusKit = new Kit({ location: new Vector2(660,10), size: new Dimension2(300,100), children: [ microscope, beaker, filler ]});
+    var cutter = new Cutter();
+    var stopwatch = new Stopwatch();
+    this.apparatusKit = new Kit({ location: new Vector2(660,10), size: new Dimension2(300,200), children: [ microscope, beaker, filler, cutter ]});
     var ammoniaBottle = new Liquid({ location: new Vector2(10,10), text: "Ammonia", color: '#ffff00'});
     var iodineBottle = new Liquid({ location: new Vector2(110,10), text: "Iodine", color: "brown"});
     var janusBottle = new Liquid({ location: new Vector2(210,10), text: "Janus Green B", color: "green"});

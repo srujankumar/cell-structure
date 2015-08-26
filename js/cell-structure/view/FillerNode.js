@@ -23,7 +23,6 @@ define( function( require ) {
       x: pos.x,
       y: pos.y
     } );
-    debugger;
 
     var image = new Image( model.image, { x: 0, y: 0 } );
     image.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / image.width,
