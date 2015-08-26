@@ -55,6 +55,10 @@ define( function( require ) {
       if(this.stopwatch) return;
       this.stopwatchProperty.set(new Stopwatch(callback));
     };
+    this.stopStopwatch = function() {
+      this.stopwatch.stopTimer();
+      this.stopwatchProperty.set(null);
+    };
   }
 
   return inherit( PropertySet, ExperimentArea );

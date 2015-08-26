@@ -10,6 +10,7 @@ define( function( require ) {
 
   function Beaker( location, size ) {
     Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, liquid: null, cell: null} );
+    this.name = "beaker";
     this.image = this.kitImage = beakerImage;
     this.onDragEnd = function() {
       CS.onDrop(this);

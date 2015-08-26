@@ -31,11 +31,16 @@ define( function( require ) {
       this.removeChildAt(index + 1);
     }.bind(this);
 
+    var stopwatchNode;
     model.stopwatchProperty.link(function(stopwatch) {
       if(!stopwatch) {
+        if(stopwatchNode) {
+          this.removeChild(stopwatchNode);
+        }
         return;
       }
-      this.addChild(new StopwatchNode(stopwatch, modelViewTransform));
+      stopwatchNode = new StopwatchNode(stopwatch, modelViewTransform);
+      this.addChild(stopwatchNode);
     }.bind(this));
   }
 

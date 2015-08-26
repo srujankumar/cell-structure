@@ -38,10 +38,10 @@ define( function( require ) {
       var oldTime = this.time;
       var ttc = 5; // completes in 5 secs
       var interval = ttc * 1000 / this.time;
-      var id = window.setInterval(function() {
+      this.intervalId = window.setInterval(function() {
         this.timeProperty.set(this.time - 1);
         if(this.time < 0) {
-          clearInterval(id);
+          clearInterval(this.intervalId);
           callback();
           this.timeProperty.set(0);
 
@@ -50,6 +50,10 @@ define( function( require ) {
       }.bind(this), interval);
     };
     this.startTimer();
+
+    this.stopTimer = function() {
+      window.clearInterval(this.intervalId);
+    }.bind(this);
   }
 
   return inherit( Apparatus, Stopwatch );

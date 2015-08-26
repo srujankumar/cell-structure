@@ -27,6 +27,13 @@ define( function( require ) {
         CS.model.experimentArea.createStopwatch(onTimeout);
       }
     }.bind(this);
+
+    this.attachedToProperty.link(function(attachedTo) {
+      if(!CS.model) return; // still initializing
+      if(!attachedTo || attachedTo.name !== "beaker") {
+        CS.model.experimentArea.stopStopwatch();
+      }
+    });
   }
 
   return inherit( Cell, PlantRootCell );
