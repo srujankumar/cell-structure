@@ -39,6 +39,10 @@ define( function( require ) {
       };
       timeNode.setText(formatTime(time));
     });
+
+    model.timeVisibleProperty.link(function(visible) {
+      timeNode.setVisible(visible);
+    });
     this.addChild(timeNode);
   }
 
