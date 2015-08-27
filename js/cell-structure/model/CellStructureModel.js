@@ -58,7 +58,6 @@ define( function( require ) {
     var beaker = new Beaker();
     var filler = new Filler();
     var cutter = new Cutter();
-    var stopwatch = new Stopwatch();
     this.apparatusKit = new Kit({ location: new Vector2(660,10), size: new Dimension2(300,200), children: [ microscope, beaker, filler, cutter ]});
     var ammoniaBottle = new Liquid({ location: new Vector2(10,10), text: "Ammonia", color: '#ffff00'});
     var iodineBottle = new Liquid({ location: new Vector2(110,10), text: "Iodine", color: "brown"});
