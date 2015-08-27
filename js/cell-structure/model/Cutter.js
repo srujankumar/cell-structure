@@ -8,14 +8,17 @@ define( function( require ) {
   var Vector2 = require( 'DOT/Vector2' );
 
   function Cutter( location, size ) {
-    PropertySet.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, cell: null} );
-    this.image = this.kitImage = cutterImage;
+    PropertySet.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, cell: null, image: cutterImage} );
+    this.kitImage = this.image;
     this.onDragEnd = function() {
       CS.onDrop(this);
       CS.model.apparatusKit.removeChild(this);
       CS.model.apparatusKit.addChild(this);
     };
+    this.collidesWith = function( model){
+      if(CS.positionDelta( model.location, this.location, this.size.width, this.size.height))
+        console.log('cut');
+    }
   }
-
   return inherit( PropertySet, Cutter );
 } );

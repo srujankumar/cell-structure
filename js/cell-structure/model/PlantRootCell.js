@@ -10,7 +10,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var PropertySet = require( 'AXON/PropertySet' );
   var Dimension2 = require( 'DOT/Dimension2' );
-  var Filler = require( 'CELL_STRUCTURE/cell-structure/model/Filler' );
+  var Cutter = require( 'CELL_STRUCTURE/cell-structure/model/Cutter' );
   var Cell = require( 'CELL_STRUCTURE/cell-structure/model/Cell' );
   var treeCellIcon = require( 'image!CELL_STRUCTURE/tree.svg' );
   var treeRedImage = require( 'image!CELL_STRUCTURE/tree-red.svg' );
@@ -36,5 +36,12 @@ define( function( require ) {
     });
   }
 
-  return inherit( Cell, PlantRootCell );
+  return inherit( Cell, PlantRootCell, {
+    collidesWith: function(model) {
+      if(model instanceof Cutter)
+        model.collidesWith(this);
+      return false;
+    }
+
+  });
 } );

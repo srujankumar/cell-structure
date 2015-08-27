@@ -19,33 +19,33 @@ define( function( require ) {
     PropertySet.call( this, values );
     this.type = "cell";
 
+    this.attachedToProperty.link( function(attachedTo) {
+      // Increase it's size if it's floating
+      if(!attachedTo) this.sizeProperty.reset();
+    }.bind(this) );
     CS.addDroppable(this);
-    this.collidesWith = function(model) {
-      if(!(model instanceof Filler)) return;
-      model.collidesWith(this);
+  }
+
+  return inherit( PropertySet, Cell, {
+    collidesWith: function(model) {
+      if(model instanceof Filler) 
+        model.collidesWith(this);
       return false;
-    }
+    },
 
-    this.onDragEnd = function() {
+    onDragEnd: function() {
       CS.onDrop(this);
-    }.bind(this);
+    },
 
-    this.onDippedInLiquid = function(liquid) {
+    onDippedInLiquid: function(liquid) {
       if(liquid.text === "Iodine" && this.magnifiedImageIodine) {
         this.magnifiedImageProperty.set(this.magnifiedImageIodine);
       }
       if(liquid.text === "Janus Green B" && this.magnifiedImageJanus) {
         this.magnifiedImageProperty.set(this.magnifiedImageJanus);
       }
-    }.bind(this);
+    }
 
-    this.onLiquidDropped = this.onDippedInLiquid.bind(this);
-
-    this.attachedToProperty.link( function(attachedTo) {
-      // Increase it's size if it's floating
-      if(!attachedTo) this.sizeProperty.reset();
-    }.bind(this) );
-  }
-
-  return inherit( PropertySet, Cell );
+    //onLiquidDropped: function() {return this.onDippedInLiquid.bind(this)}(),
+  } );
 } );
