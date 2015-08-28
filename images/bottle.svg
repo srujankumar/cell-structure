@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="-499 80 921 921" style="enable-background:new -499 80 921 921;" xml:space="preserve">
+	 viewBox="-410.5 100 71.2 105" style="enable-background:new -410.5 100 71.2 105;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:none;stroke:#000000;stroke-width:60;stroke-miterlimit:10;}
+	.st0{fill:none;stroke:#000000;stroke-width:8;stroke-miterlimit:10;}
 </style>
-<path class="st0" d="M-378.5,415.5v528.8c0,15.3,13.4,27.7,30,27.7h619.9c16.6,0,30-12.4,30-27.7V415.5c0-10.1-5.9-19.4-15.5-24.3
-	l-152.7-77.8V273h-343.5v40.3L-363,391.1C-372.5,396.1-378.5,405.3-378.5,415.5z"/>
-<path d="M162,136.8c0-14.3-90.3-25.8-201-25.8s-201,11.6-201,25.8v88.1h402C162,224.9,162,136.8,162,136.8z"/>
+<path class="st0" d="M-405.5,135.4v61.4c0,1.8,1.2,3.2,2.7,3.2h55.8c1.5,0,2.7-1.4,2.7-3.2v-61.4c0-1.2-0.5-2.3-1.4-2.8l-13.7-9
+	v-4.7h-30.9v4.7l-13.7,9C-405,133.1-405.5,134.2-405.5,135.4z"/>
+<path d="M-356,102.6c0-1.5-8.6-2.6-19.1-2.6c-10.5,0-19.1,1.2-19.1,2.6v8.9h38.2V102.6z"/>
 </svg>
