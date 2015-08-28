@@ -14,12 +14,14 @@ define( function( require ) {
   var Cell = require( 'CELL_STRUCTURE/cell-structure/model/Cell' );
   var treeCellIcon = require( 'image!CELL_STRUCTURE/tree.svg' );
   var treeRedImage = require( 'image!CELL_STRUCTURE/tree-red.svg' );
+  var treeRedCutImage = require( 'image!CELL_STRUCTURE/tree-red-cut.svg' );
 
   function PlantRootCell( properties ) {
-    Cell.call( this, _.merge({image: treeCellIcon}, properties) );
+    Cell.call( this, _.merge({image: treeCellIcon, isDippedInLiquid: false }, properties) );
 
     var onTimeout = function() {
       this.imageProperty.set(treeRedImage);
+      this.isDippedInLiquidProperty.set(true);
     }.bind(this);
 
     this.onDippedInLiquid = function(liquid) {
@@ -41,6 +43,10 @@ define( function( require ) {
       if(model instanceof Cutter)
         model.collidesWith(this);
       return false;
+    },
+    onCut: function() {
+      if(this.isDippedInLiquid === true)
+        this.imageProperty.set(treeRedCutImage);
     }
 
   });

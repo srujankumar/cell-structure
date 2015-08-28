@@ -44,8 +44,10 @@ define( function( require ) {
       if(liquid.text === "Janus Green B" && this.magnifiedImageJanus) {
         this.magnifiedImageProperty.set(this.magnifiedImageJanus);
       }
-    }
+    },
 
-    //onLiquidDropped: function() {return this.onDippedInLiquid.bind(this)}(),
+    onLiquidDropped: function(){
+      return this.onDippedInLiquid;
+    }
   } );
 } );

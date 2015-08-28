@@ -16,8 +16,9 @@ define( function( require ) {
       CS.model.apparatusKit.addChild(this);
     };
     this.collidesWith = function( model){
-      if(CS.positionDelta( model.location, this.location, this.size.width, this.size.height))
-        console.log('cut');
+      if(CS.positionDelta( this.location, model.location, model.size.width, model.size.height))
+        if(typeof model.onCut === "function")
+          model.onCut();
     }
   }
   return inherit( PropertySet, Cutter );
