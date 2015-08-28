@@ -43,10 +43,10 @@ define( function( require ) {
 
     var line = new Line(0,0,120,0);
 
-    var content = new VBox( { align: 'center', spacing: 1, children: [ bottle, line, bottleText ] } );
-    this.addChild(content);
     var bottleFill = new Rectangle(33, 45, 54, 53, 0, 0, {fill: model.color, stroke: "#000", lineWidth: 0});
     this.addChild(bottleFill);
+    var content = new VBox( { align: 'center', spacing: 1, children: [ bottle, line, bottleText ] } );
+    this.addChild(content);
 
     var positionDelta = function( position1, position2, deltaX, deltaY){
       return ( Math.abs(position1.x - position2.x) <=  deltaX) && ( Math.abs(position1.y - position2.y) <= deltaY);
