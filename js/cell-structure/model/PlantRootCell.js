@@ -27,6 +27,8 @@ define( function( require ) {
     this.onDippedInLiquid = function(liquid) {
       if(liquid.text === "Red Water") {
         CS.model.experimentArea.createStopwatch(onTimeout);
+      } else {
+        this.reset();
       }
     }.bind(this);
 

@@ -40,9 +40,10 @@ define( function( require ) {
     onDippedInLiquid: function(liquid) {
       if(liquid.text === "Iodine" && this.magnifiedImageIodine) {
         this.magnifiedImageProperty.set(this.magnifiedImageIodine);
-      }
-      if(liquid.text === "Janus Green B" && this.magnifiedImageJanus) {
+      } else if(liquid.text === "Janus Green B" && this.magnifiedImageJanus) {
         this.magnifiedImageProperty.set(this.magnifiedImageJanus);
+      } else {
+        this.reset();
       }
     },
 
