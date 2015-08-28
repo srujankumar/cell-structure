@@ -8,7 +8,6 @@ define( function( require ) {
   function Liquid( properties ) {
     var defaults = { location: '', text: '', size: '', visibility: true, color: '#fff' };
     var values = _.merge( defaults, properties );
-    values.kitImage = values.image;
     PropertySet.call( this, values );
     this.type = "liquid";
 

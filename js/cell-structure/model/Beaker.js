@@ -45,6 +45,7 @@ define( function( require ) {
     };
     this.onRemove = function() {
       this.liquidProperty.set(null);
+      CS.model.experimentArea.stopStopwatch();
     };
 
     this.onChildRemoved = function(child) {

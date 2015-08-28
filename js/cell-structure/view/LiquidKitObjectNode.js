@@ -16,6 +16,7 @@ define( function( require ) {
   var Dimension2 = require( 'DOT/Dimension2' );
   var Vector2 = require( 'DOT/Vector2' );
   var Shape = require( 'KITE/Shape' );
+  var bottleImage = require( 'image!CELL_STRUCTURE/bottle.svg' );
 
   function KitObjectNode( model, modelViewTransform ) {
 
@@ -26,26 +27,26 @@ define( function( require ) {
     } );
 
     //var cellIcon = new Image( model.kitImage, { x: 0, y: 0 } );
-    var bottle = new Rectangle(0, 0, 50, 100, 3, 3, {fill: model.color, stroke: "#000", lineWidth: 10});
+    var bottle = new Image(bottleImage, {x: 0, y: 0});
     //var bottleTop = new Path(new Arc(new Vector2(38,0),38, 3*Math.PI, 4*Math.PI, false), {});
     var bottleTopShape = new Shape()
       .moveTo( modelViewTransform.modelToViewX( 0 ), modelViewTransform.modelToViewY( 0 ) )
       .lineTo( modelViewTransform.modelToViewX( 20 ), modelViewTransform.modelToViewY( 0 ) );
     var bottleTop = new Path( bottleTopShape, { top: 20, stroke: '#000', lineWidth: 10 } );
-    var cellIconText = new Text( model.text, { font: new PhetFont(14), fill: '#000'});
+
+    var bottleArcShape = new Shape()
+      //arc: function( centerX, centerY, radius, startAngle, endAngle, anticlockwise ) { return this.arcPoint( v( centerX, centerY ), radius, startAngle, endAngle, anticlockwise ); },
+      .moveTo( modelViewTransform.modelToViewX( 0 ), modelViewTransform.modelToViewY( 0 ) )
+      .arc( modelViewTransform.modelToViewX( 10 ), modelViewTransform.modelToViewY( 0 ), 20, 0, Math.PI, true );
+    var bottleArc = new Path( bottleArcShape, { top: 20, stroke: '#000', lineWidth: 5 } );
+    var bottleText = new Text( model.text, { font: new PhetFont(14), fill: '#000'});
 
     var line = new Line(0,0,120,0);
 
-    var content = new VBox( { align: 'center', spacing: 1, children: [ bottleTop, bottle, line, cellIconText ] } );
-
-    if( model.showOutline ) {
-      var rect = new Rectangle(0,0,120,120,5,5, { fill: '#000000', stroke: 'orange', lineWidth:1 });
-      rect.addChild(content);
-      this.addChild(rect);
-    } else {
-      this.addChild(content);
-    }
-
+    var content = new VBox( { align: 'center', spacing: 1, children: [ bottle, line, bottleText ] } );
+    this.addChild(content);
+    var bottleFill = new Rectangle(150, 400, 620, 470, 0, 0, {fill: model.color, stroke: "#000", lineWidth: 0});
+    this.addChild(bottleFill);
 
     var positionDelta = function( position1, position2, deltaX, deltaY){
       return ( Math.abs(position1.x - position2.x) <=  deltaX) && ( Math.abs(position1.y - position2.y) <= deltaY);
