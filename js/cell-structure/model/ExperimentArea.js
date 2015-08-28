@@ -56,6 +56,7 @@ define( function( require ) {
       this.stopwatchProperty.set(new Stopwatch(callback));
     };
     this.stopStopwatch = function() {
+      if(!this.stopwatch) return;
       this.stopwatch.stopTimer();
       this.stopwatchProperty.set(null);
     };

@@ -30,7 +30,7 @@ define( function( require ) {
 
     this.attachedToProperty.link(function(attachedTo) {
       if(!CS.model) return; // still initializing
-      if(!attachedTo || attachedTo.name !== "beaker") {
+      if(!attachedTo) {
         CS.model.experimentArea.stopStopwatch();
       }
     });
