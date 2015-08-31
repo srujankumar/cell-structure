@@ -53,7 +53,8 @@ define(function (require) {
         };
         this.onRemove = function () {
             this.liquidProperty.set(null);
-            this.cell.reset();
+            if(this.cell)
+              this.cell.reset();
             this.cellProperty.set(null);
             CS.model.experimentArea.stopStopwatch();
         };

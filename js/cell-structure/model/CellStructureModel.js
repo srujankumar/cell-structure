@@ -68,6 +68,7 @@ define( function( require ) {
     var redWaterBottle = new Liquid({ location: new Vector2(10,110), text: "Red Water", color: "red"});
     this.liquidKit = new Kit({ location: new Vector2(10,10), size: new Dimension2(300,200), children: [ ammoniaBottle, iodineBottle, janusBottle, redWaterBottle ]});
     this.experimentArea = new ExperimentArea({location: new Vector2(10,200), size: new Dimension2(1000,568)});
+
   }
 
   return inherit( Object, CellStructureModel, {
@@ -78,10 +79,10 @@ define( function( require ) {
     },
     // Resets all model elements
     reset: function() {
-      //this.microscope.reset();
-      //this.animalCell.reset();
-      // this.plantCell.reset();
-      //this.magnifierView.reset();
+      var children = CS.model.experimentArea.children.map(function(c) { return c;});
+      children.forEach( function( model){
+        CS.trigger('ApparatusRemoved', model);
+      });
     }
   } );
 } );
