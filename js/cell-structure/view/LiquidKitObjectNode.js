@@ -26,19 +26,7 @@ define( function( require ) {
       cursor: 'pointer'
     } );
 
-    //var cellIcon = new Image( model.kitImage, { x: 0, y: 0 } );
     var bottle = new Image(bottleImage, {x: 0, y: 0});
-    //var bottleTop = new Path(new Arc(new Vector2(38,0),38, 3*Math.PI, 4*Math.PI, false), {});
-    var bottleTopShape = new Shape()
-      .moveTo( modelViewTransform.modelToViewX( 0 ), modelViewTransform.modelToViewY( 0 ) )
-      .lineTo( modelViewTransform.modelToViewX( 20 ), modelViewTransform.modelToViewY( 0 ) );
-    var bottleTop = new Path( bottleTopShape, { top: 20, stroke: '#000', lineWidth: 10 } );
-
-    var bottleArcShape = new Shape()
-      //arc: function( centerX, centerY, radius, startAngle, endAngle, anticlockwise ) { return this.arcPoint( v( centerX, centerY ), radius, startAngle, endAngle, anticlockwise ); },
-      .moveTo( modelViewTransform.modelToViewX( 0 ), modelViewTransform.modelToViewY( 0 ) )
-      .arc( modelViewTransform.modelToViewX( 10 ), modelViewTransform.modelToViewY( 0 ), 20, 0, Math.PI, true );
-    var bottleArc = new Path( bottleArcShape, { top: 20, stroke: '#000', lineWidth: 5 } );
     var bottleText = new Text( model.text, { font: new PhetFont(14), fill: '#000'});
 
     var line = new Line(0,0,120,0);
