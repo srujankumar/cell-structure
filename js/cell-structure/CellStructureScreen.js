@@ -53,6 +53,7 @@ define( function( require ) {
   var BeakerNode = require( 'CELL_STRUCTURE/cell-structure/view/BeakerNode' );
   var FillerNode = require( 'CELL_STRUCTURE/cell-structure/view/FillerNode' );
   var StopwatchNode = require( 'CELL_STRUCTURE/cell-structure/view/StopwatchNode' );
+  var WideMouthedBottleNode = require( 'CELL_STRUCTURE/cell-structure/view/WideMouthedBottleNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
   require( 'CELL_STRUCTURE/cell-structure/helpers/utils' );
@@ -73,7 +74,8 @@ define( function( require ) {
       'Microscope': MicroscopeNode,
       'Beaker': BeakerNode,
       'Filler': FillerNode,
-      'Stopwatch': StopwatchNode
+      'Stopwatch': StopwatchNode,
+      'WideMouthedBottle': WideMouthedBottleNode
     };
     Screen.call( this, cellStructureSimString, icon,
       function() { return CS.model; },
