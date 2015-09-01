@@ -12,9 +12,13 @@ define(function (require) {
     var Dimension2 = require('DOT/Dimension2');
     var Cutter = require('CELL_STRUCTURE/cell-structure/model/Cutter');
     var Cell = require('CELL_STRUCTURE/cell-structure/model/Cell');
+    var MagnifiedImage = require('CELL_STRUCTURE/cell-structure/model/MagnifiedImage');
+
     var treeCellIcon = require('image!CELL_STRUCTURE/tree.svg');
     var treeRedImage = require('image!CELL_STRUCTURE/tree-red.svg');
     var treeRedCutImage = require('image!CELL_STRUCTURE/tree-red-cut.svg');
+    var stemTransCutImage = require('image!CELL_STRUCTURE/stem-ts.png');
+    var stemTransCutMagnifiedImage = new MagnifiedImage(stemTransCutImage, []);
 
     function PlantRootCell(properties) {
         Cell.call(this, _.merge({image: treeCellIcon, isDippedInLiquid: false}, properties));
@@ -48,8 +52,10 @@ define(function (require) {
             return false;
         },
         onCut: function () {
-            if (this.isDippedInLiquid === true)
+            if (this.isDippedInLiquid === true){
                 this.imageProperty.set(treeRedCutImage);
+                this.magnifiedImageProperty.set(stemTransCutMagnifiedImage);
+            }
         }
 
     });
