@@ -14,13 +14,16 @@ define(function (require) {
             size: new Dimension2(80, 80),
             visibility: true,
             liquid: null,
-            cell: null
+            cell: null,
+            cork: null
         });
         this.name = "wide-mouthed-bottle";
         this.image = this.kitImage = beakerImage;
         this.onDragEnd = function () {
+            debugger;
             CS.onDrop(this);
             CS.addDroppable(this);
+
         };
 
         var handleLiquid = function (model) {

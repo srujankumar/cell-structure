@@ -54,6 +54,7 @@ define( function( require ) {
   var FillerNode = require( 'CELL_STRUCTURE/cell-structure/view/FillerNode' );
   var StopwatchNode = require( 'CELL_STRUCTURE/cell-structure/view/StopwatchNode' );
   var WideMouthedBottleNode = require( 'CELL_STRUCTURE/cell-structure/view/WideMouthedBottleNode' );
+  var CorkNode = require( 'CELL_STRUCTURE/cell-structure/view/CorkNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
   require( 'CELL_STRUCTURE/cell-structure/helpers/utils' );
@@ -75,7 +76,8 @@ define( function( require ) {
       'Beaker': BeakerNode,
       'Filler': FillerNode,
       'Stopwatch': StopwatchNode,
-      'WideMouthedBottle': WideMouthedBottleNode
+      'WideMouthedBottle': WideMouthedBottleNode,
+      'Cork': CorkNode,
     };
     Screen.call( this, cellStructureSimString, icon,
       function() { return CS.model; },

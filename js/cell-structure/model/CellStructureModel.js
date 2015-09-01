@@ -22,6 +22,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Kit = require( 'CELL_STRUCTURE/cell-structure/model/Kit');
   var WideMouthedBottle = require( 'CELL_STRUCTURE/cell-structure/model/WideMouthedBottle');
+  var Cork = require( 'CELL_STRUCTURE/cell-structure/model/Cork');
 
   /**
    * @constructor
@@ -60,7 +61,8 @@ define( function( require ) {
     var filler = new Filler();
     var cutter = new Cutter();
     var wideMouthedBottle = new WideMouthedBottle();
-    this.apparatusKit = new Kit({ location: new Vector2(660,10), size: new Dimension2(300,200), children: [ microscope, beaker, filler, cutter, wideMouthedBottle ]});
+    var cork = new Cork();
+    this.apparatusKit = new Kit({ location: new Vector2(660,10), size: new Dimension2(300,200), children: [ microscope, beaker, filler, cutter, wideMouthedBottle, cork ]});
 
     var ammoniaBottle = new Liquid({ location: new Vector2(10,10), text: "Ammonia", color: '#ffff00'});
     var iodineBottle = new Liquid({ location: new Vector2(110,10), text: "Iodine", color: "brown"});
