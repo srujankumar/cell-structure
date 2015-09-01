@@ -43,7 +43,8 @@ define( function( require ) {
     this.onRemove = function() {
       this.liquidProperty.set(null);
       this.drop.reset();
-      this.cell.reset();
+      if(this.cell)
+        this.cell.reset();
       this.cellProperty.set(null);
     };
 
