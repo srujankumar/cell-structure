@@ -32,7 +32,6 @@ define(function (require) {
         };
 
         this.onRemove = function () {
-            debugger;
             if (!this.objectUnderLens) return;
             this.objectUnderLens.reset();
             this.objectUnderLensProperty.set(null);

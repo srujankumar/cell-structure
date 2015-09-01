@@ -14,7 +14,7 @@ define( function( require ) {
   var DropNode = require( 'CELL_STRUCTURE/cell-structure/view/DropNode' );
 
   function FillerNode( model, modelViewTransform ) {
-    model.location = new Vector2( 50, 350);
+    model.location = new Vector2( 50, 300);
     model.size = new Dimension2(60, 150);
 
     var pos = modelViewTransform.modelToViewPosition(model.location);
@@ -39,6 +39,7 @@ define( function( require ) {
     this.addChild(removeButton);
 
     var dropNode = new DropNode( model.drop, modelViewTransform );
+    this.addChild(dropNode);
 
     var knobButton = new TextPushButton( "    ", {
       font: new PhetFont( 10 ),
@@ -56,6 +57,7 @@ define( function( require ) {
       this.removeChild(image);
       this.removeChild(knobButton);
       this.removeChild(removeButton);
+      this.removeChild(dropNode);
       if(liquidNode) {
         this.removeChild(liquidNode);
       }
@@ -66,14 +68,11 @@ define( function( require ) {
       this.addChild(image);
       this.addChild(knobButton);
       this.addChild(removeButton);
+      this.addChild(dropNode);
     }.bind(this) );
 
-
     this.scale(1,1);
-               // Register for synchronization with model.
-    /*model.locationProperty.link( function( location ) {
-      this.translation = modelViewTransform.modelToViewPosition( location );
-    }.bind(this) );*/
+
   }
 
   return inherit( Node, FillerNode );

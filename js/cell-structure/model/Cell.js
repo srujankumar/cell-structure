@@ -49,8 +49,8 @@ define( function( require ) {
       }
     },
 
-    onLiquidDropped: function(){
-      return this.onDippedInLiquid;
+    onLiquidDropped: function( liquid){
+      this.onDippedInLiquid( liquid);
     }
   } );
 } );

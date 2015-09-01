@@ -20,7 +20,6 @@ define( function( require ) {
 
     var handleLiquid = function(model) {
       if(model.type !== "liquid") return;
-      console.log('liquid:');
       this.liquidProperty.set(model);
       this.drop.colorProperty.set(model.color);
       return true;
@@ -28,9 +27,13 @@ define( function( require ) {
 
     var handleCell = function(model) {
       if(model.type !== "cell") return;
-      console.log('cell');
+      if(this.cell){
+        this.cell.reset();
+      }
       this.cellProperty.set(model);
       model.attachedToProperty.set(this);
+      model.sizeProperty.set(new Dimension2(50,50));
+      model.locationProperty.set( new Vector2(50,495));
       return true;
     }.bind(this);
 
@@ -39,31 +42,37 @@ define( function( require ) {
     };
     this.onRemove = function() {
       this.liquidProperty.set(null);
+      this.drop.reset();
+      this.cell.reset();
+      this.cellProperty.set(null);
     };
 
     this.collidesWith = function(model) {
-      var areaUnderFiller = new Vector2(this.location.x, 430);
+      //Filler's listening area should start from 100points left from the beginning of
+      //Filler
+      var locationOffset = 100;
+      var dropListenLocation = new Vector2(this.location.x - locationOffset, 430);
       var size = new Dimension2(200, 200);
       if(model.type == "liquid") {
-        areaUnderFiller = new Vector2(this.location.x, this.location.y);
+        dropListenLocation = new Vector2(this.location.x - 20, this.location.y);
         size = new Dimension2(this.size.width, this.size.height);
       }
-      if(CS.positionDelta( model.location, areaUnderFiller, size.width, size.height))
+      if(CS.positionDelta( model.location, dropListenLocation, size.width, size.height))
         this.onReceiveDrop(model);
     };
 
-    this.drop = new Drop({location: new Vector2(50, 200)});
+    this.drop = new Drop({location: new Vector2(15, 120)});
 
     this.onKnobPressed = function() {
       var intervalId = window.setInterval(function() {
         if(!(this.cell && this.liquid)) {
           window.clearInterval(intervalId);
-          this.drop.locationProperty.set(new Vector2(50, 300));
+          this.drop.locationProperty.set(new Vector2(15, 120));
           return;
         }
-        if(this.drop.location.y + 160 > this.cell.location.y) {
+        if(this.drop.location.y + 295 > this.cell.location.y) {
           window.clearInterval(intervalId);
-          this.drop.locationProperty.set(new Vector2(50, 300));
+          this.drop.locationProperty.set(new Vector2(15, 120));
           if(typeof this.cell.onLiquidDropped == "function") {
             this.cell.onLiquidDropped(this.liquid);
           }
