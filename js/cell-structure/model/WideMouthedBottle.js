@@ -4,7 +4,7 @@ define(function (require) {
     var inherit = require('PHET_CORE/inherit');
     var PropertySet = require('AXON/PropertySet');
     var Apparatus = require('CELL_STRUCTURE/cell-structure/model/Apparatus');
-    var beakerImage = require('image!CELL_STRUCTURE/wide-mouthed-bottle.svg');
+    var bottleImage = require('image!CELL_STRUCTURE/wide-mouthed-bottle.svg');
     var Dimension2 = require('DOT/Dimension2');
     var Vector2 = require('DOT/Vector2');
 
@@ -18,7 +18,7 @@ define(function (require) {
             corkOpen: true
         });
         this.name = "wide-mouthed-bottle";
-        this.image = this.kitImage = beakerImage;
+        this.image = this.kitImage = bottleImage;
         this.onDragEnd = function () {
             CS.onDrop(this);
             CS.addDroppable(this);
@@ -26,6 +26,7 @@ define(function (require) {
 
         var handleLiquid = function (model) {
             if (model.type !== "liquid") return;
+            if (!this.corkOpen) return;
             this.liquidProperty.set(model);
             if (this.cell && (typeof this.cell.onDippedInLiquid == "function")) {
                 this.cell.onDippedInLiquid(this.liquid);
@@ -53,10 +54,8 @@ define(function (require) {
             handleLiquid(model) || handleCell(model);
         };
         this.onRemove = function () {
-            this.liquidProperty.set(null);
-            this.cell.reset();
-            this.cellProperty.set(null);
-            CS.model.experimentArea.stopStopwatch();
+            if(this.liquid) this.liquidProperty.set(null);
+            if(this.cell) this.cell.reset();
         };
 
         this.onChildRemoved = function (child) {
