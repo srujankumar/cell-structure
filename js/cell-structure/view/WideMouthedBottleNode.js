@@ -59,7 +59,7 @@ define(function (require) {
                 this.removeChild(liquidNode);
             }
             if (model.liquid) {
-                liquidNode = new Rectangle(10, 300, 230, 300, 50, 50, {
+                liquidNode = new Rectangle(5, 120, 125, 90, 5, 5, {
                     lineWidth: 0,
                     stroke: '#000',
                     fill: model.liquid.color
