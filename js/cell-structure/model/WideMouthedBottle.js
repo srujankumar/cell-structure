@@ -15,14 +15,13 @@ define(function (require) {
             visibility: true,
             liquid: null,
             cell: null,
-            cork: null
+            corkOpen: true
         });
         this.name = "wide-mouthed-bottle";
         this.image = this.kitImage = beakerImage;
         this.onDragEnd = function () {
             CS.onDrop(this);
             CS.addDroppable(this);
-
         };
 
         var handleLiquid = function (model) {
@@ -50,15 +49,8 @@ define(function (require) {
             return true;
         }.bind(this);
 
-        var handleCork = function(cork) {
-            if(cork.name !== "cork") return;
-            this.corkProperty.set(cork);
-            console.log('hello');
-            cork.locationProperty.set(new Vector2(300, 300));
-        }.bind(this);
-
         this.onReceiveDrop = function (model) {
-            handleLiquid(model) || handleCell(model) || handleCork(model);
+            handleLiquid(model) || handleCell(model);
         };
         this.onRemove = function () {
             this.liquidProperty.set(null);

@@ -54,7 +54,6 @@ define( function( require ) {
   var FillerNode = require( 'CELL_STRUCTURE/cell-structure/view/FillerNode' );
   var StopwatchNode = require( 'CELL_STRUCTURE/cell-structure/view/StopwatchNode' );
   var WideMouthedBottleNode = require( 'CELL_STRUCTURE/cell-structure/view/WideMouthedBottleNode' );
-  var CorkNode = require( 'CELL_STRUCTURE/cell-structure/view/CorkNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
   require( 'CELL_STRUCTURE/cell-structure/helpers/utils' );
