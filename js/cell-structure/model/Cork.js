@@ -19,8 +19,6 @@ define(function (require) {
         this.image = this.kitImage = corkImage;
         this.onDragEnd = function () {
             CS.onDrop(this);
-            CS.addDroppable(this);
-            CS.model.WideMouthedBottle.cork = this;
         }.bind(this);
 
         var handleCell = function (model) {

@@ -76,8 +76,7 @@ define( function( require ) {
       'Beaker': BeakerNode,
       'Filler': FillerNode,
       'Stopwatch': StopwatchNode,
-      'WideMouthedBottle': WideMouthedBottleNode,
-      'Cork': CorkNode,
+      'WideMouthedBottle': WideMouthedBottleNode
     };
     Screen.call( this, cellStructureSimString, icon,
       function() { return CS.model; },
