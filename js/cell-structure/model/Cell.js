@@ -13,7 +13,7 @@ define( function( require ) {
   var Filler = require( 'CELL_STRUCTURE/cell-structure/model/Filler' );
 
   function Cell( properties ) {
-    var defaults = { location: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false, attachedTo: null };
+    var defaults = { location: '', cellType: '', image: '', text: '', magnifiedImage: '', parentModel: '', size: '', visibility: true, showOutline: false, attachedTo: null };
     var values = _.merge( defaults, properties );
     values.kitImage = values.image;
     PropertySet.call( this, values );
@@ -28,7 +28,7 @@ define( function( require ) {
 
   return inherit( PropertySet, Cell, {
     collidesWith: function(model) {
-      if(model instanceof Filler) 
+      if(model instanceof Filler)
         model.collidesWith(this);
       return false;
     },

@@ -39,15 +39,11 @@ define(function (require) {
         this.addChild(removeButton);
 
         var corkNode = new Image(corkImage, {x: 25, y: -30});
-        corkNode.addInputListener(new DownUpListener({
-            up: function() {
-                model.corkOpenProperty.set(!model.corkOpen);
-            }
-        }));
+        model.corkImageProperty.set(corkImage);
+
         model.corkOpenProperty.link(function(corkOpen) {
             corkNode.y = corkOpen ? -30 : 10;
         });
-
 
         var liquidNode;
         var redraw = function () {
@@ -70,6 +66,21 @@ define(function (require) {
             this.addChild(removeButton);
             this.addChild(corkNode);
         }.bind(this);
+
+        model.corkImageProperty.link(function(corkImage) {
+            this.removeChild(corkNode);
+
+            corkNode = new Image(corkImage, {x: 25, y: -30});
+            this.addChild(corkNode);
+
+            corkNode.addInputListener(new DownUpListener({
+                up: function() {
+                    model.corkOpenProperty.set(!model.corkOpen);
+                }
+            }));
+
+            redraw();
+        }.bind(this));
 
         model.liquidProperty.link(function () {
             redraw();

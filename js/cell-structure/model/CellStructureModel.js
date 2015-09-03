@@ -49,9 +49,9 @@ define( function( require ) {
 
     var plantCellMagnifiedImage = new MagnifiedImage(plantCellImage, [new Overlay(20, new Vector2(522,490), roughERMagnifiedImage, "Rough ER Magnified Image is rough. <br/>Second line"), new Overlay(30, new Vector2(449,478), golgiApparatusMagnifiedImage)]);
 
-    var animalCell = new Cell( { location: new Vector2( 330, 10 ), size: new Dimension2( 80, 80 ), image: animalCellIcon, magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
-    var onionCell = new Cell( { location: new Vector2( 530, 10 ), size: new Dimension2( 80, 80 ), image: onionCellIcon, magnifiedImage: onionCellMagnifiedImage, parentModel: this, magnifiedImageJanus: onionCellMagnifiedImageJanus } );
-    var plantCell = new Cell( { location: new Vector2( 430, 10 ), size: new Dimension2( 80, 80 ), image: plantCellIcon, magnifiedImage: plantCellMagnifiedImage, parentModel: this, magnifiedImageIodine: plantCellMagnifiedImageIodine } );
+    var animalCell = new Cell( { location: new Vector2( 330, 10 ), cellType: "animalCell", size: new Dimension2( 80, 80 ), image: animalCellIcon, magnifiedImage: animalCellMagnifiedImage, parentModel: this } );
+    var onionCell = new Cell( { location: new Vector2( 530, 10 ), cellType: "onionCell", size: new Dimension2( 80, 80 ), image: onionCellIcon, magnifiedImage: onionCellMagnifiedImage, parentModel: this, magnifiedImageJanus: onionCellMagnifiedImageJanus } );
+    var plantCell = new Cell( { location: new Vector2( 430, 10 ), cellType: "plantCell", size: new Dimension2( 80, 80 ), image: plantCellIcon, magnifiedImage: plantCellMagnifiedImage, parentModel: this, magnifiedImageIodine: plantCellMagnifiedImageIodine } );
     var plantWithRoots = new PlantRootCell({ location: new Vector2(330, 110), size: new Dimension2( 80, 80 ), magnifiedImage: null, parentModel: this});
     this.objectKit = new Kit({ location: new Vector2(330,10), size: new Dimension2(300,200), children: [ animalCell, plantCell, onionCell, plantWithRoots ]});
 
@@ -66,7 +66,8 @@ define( function( require ) {
     var iodineBottle = new Liquid({ location: new Vector2(110,10), text: "Iodine", color: "brown"});
     var janusBottle = new Liquid({ location: new Vector2(210,10), text: "Janus Green B", color: "green"});
     var redWaterBottle = new Liquid({ location: new Vector2(10,110), text: "Red Water", color: "red"});
-    this.liquidKit = new Kit({ location: new Vector2(10,10), size: new Dimension2(300,200), children: [ ammoniaBottle, iodineBottle, janusBottle, redWaterBottle ]});
+    var kohBottle = new Liquid({ location: new Vector2(110,110), text: "Potassium Hydroxide", color: "#eee"});
+    this.liquidKit = new Kit({ location: new Vector2(10,10), size: new Dimension2(300,200), children: [ ammoniaBottle, iodineBottle, janusBottle, redWaterBottle, kohBottle ]});
     this.experimentArea = new ExperimentArea({location: new Vector2(10,200), size: new Dimension2(1000,568)});
 
   }

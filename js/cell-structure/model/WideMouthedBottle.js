@@ -5,6 +5,7 @@ define(function (require) {
     var PropertySet = require('AXON/PropertySet');
     var Apparatus = require('CELL_STRUCTURE/cell-structure/model/Apparatus');
     var bottleImage = require('image!CELL_STRUCTURE/wide-mouthed-bottle.svg');
+    var corkWithLeafImage = require('image!CELL_STRUCTURE/cork-with-leaf.svg');
     var Dimension2 = require('DOT/Dimension2');
     var Vector2 = require('DOT/Vector2');
 
@@ -15,7 +16,8 @@ define(function (require) {
             visibility: true,
             liquid: null,
             cell: null,
-            corkOpen: true
+            corkOpen: true,
+            corkImage: null
         });
         this.name = "wide-mouthed-bottle";
         this.image = this.kitImage = bottleImage;
@@ -36,9 +38,15 @@ define(function (require) {
 
         var handleCell = function (model) {
             if (model.type !== "cell") return;
+
+            if (model.cellType == "plantCell") {
+                this.corkImageProperty.set(corkWithLeafImage);
+                model.reset();
+            }
+
             if (this.cell) this.cell.reset();
             if (this.liquid && (typeof model.onDippedInLiquid == "function")) {
-                if(model.onDippedInLiquid(this.liquid)) {
+                if (model.onDippedInLiquid(this.liquid)) {
                     this.cellProperty.set(model);
                     model.locationProperty.set(new Vector2(260, 475));
                     model.size = new Dimension2(50, 50);
