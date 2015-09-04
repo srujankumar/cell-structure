@@ -12,6 +12,7 @@ define(function (require) {
     var TextPushButton = require('SUN/buttons/TextPushButton');
     var PhetFont = require('SCENERY_PHET/PhetFont');
     var corkImage = require('image!CELL_STRUCTURE/cork.svg');
+    var blueBlackLeaf = require('image!CELL_STRUCTURE/leaf-blue-black.svg');
     var DownUpListener = require( 'SCENERY/input/DownUpListener' );
 
     function WideMouthedBottleNode(model, modelViewTransform) {
@@ -58,6 +59,8 @@ define(function (require) {
 
         var onTimeout = function () {
             replaceCorkImage(corkImage, this);
+
+            model.cell.imageProperty.set(blueBlackLeaf);
             model.cell.visibility = true;
             model.cell.locationProperty.set(new Vector2(210, 243));
         }.bind(this);
@@ -66,7 +69,7 @@ define(function (require) {
             corkNode.y = corkOpen ? -30 : 10;
 
             if (!corkOpen && model.cell && model.liquid) {
-                if (model.cell.cellTypeProperty.get() === "plantCell" && model.liquid.textProperty.get() === "Potassium Hydroxide")
+                if (model.cell.cellTypeProperty.get() === "Leaf Cell" && model.liquid.textProperty.get() === "Potassium Hydroxide")
                     CS.model.experimentArea.createStopwatch(onTimeout);
             }
         });
