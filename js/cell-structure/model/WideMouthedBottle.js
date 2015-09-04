@@ -67,6 +67,7 @@ define(function (require) {
         this.onRemove = function () {
             if(this.liquid) this.liquidProperty.set(null);
             if(this.cell) this.cell.reset();
+            CS.model.experimentArea.stopStopwatch();
         };
 
         this.onChildRemoved = function (child) {
