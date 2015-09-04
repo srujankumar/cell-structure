@@ -54,20 +54,10 @@ define(function (require) {
 
             if (model.cellType == "plantCell") {
                 this.corkImageProperty.set(corkWithLeafImage);
-                model.reset();
+                this.cellProperty.set(model);
+                model.visibility = false;
             }
 
-            if (this.cell) this.cell.reset();
-            if (this.liquid && (typeof model.onDippedInLiquid == "function")) {
-                if (model.onDippedInLiquid(this.liquid)) {
-                    this.cellProperty.set(model);
-                    model.locationProperty.set(new Vector2(260, 475));
-                    model.size = new Dimension2(50, 50);
-                    model.attachedToProperty.set(this);
-                } else {
-                    model.reset();
-                }
-            }
             return true;
         }.bind(this);
 
