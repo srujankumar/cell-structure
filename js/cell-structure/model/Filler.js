@@ -30,12 +30,21 @@ define( function( require ) {
       if(this.cell){
         this.cell.reset();
       }
-      this.cellProperty.set(model);
-      model.attachedToProperty.set(this);
-      model.sizeProperty.set(new Dimension2(50,50));
-      model.locationProperty.set( new Vector2(50,495));
-      return true;
-    }.bind(this);
+      if(model.onDippedInLiquid(this.liquid))
+      {
+        this.cellProperty.set(model);
+        model.attachedToProperty.set(this);
+        model.sizeProperty.set(new Dimension2(50,50));
+        model.locationProperty.set( new Vector2(50,495));
+        return true;
+      }
+      else{
+        model.reset();
+        var location = new Vector2(this.location.x + this.size.width, this.location.y);
+        CS.showMessageBox(model.cellType + " does not react with " + this.liquid.text, true, 5000, location);  
+      }
+      }.bind(this);
+
 
     this.onReceiveDrop = function(model) {
       handleLiquid(model) || handleCell(model);
@@ -77,6 +86,7 @@ define( function( require ) {
           if(typeof this.cell.onLiquidDropped == "function") {
             this.cell.onLiquidDropped(this.liquid);
           }
+
           return;
         }
         this.drop.locationProperty.set(new Vector2(this.drop.location.x, this.drop.location.y + 10));
