@@ -19,11 +19,24 @@ define(function (require) {
             corkOpen: true,
             corkImage: null
         });
+
         this.name = "wide-mouthed-bottle";
         this.image = this.kitImage = bottleImage;
         this.onDragEnd = function () {
             CS.onDrop(this);
             CS.addDroppable(this);
+        };
+
+        this.collidesWith = function(model) {
+            if (model.type === "liquid" || (model.type === "cell" && model.cellType === 'plantCell')) {
+                var locationOffset = 100;
+
+                var dropListenLocation = new Vector2(this.location.x, this.location.y - locationOffset);
+                size = new Dimension2(this.size.width, this.size.height);
+
+                if (CS.positionDelta(model.location, dropListenLocation, size.width, size.height))
+                    this.onReceiveDrop(model);
+            }
         };
 
         var handleLiquid = function (model) {
@@ -51,7 +64,7 @@ define(function (require) {
                     model.locationProperty.set(new Vector2(260, 475));
                     model.size = new Dimension2(50, 50);
                     model.attachedToProperty.set(this);
-                }else {
+                } else {
                     model.reset();
                 }
             }
