@@ -40,7 +40,10 @@ CS.positionDelta = function( position1, position2, deltaX, deltaY){
 };
 
 CS.showMessageBox = function( message, autoClose, timeOut, location){
-  CS.model.messageBox.locationProperty.set( location);
+  if(location)
+    CS.model.messageBox.locationProperty.set( location);
+  else
+    CS.model.messageBox.locationProperty.reset();
   CS.model.messageBox.visibilityProperty.set(true);
   CS.model.messageBox.messageProperty.reset();
   if(autoClose) {

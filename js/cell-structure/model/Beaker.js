@@ -43,6 +43,8 @@ define(function (require) {
                     model.attachedToProperty.set(this);
                 }else {
                     model.reset();
+                    var location = new Vector2(this.location.x + this.size.width, this.location.y);
+                    CS.showMessageBox(model.cellType + " does not react with " + this.liquid.text, true, 5000, location);  
                 }
             }
             return true;

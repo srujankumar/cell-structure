@@ -13,7 +13,7 @@ define( function( require ) {
   function MessageBoxNode( model, modelViewTransform ) {
     Node.call( this, {
       x: model.location.x,
-      y: model.location.y 
+      y: model.location.y
     } );
 
     var messageBoxBorder = new Image(messageBoxImage);
@@ -33,7 +33,6 @@ define( function( require ) {
     this.addChild(closeButton);
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
-
 
     model.visibilityProperty.link( function(visibility){
       this.setVisible(visibility);
@@ -66,7 +65,7 @@ define( function( require ) {
       messageBoxBorder.removeAllChildren();
       var lineNum = 0;
       getMultiLineText(message).forEach( function( text) {
-        messageBoxBorder.addChild( new Text( text, { font: new PhetFont(10), fill: 'black', 
+        messageBoxBorder.addChild( new Text( text, { font: new PhetFont(10), fill: 'black',
           x: 10, y: 15 + lineNum*15 }));
           lineNum++;
       });

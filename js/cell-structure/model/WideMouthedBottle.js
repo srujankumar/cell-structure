@@ -28,7 +28,7 @@ define(function (require) {
         };
 
         this.collidesWith = function(model) {
-            if (model.type === "liquid" || (model.type === "cell" && model.cellType === 'plantCell')) {
+            if (model.type === "liquid" || (model.type === "cell" && model.cellType === 'Leaf Cell')) {
                 var locationOffset = 100;
 
                 var dropListenLocation = new Vector2(this.location.x, this.location.y - locationOffset);
@@ -52,7 +52,7 @@ define(function (require) {
         var handleCell = function (model) {
             if (model.type !== "cell") return;
 
-            if (model.cellType == "plantCell") {
+            if (model.cellType == "Leaf Cell") {
                 this.corkImageProperty.set(corkWithLeafImage);
                 model.reset();
             }
