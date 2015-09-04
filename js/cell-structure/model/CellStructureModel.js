@@ -22,6 +22,7 @@ define( function( require ) {
   var inherit = require( 'PHET_CORE/inherit' );
   var Kit = require( 'CELL_STRUCTURE/cell-structure/model/Kit');
   var WideMouthedBottle = require( 'CELL_STRUCTURE/cell-structure/model/WideMouthedBottle');
+  var MessageBox = require( 'CELL_STRUCTURE/cell-structure/model/MessageBox');
 
   /**
    * @constructor
@@ -69,6 +70,8 @@ define( function( require ) {
     var kohBottle = new Liquid({ location: new Vector2(110,110), text: "Potassium Hydroxide", color: "#eee"});
     this.liquidKit = new Kit({ location: new Vector2(10,10), size: new Dimension2(300,200), children: [ ammoniaBottle, iodineBottle, janusBottle, redWaterBottle, kohBottle ]});
     this.experimentArea = new ExperimentArea({location: new Vector2(10,200), size: new Dimension2(1000,568)});
+    
+    this.messageBox = new MessageBox();
 
   }
 

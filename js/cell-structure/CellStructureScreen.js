@@ -39,6 +39,19 @@ CS.positionDelta = function( position1, position2, deltaX, deltaY){
   return within(position1.x, position2.x, position2.x + deltaX) && within(position1.y, position2.y, position2.y + deltaY);
 };
 
+CS.showMessageBox = function( message, autoClose, timeOut, location){
+  CS.model.messageBox.locationProperty.set( location);
+  CS.model.messageBox.visibilityProperty.set(true);
+  CS.model.messageBox.messageProperty.reset();
+  if(autoClose) {
+    var timeOutId = window.setTimeout(function() {
+      CS.model.messageBox.visibilityProperty.set(false);
+      clearInterval(timeOutId);
+    }, timeOut);
+  }
+  CS.model.messageBox.messageProperty.set(message);
+};
+
 /**
  *
  * @author Srujan Kumar ( BalaSwecha )

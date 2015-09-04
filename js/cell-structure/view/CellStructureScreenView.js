@@ -16,6 +16,7 @@ define( function( require ) {
   var ExperimentAreaNode = require( 'CELL_STRUCTURE/cell-structure/view/ExperimentAreaNode');
   var LiquidKitObjectNode = require( 'CELL_STRUCTURE/cell-structure/view/LiquidKitObjectNode');
   var ResetAllButton = require( 'SCENERY_PHET/buttons/ResetAllButton' );
+  var MessageBoxNode = require( 'CELL_STRUCTURE/cell-structure/view/MessageBoxNode' );
 
   /**
    * @param {CellStructureModel} model
@@ -45,6 +46,7 @@ define( function( require ) {
     cellStructureScreenView.addChild( new KitNode( model.apparatusKit, {}, modelViewTransform ));
 
     cellStructureScreenView.addChild( resetAllButton );
+    cellStructureScreenView.addChild( new MessageBoxNode( model.messageBox, modelViewTransform));
   }
 
   return inherit( ScreenView, CellStructureScreenView, {

@@ -10,6 +10,7 @@ define(function (require) {
     var inherit = require('PHET_CORE/inherit');
     var PropertySet = require('AXON/PropertySet');
     var Dimension2 = require('DOT/Dimension2');
+    var Vector2 = require('DOT/Vector2');
     var Cutter = require('CELL_STRUCTURE/cell-structure/model/Cutter');
     var Cell = require('CELL_STRUCTURE/cell-structure/model/Cell');
     var MagnifiedImage = require('CELL_STRUCTURE/cell-structure/model/MagnifiedImage');
@@ -55,6 +56,10 @@ define(function (require) {
             if (this.isDippedInLiquid === true){
                 this.imageProperty.set(treeRedCutImage);
                 this.magnifiedImageProperty.set(stemTransCutMagnifiedImage);
+            }
+            else {
+              var location = new Vector2(this.location.x + this.size.width, this.location.y);
+              CS.showMessageBox("Plant root cell must be dipped in Red Water", true, 3000, location);
             }
         }
 
