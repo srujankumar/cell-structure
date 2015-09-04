@@ -24,6 +24,21 @@ define(function (require) {
             y: model.location.y
         });
 
+        function replaceCorkImage(newImage, context) {
+            context.removeChild(corkNode);
+
+            corkNode = new Image(newImage, {x: 25, y: -30});
+            context.addChild(corkNode);
+
+            corkNode.addInputListener(new DownUpListener({
+                up: function() {
+                    model.corkOpenProperty.set(!model.corkOpen);
+                }
+            }));
+
+            redraw();
+        }
+
         var image = new Image(model.image, {x: 0, y: 0});
         //this.addChild(image);
 
@@ -41,8 +56,19 @@ define(function (require) {
         var corkNode = new Image(corkImage, {x: 25, y: -30});
         model.corkImageProperty.set(corkImage);
 
+        var onTimeout = function () {
+            replaceCorkImage(corkImage, this);
+            model.cell.visibility = true;
+            model.cell.locationProperty.set(new Vector2(210, 243));
+        }.bind(this);
+
         model.corkOpenProperty.link(function(corkOpen) {
             corkNode.y = corkOpen ? -30 : 10;
+
+            if (!corkOpen && model.cell && model.liquid) {
+                if (model.cell.cellTypeProperty.get() === "plantCell" && model.liquid.textProperty.get() === "Potassium Hydroxide")
+                    CS.model.experimentArea.createStopwatch(onTimeout);
+            }
         });
 
         var liquidNode;
@@ -68,18 +94,7 @@ define(function (require) {
         }.bind(this);
 
         model.corkImageProperty.link(function(corkImage) {
-            this.removeChild(corkNode);
-
-            corkNode = new Image(corkImage, {x: 25, y: -30});
-            this.addChild(corkNode);
-
-            corkNode.addInputListener(new DownUpListener({
-                up: function() {
-                    model.corkOpenProperty.set(!model.corkOpen);
-                }
-            }));
-
-            redraw();
+            replaceCorkImage(corkImage, this);
         }.bind(this));
 
         model.liquidProperty.link(function () {
