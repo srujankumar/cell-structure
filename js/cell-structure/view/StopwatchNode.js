@@ -16,7 +16,7 @@ define( function( require ) {
 
   function StopwatchNode( model, modelViewTransform ) {
     model.locationProperty.set(new Vector2(400, 343));
-    model.size = new Dimension2(100, 100);
+    model.size = new Dimension2(200, 200);
 
     Node.call( this, {
       cursor: 'pointer',
@@ -29,7 +29,7 @@ define( function( require ) {
     image.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / image.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / image.height );
 
-    var timeNode = new Text( "", { x: 36, y: 62, font: new LedFont(14), fill: 'red'});
+    var timeNode = new Text( "", { x: 80, y: 124, font: new LedFont(30), fill: 'red'});
     model.timeProperty.link(function(time) {
       var formatTime = function(t) {
         var hours = Math.floor(t / 60);
@@ -39,6 +39,42 @@ define( function( require ) {
       };
       timeNode.setText(formatTime(time));
     });
+
+    var upButton = new TextPushButton( "", {
+      font: new PhetFont(0),
+      baseColor: 'transparent',
+      x: 133,
+      y: 102,
+      listener: function() {
+        console.log("Increasing");
+      },
+      opacity: 0
+    });
+    this.addChild(upButton);
+
+    var downButton = new TextPushButton( "", {
+      font: new PhetFont(0),
+      baseColor: 'transparent',
+      x: 133,
+      y: 114,
+      listener: function() {
+        console.log("Decreasing");
+      },
+      opacity: 0
+    });
+    this.addChild(downButton);
+
+    var startButton = new TextPushButton( "   ", {
+      font: new PhetFont(2),
+      baseColor: 'transparent',
+      x: 30,
+      y: 30,
+      listener: function() {
+        console.log("Starting timer");
+      },
+      opacity: 0
+    });
+    this.addChild(startButton);
 
     model.timeVisibleProperty.link(function(visible) {
       timeNode.setVisible(visible);
