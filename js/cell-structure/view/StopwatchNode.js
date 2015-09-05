@@ -10,6 +10,7 @@ define( function( require ) {
   var SimpleDragHandler = require( 'SCENERY/input/SimpleDragHandler' );
   var Rectangle = require( 'SCENERY/nodes/Rectangle' );
   var TextPushButton = require( 'SUN/buttons/TextPushButton' );
+  var RectangularPushButton = require( 'SUN/buttons/RectangularPushButton' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
   var LedFont = require( 'CELL_STRUCTURE/cell-structure/helpers/LedFont' );
@@ -40,7 +41,7 @@ define( function( require ) {
       timeNode.setText(formatTime(time));
     });
 
-    var upButton = new TextPushButton( "", {
+    var upButton = new RectangularPushButton( {
       font: new PhetFont(0),
       baseColor: 'transparent',
       x: 133,
@@ -48,11 +49,14 @@ define( function( require ) {
       listener: function() {
         model.timeProperty.set(model.timeProperty.get() + 1);
       },
+      fireOnHold: true,
+      fireOnHoldDelay: 100,
+      fireOnHoldInterval: 50,
       opacity: 0
     });
     this.addChild(upButton);
 
-    var downButton = new TextPushButton( "", {
+    var downButton = new RectangularPushButton({
       font: new PhetFont(0),
       baseColor: 'transparent',
       x: 133,
@@ -61,6 +65,9 @@ define( function( require ) {
         if (!model.timeProperty.get()) return;
         model.timeProperty.set(model.timeProperty.get() - 1);
       },
+      fireOnHold: true,
+      fireOnHoldDelay: 100,
+      fireOnHoldInterval: 50,
       opacity: 0
     });
     this.addChild(downButton);
