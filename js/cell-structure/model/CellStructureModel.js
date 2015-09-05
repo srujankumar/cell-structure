@@ -37,7 +37,7 @@ define( function( require ) {
     var plantCellImageIodine = require( 'image!CELL_STRUCTURE/plant-cell-big-iodine.png' );
     var roughEndoplasmicReticulumImage = require( 'image!CELL_STRUCTURE/rough-endoplasmic-reticulum.jpg' );
     var golgiApparatusImage = require( 'image!CELL_STRUCTURE/golgi-apparatus.png' );
-    var onionCellIcon = require( 'image!CELL_STRUCTURE/onion.svg' );
+    var onionCellIcon = require( 'image!CELL_STRUCTURE/onion-ring.svg' );
 
     //models
     var animalCellMagnifiedImage = new MagnifiedImage(animalCellImage, [new Overlay(10, new Vector2(0,0), undefined, this)]);

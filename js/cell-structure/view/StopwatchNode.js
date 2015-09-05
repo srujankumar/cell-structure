@@ -46,7 +46,7 @@ define( function( require ) {
       x: 133,
       y: 102,
       listener: function() {
-        console.log("Increasing");
+        model.timeProperty.set(model.timeProperty.get() + 1);
       },
       opacity: 0
     });
@@ -58,7 +58,8 @@ define( function( require ) {
       x: 133,
       y: 114,
       listener: function() {
-        console.log("Decreasing");
+        if (!model.timeProperty.get()) return;
+        model.timeProperty.set(model.timeProperty.get() - 1);
       },
       opacity: 0
     });
@@ -70,7 +71,7 @@ define( function( require ) {
       x: 30,
       y: 30,
       listener: function() {
-        console.log("Starting timer");
+        model.startTimer();
       },
       opacity: 0
     });

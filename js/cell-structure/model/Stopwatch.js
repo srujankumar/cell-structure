@@ -9,7 +9,7 @@ define( function( require ) {
   var stopWatchImage = require( 'image!CELL_STRUCTURE/stop-watch.svg' );
 
   function Stopwatch( callback ) {
-    Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, liquid: null, cell: null, time: 120, timeVisible: true} );
+    Apparatus.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, liquid: null, cell: null, time: 0, timeVisible: true} );
     this.image = this.kitImage = stopWatchImage;
     this.onDragEnd = function() {
       CS.onDrop(this);
@@ -49,7 +49,6 @@ define( function( require ) {
         }
       }.bind(this), interval);
     };
-    this.startTimer();
 
     this.stopTimer = function() {
       window.clearInterval(this.intervalId);
