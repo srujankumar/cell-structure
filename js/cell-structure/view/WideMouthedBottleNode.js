@@ -69,7 +69,7 @@ define(function (require) {
             corkNode.y = corkOpen ? -30 : 10;
 
             if (!corkOpen && model.cell && model.liquid) {
-                if (model.cell.cellTypeProperty.get() === "Leaf Cell" && model.liquid.textProperty.get() === "Potassium Hydroxide") {
+                if (model.cell.cellTypeProperty.get() === "Leaf Cell" && model.liquid.textProperty.get() === "KOH") {
                     CS.model.experimentArea.createStopwatch(onTimeout);
                     var location = new Vector2(model.location.x + (2 * model.size.width), model.location.y - (model.size.height / 2));
                     CS.showMessageBox("Potassium hydroxide absorbs carbon dioxide", true, 2000, location);

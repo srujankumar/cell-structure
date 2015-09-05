@@ -67,7 +67,7 @@ define( function( require ) {
     var iodineBottle = new Liquid({ location: new Vector2(110,10), text: "Iodine", color: "brown"});
     var janusBottle = new Liquid({ location: new Vector2(210,10), text: "Janus Green B", color: "green"});
     var redWaterBottle = new Liquid({ location: new Vector2(10,110), text: "Red Water", color: "red"});
-    var kohBottle = new Liquid({ location: new Vector2(110,110), text: "Potassium Hydroxide", color: "#eee"});
+    var kohBottle = new Liquid({ location: new Vector2(110,110), text: "KOH", color: "#eee"});
     this.liquidKit = new Kit({ location: new Vector2(10,10), size: new Dimension2(300,200), children: [ ammoniaBottle, iodineBottle, janusBottle, redWaterBottle, kohBottle ]});
     this.experimentArea = new ExperimentArea({location: new Vector2(10,200), size: new Dimension2(1000,568)});
 
