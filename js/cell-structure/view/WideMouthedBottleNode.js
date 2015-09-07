@@ -62,6 +62,7 @@ define(function (require) {
 
             model.cell.visibility = true;
             model.cell.locationProperty.set(new Vector2(210, 243));
+            model.cell.co2removed = true;
         }.bind(this);
 
         model.corkOpenProperty.link(function(corkOpen) {

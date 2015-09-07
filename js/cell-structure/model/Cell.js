@@ -63,7 +63,7 @@ define(function(require) {
         },
 
         onLiquidDropped: function(liquid) {
-            if (liquid.text === "Iodine" && this.cellType === "Leaf Cell") {
+            if (liquid.text === "Iodine" && this.cellType === "Leaf Cell" && this.co2removed) {
                 this.image = blueBlackLeaf;
             }
 
