@@ -20,12 +20,13 @@ CS.trigger = function(eventName, eventObj) {
 };
 
 CS.onDrop = function(model) {
+  debugger;
   CS.droppables.forEach( function( droppable){
     if(model == droppable) return;
     if(typeof droppable.collidesWith == "function") {
       droppable.collidesWith(model)
     }
-    else if(CS.positionDelta( model.location, droppable.location, droppable.size.width, droppable.size.height)) {
+    else if(CS.positionDelta( {x:((model.location.x + model.size.width)+model.location.x)/2,y:(model.location.y + (model.size.height+model.location.y))/2}, droppable.location, droppable.size.width, droppable.size.height)) {
       if(typeof droppable.onReceiveDrop == "function")
         droppable.onReceiveDrop(model);
     }
@@ -70,6 +71,7 @@ define( function( require ) {
   var FillerNode = require( 'CELL_STRUCTURE/cell-structure/view/FillerNode' );
   var StopwatchNode = require( 'CELL_STRUCTURE/cell-structure/view/StopwatchNode' );
   var WideMouthedBottleNode = require( 'CELL_STRUCTURE/cell-structure/view/WideMouthedBottleNode' );
+  var TestTubeNode = require( 'CELL_STRUCTURE/cell-structure/view/TestTubeNode' );
   var inherit = require( 'PHET_CORE/inherit' );
   var Screen = require( 'JOIST/Screen' );
   require( 'CELL_STRUCTURE/cell-structure/helpers/utils' );
@@ -91,7 +93,8 @@ define( function( require ) {
       'Beaker': BeakerNode,
       'Filler': FillerNode,
       'Stopwatch': StopwatchNode,
-      'WideMouthedBottle': WideMouthedBottleNode
+      'WideMouthedBottle': WideMouthedBottleNode,
+      'TestTube': TestTubeNode
     };
     Screen.call( this, cellStructureSimString, icon,
       function() { return CS.model; },

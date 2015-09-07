@@ -10,12 +10,14 @@ define(function (require) {
         var values = _.merge(defaults, properties);
         PropertySet.call(this, values);
         this.type = "liquid";
-
+        var tmpSize = this.size;
         this.onDragEnd = function () {
             //CS.model.liquidKit.removeChild(this);
 
             CS.onDrop(this);
+            tmpSize = this.size;
             this.reset();
+            this.size = tmpSize;
         };
     }
 
