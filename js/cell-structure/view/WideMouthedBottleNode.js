@@ -60,7 +60,6 @@ define(function (require) {
         var onTimeout = function () {
             replaceCorkImage(corkImage, this);
 
-            model.cell.imageProperty.set(blueBlackLeaf);
             model.cell.visibility = true;
             model.cell.locationProperty.set(new Vector2(210, 243));
         }.bind(this);
