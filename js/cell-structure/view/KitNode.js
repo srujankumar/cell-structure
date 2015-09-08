@@ -17,6 +17,7 @@ define( function( require ) {
     var rect = new Rectangle( model.location.x, model.location.y, model.size.width, model.size.height, 5, 5, { fill: '#ffffff', stroke: 'orange', lineWidth:5 });
 
     var resetChildren = function() {
+
       rect.removeAllChildren();
       var x = model.location.x || 0;
       var initialX = x;

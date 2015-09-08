@@ -19,7 +19,6 @@ define(function (require) {
         this.name = "test-tube";
         this.image = this.kitImage = testTubeImage;
         this.onDragEnd = function () {
-            debugger;
             CS.addDroppable(this);
             CS.onDrop(this);
         };
@@ -37,11 +36,11 @@ define(function (require) {
         };
 
         this.onRemove = function () {
-            // this.liquidProperty.set(null);
-            // if(this.cell)
-            //   this.cell.reset();
-            // this.cellProperty.set(null);
-            // CS.model.experimentArea.stopStopwatch();
+             this.liquidProperty.set(null);
+             if(this.cell)
+               this.cell.reset();
+             this.cellProperty.set(null);
+             CS.model.experimentArea.stopStopwatch();
         };
 
         this.onChildRemoved = function (child) {

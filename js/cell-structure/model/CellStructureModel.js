@@ -24,6 +24,7 @@ define( function( require ) {
   var WideMouthedBottle = require( 'CELL_STRUCTURE/cell-structure/model/WideMouthedBottle');
   var MessageBox = require( 'CELL_STRUCTURE/cell-structure/model/MessageBox');
   var TestTube = require( 'CELL_STRUCTURE/cell-structure/model/TestTube');
+  var BurnerKit = require( 'CELL_STRUCTURE/cell-structure/model/BurnerKit');
 
   /**
    * @constructor
@@ -63,7 +64,8 @@ define( function( require ) {
     var cutter = new Cutter();
     var wideMouthedBottle = new WideMouthedBottle();
     var testTube = new TestTube();
-    this.apparatusKit = new Kit({ location: new Vector2(660,10), size: new Dimension2(300,200), children: [ microscope, beaker, filler, cutter, wideMouthedBottle,testTube ]});
+    var burnerKit =  new BurnerKit();
+    this.apparatusKit = new Kit({ location: new Vector2(660,10), size: new Dimension2(300,300), children: [ microscope, beaker, filler, cutter, wideMouthedBottle, testTube, burnerKit]});
 
     var ammoniaBottle = new Liquid({ location: new Vector2(10,10), text: "Ammonia", color: '#ffff00'});
     var iodineBottle = new Liquid({ location: new Vector2(110,10), text: "Iodine", color: "brown"});

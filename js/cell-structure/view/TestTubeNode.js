@@ -15,7 +15,7 @@ define(function (require) {
     var Path = require('SCENERY/nodes/Path');
 
     function TestTubeNode(model, modelViewTransform) {
-        
+
         model.size = new Dimension2(90, 108);
 
         Node.call(this, {
@@ -25,12 +25,12 @@ define(function (require) {
         });
 
         var image = new Image(model.image, {x: 0, y: 0, scale:1.2});
-        
-        
-        
+
+
+
         // var rectangleLiquid = new kite.Shape.rectangle(0,0,32,89);
         //this.addChild(image);
-        
+
         var testTubeNodeVar = this;
         this.addInputListener( new SimpleDragHandler( {
 
@@ -44,21 +44,20 @@ define(function (require) {
               }
         } ) );
 
-        
+
         var liquidNode;
         var redraw = function () {
-            debugger;
             this.removeChild(image);
 
             if (liquidNode) {
                 this.removeChild(liquidNode);
             }
-            
+
             if (model.liquid) {
                 liquidNode = new Rectangle(0, 0, 32, 89, 10, 10, {lineWidth: 0, stroke: '#000', fill: model.liquid.color,x:10,y:30 });
                 this.addChild(liquidNode);
             }
-            this.addChild(image); 
+            this.addChild(image);
         }.bind(this);
 
         model.liquidProperty.link(function () {

@@ -10,7 +10,7 @@ define(function (require) {
 
     function Beaker(location, size) {
         Apparatus.call(this, {
-            location: new Vector2(300, 300),
+            location: new Vector2(300, 400),
             size: new Dimension2(80, 80),
             visibility: true,
             liquid: null,
@@ -44,7 +44,7 @@ define(function (require) {
                 }else {
                     model.reset();
                     var location = new Vector2(this.location.x + this.size.width, this.location.y);
-                    CS.showMessageBox(model.cellType + " does not react with " + this.liquid.text, true, 5000, location);  
+                    CS.showMessageBox(model.cellType + " does not react with " + this.liquid.text, true, 5000, location);
                 }
             }
             return true;
