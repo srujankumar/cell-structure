@@ -9,6 +9,7 @@ define( function( require ) {
   var TextPushButton = require( 'SUN/buttons/TextPushButton' );
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
   var Text = require( 'SCENERY/nodes/Text' );
+  var Dimension2 = require( 'DOT/Dimension2' );
 
   function MessageBoxNode( model, modelViewTransform ) {
     Node.call( this, {
@@ -16,9 +17,9 @@ define( function( require ) {
       y: model.location.y
     } );
 
-    var messageBoxBorder = new Image(messageBoxImage);
-    var messageText = new Text( model.message, { font: new PhetFont(14), fill: 'orange'});
-    messageBoxBorder.addChild(messageText);
+    var messageBoxBorder = new Image(messageBoxImage, { x:0, y:0 });
+    messageBoxBorder.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / messageBoxBorder.width,
+      modelViewTransform.modelToViewDeltaY( model.size.height ) / messageBoxBorder.height );
     this.addChild(messageBoxBorder);
 
     var closeButton = new TextPushButton( "X", {
@@ -31,22 +32,21 @@ define( function( require ) {
       }
     } );
     this.addChild(closeButton);
-    this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-      modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
 
     model.visibilityProperty.link( function(visibility){
       this.setVisible(visibility);
     }.bind(this));
 
-    var getMultiLineText = function( text){
+    var getMultiLineText = function( text, lineLen){
+      console.log(text.length);
       var multiLineArray = [];
       var wordArray = text.split(" ");
-      var maxLength = 15;
+      var maxLength = lineLen;
       var line = '';
       var curLen = 0;
       wordArray.forEach( function( word){
         if(curLen + word.length <= maxLength) {
-          line = line + ' ' + word;
+          line = ( line.length === 0 )? word : line + ' ' + word ;
           curLen = curLen + word.length + 1;
         }
         else {
@@ -61,20 +61,39 @@ define( function( require ) {
       return multiLineArray;
     };
 
-    model.messageProperty.link( function( message ){
-      messageBoxBorder.removeAllChildren();
+    var textContainer = new Node({ x:0, y:0 });
+    this.addChild(textContainer);
+
+    var updateText = function( message ){
+      textContainer.removeAllChildren();
       var lineNum = 0;
-      getMultiLineText(message).forEach( function( text) {
-        messageBoxBorder.addChild( new Text( text, { font: new PhetFont(10), fill: 'black',
-          x: 10, y: 15 + lineNum*15 }));
+      var i = 0;
+      if( message.length > 95 ) {
+        while( message.length > 95 + ( 20 * i) + ( ( 3 * i) * ( 5 + i))) 
+          i++;
+        model.sizeProperty.set( new Dimension2( 200 + ( 40 * i), 170 + ( 30 * i)));
+      }
+      else
+        model.sizeProperty.reset();
+      getMultiLineText(message, 20 + ( 3 * i)).forEach( function( text) {
+        textContainer.addChild( new Text( text, { font: new PhetFont(20), fill: 'black',
+          x: 15 + ( 2 * i), y: 30  + ( 2 * i) + lineNum*20 }));
           lineNum++;
       });
+    };
 
-    });
+    updateText(model.message);
+
+    model.messageProperty.link( updateText );
 
     model.locationProperty.link( function( location) {
       this.translation = location;
     }.bind(this));
+
+    model.sizeProperty.link( function( size) {
+     messageBoxBorder.scale( modelViewTransform.modelToViewDeltaX( size.width ) / messageBoxBorder.width,
+      modelViewTransform.modelToViewDeltaY( size.height ) / messageBoxBorder.height );
+    });
   }
 
   return inherit( Node, MessageBoxNode );

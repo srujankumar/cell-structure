@@ -30,7 +30,12 @@ define( function( require ) {
       if(this.cell){
         this.cell.reset();
       }
-      if(model.onDippedInLiquid(this.liquid))
+      if( this.liquid == null) {
+        model.reset();
+        var location = new Vector2(this.location.x + this.size.width, this.location.y);
+        CS.showMessageBox( "Fill the Filler with any liquid before you place an object under it", true, 5000, location);  
+      }
+      else if(model.onDippedInLiquid(this.liquid))
       {
         this.cellProperty.set(model);
         model.attachedToProperty.set(this);
@@ -78,6 +83,7 @@ define( function( require ) {
         if(!(this.cell && this.liquid)) {
           window.clearInterval(intervalId);
           this.drop.locationProperty.set(new Vector2(15, 120));
+          CS.showMessageBox("Fill the filler with any liquid and place any cell under it before you press the knob");
           return;
         }
         if(this.drop.location.y + 295 > this.cell.location.y) {

@@ -11,8 +11,8 @@ define( function( require ) {
   function MessageBox(properties) {
     PropertySet.call(this, _.extend(
       {
-        location: new Vector2(30,300), 
-        size: new Dimension2( 160, 160), 
+        location: new Vector2( 400, 550), 
+        size: new Dimension2( 200, 170), 
         visibility: false,
         message: ''
       }, properties) );

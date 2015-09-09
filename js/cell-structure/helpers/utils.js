@@ -1,6 +1,4 @@
-define( function(require) {
-
-  CS.utils = {
+define({
     slice: function(ary, n) {
       r = [];
       subAry = [];
@@ -15,6 +13,4 @@ define( function(require) {
       r.push(subAry);
       return r;
     }
-  };
-
 });
