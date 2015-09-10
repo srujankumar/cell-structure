@@ -1,4 +1,4 @@
-define(function (require) {
+define(function(require) {
     'use strict';
 
     var inherit = require('PHET_CORE/inherit');
@@ -21,16 +21,28 @@ define(function (require) {
 
         this.name = "burner kit";
         this.image = this.kitImage = burnerKitImage;
-        this.onDragEnd = function () {
+        this.onDragEnd = function() {
             CS.onDrop(this);
             CS.addDroppable(this);
         };
 
-        this.onReceiveDrop = function (model) {
-            console.log(model);
+        this.onReceiveDrop = function(model) {
+            model.sizeProperty.set(new Dimension2(100, 100));
+            model.locationProperty.set(new Vector2(this.location.x, this.location.y - 100));
+            console.log(model.location);
+
         };
 
-        this.onRemove = function () {
+        this.collidesWith = function(model) {
+            if (model.type === "apparatus" && model.name === "beaker") {
+                var dropListenLocation = new Vector2(this.location.x - 50, this.location.y - 200);
+                size = new Dimension2(this.size.width, this.size.height);
+                if (CS.positionDelta(model.location, dropListenLocation, size.width, size.height))
+                    this.onReceiveDrop(model);
+            }
+        };
+
+        this.onRemove = function() {
 
         };
     }

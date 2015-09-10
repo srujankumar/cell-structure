@@ -17,7 +17,7 @@ define(function(require) {
     var burnerImage = require('image!CELL_STRUCTURE/bunsen_burner.svg');
 
     function BurnerKitNode(model, modelViewTransform) {
-
+        model.locationProperty.set(new Vector2(300, 473));
         model.size = new Dimension2(200, 200);
         model.standImage = new Image(standImage, {
             x: 10,
@@ -32,7 +32,7 @@ define(function(require) {
         model.standImage.scale(0.5, 0.6);
         model.burnerImage = new Image(burnerImage, {
             x: 35,
-            y: 30
+            y: 28
         });
         Node.call(this, {
             cursor: 'pointer',
@@ -60,9 +60,9 @@ define(function(require) {
             }));
         }
 
-        makeDraggable(model.standImage);
-        makeDraggable(model.burnerImage);
-        makeDraggable(model.gauzeImage);
+//        makeDraggable(model.standImage);
+//        makeDraggable(model.burnerImage);
+//        makeDraggable(model.gauzeImage);
         this.addChild(model.standImage);
         this.addChild(model.gauzeImage);
         this.addChild(model.burnerImage);
