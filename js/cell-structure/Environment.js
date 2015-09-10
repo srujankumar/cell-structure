@@ -62,12 +62,16 @@ define( function( require ) {
   var FillerNode = require( 'CELL_STRUCTURE/cell-structure/view/FillerNode' );
   var StopwatchNode = require( 'CELL_STRUCTURE/cell-structure/view/StopwatchNode' );
   var WideMouthedBottleNode = require( 'CELL_STRUCTURE/cell-structure/view/WideMouthedBottleNode' );
+  var TestTubeNode = require( 'CELL_STRUCTURE/cell-structure/view/TestTubeNode' );
+  var BurnerKitNode = require( 'CELL_STRUCTURE/cell-structure/view/BurnerKitNode' );
   CS.views = {
       'Microscope': MicroscopeNode,
       'Beaker': BeakerNode,
       'Filler': FillerNode,
       'Stopwatch': StopwatchNode,
-      'WideMouthedBottle': WideMouthedBottleNode
+      'WideMouthedBottle': WideMouthedBottleNode,
+      'TestTube': TestTubeNode,
+      'BurnerKit': BurnerKitNode
     };
 
   CS.utils = require( 'CELL_STRUCTURE/cell-structure/helpers/utils' );

@@ -38,7 +38,6 @@ define( function( require ) {
     }.bind(this));
 
     var getMultiLineText = function( text, lineLen){
-      console.log(text.length);
       var multiLineArray = [];
       var wordArray = text.split(" ");
       var maxLength = lineLen;
