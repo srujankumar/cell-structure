@@ -16,8 +16,8 @@ define( function( require ) {
   var LedFont = require( 'CELL_STRUCTURE/cell-structure/helpers/LedFont' );
 
   function StopwatchNode( model, modelViewTransform ) {
-    model.locationProperty.set(new Vector2(400, 343));
-    model.size = new Dimension2(200, 200);
+    model.locationProperty.set(new Vector2(400, 243));
+    model.size = new Dimension2( 200, 200);
 
     Node.call( this, {
       cursor: 'pointer',

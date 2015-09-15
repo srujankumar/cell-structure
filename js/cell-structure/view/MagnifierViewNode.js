@@ -13,7 +13,7 @@ define( function( require ) {
 
   function MagnifierViewNode( model, options, modelViewTransform ) {
 
-    var rect = new Rectangle( 0, 0, 300, 250, 5, 5, { fill: '#000000', stroke: 'orange', lineWidth: 5 });
+    var rect = new Rectangle( 0, 0, 240, 200, 5, 5, { fill: '#000000', stroke: 'orange', lineWidth: 5 });
 
     Node.call(this, options);
 
@@ -32,7 +32,7 @@ define( function( require ) {
       font: new PhetFont( 16 ),
       baseColor: 'yellow',
       xMargin: 10,
-      x: -50,
+      x: -30,
       y: 0,
       listener: function() {
         if ( model.magnifiedImage.parentImage ) {

@@ -13,11 +13,11 @@ define( function( require ) {
 
   function MicroscopeNode( model, modelViewTransform ) {
 
-    model.locationProperty.set(new Vector2(500, 295));
-    model.size = new Dimension2(250, 250);
+    model.locationProperty.set(new Vector2(800, 450));
+    model.size = new Dimension2(100, 150); // to set the listening area of microscope
     Node.call(this, {x: model.location.x, y: model.location.y});
     var instrumentNode = new MicroscopeInstrumentNode(model.instrument, {}, modelViewTransform);
-    var magnifierViewNode = new MagnifierViewNode(model.magnifierView, {x: 200, y: 0}, modelViewTransform);
+    var magnifierViewNode = new MagnifierViewNode(model.magnifierView, { x: -20, y: -175}, modelViewTransform);
     var removeButton = new TextPushButton( "X", {
       font: new PhetFont( 16 ),
       baseColor: 'yellow',

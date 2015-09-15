@@ -33,10 +33,6 @@ define( function( require ) {
     // Scale it so it matches the model width and height
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
-    // Register for synchronization with model.
-    //model.locationProperty.link( function( location ) {
-    //  this.translation = modelViewTransform.modelToViewPosition( location );
-    //}.bind(this) );
   }
 
   return inherit( Node, MicroscopeInstrumentNode );

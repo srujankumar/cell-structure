@@ -13,8 +13,8 @@ define( function( require ) {
     var imageNode = new Image( model.image, { x: 0, y: 0 } );
     this.addChild(imageNode);
 
-    this.scale( modelViewTransform.modelToViewDeltaX( 300 ) / this.width,
-      modelViewTransform.modelToViewDeltaY( 250  ) / this.height );
+    this.scale( modelViewTransform.modelToViewDeltaX( 240 ) / this.width,
+      modelViewTransform.modelToViewDeltaY( 200  ) / this.height );
 
     if(model.overlays) {
       model.overlays.forEach(function(overlay) {

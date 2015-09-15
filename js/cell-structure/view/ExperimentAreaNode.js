@@ -13,7 +13,7 @@ define( function( require ) {
   function ExperimentAreaNode( model, options, modelViewTransform ) {
     Node.call(this, options);
 
-    var image = new Image(table, {x: model.location.x, y: model.location.y + 200});
+    var image = new Image(table, {x: model.location.x, y: model.location.y + 300});
     image.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / image.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / image.height );
     this.addChild(image);
