@@ -13,14 +13,17 @@ define( function( require ) {
   var PhetFont = require( 'SCENERY_PHET/PhetFont' );
 
   function BeakerNode( model, modelViewTransform ) {
-    model.locationProperty.set(new Vector2(0, 440));
-    model.size = new Dimension2(150, 150);
+    model.locationProperty.set(new Vector2(200, 343));
+    model.size = new Dimension2(200, 200);
 
     Node.call( this, {
       cursor: 'pointer',
       x: model.location.x,
       y: model.location.y
     } );
+
+    var image = new Image( model.image, { x: 0, y: 0 } );
+    //this.addChild(image);
 
     var removeButton = new TextPushButton( "X", {
       font: new PhetFont( 50 ),
@@ -30,23 +33,11 @@ define( function( require ) {
       listener: function() {
         CS.trigger('ApparatusRemoved',model);
       }
-    });
-
-    var image = new Image( model.image, { x: 0, y: 0 } );
-    this.addInputListener(new SimpleDragHandler({
-        allowTouchSnag: true,
-
-        translate: function(args) {
-            model.location = modelViewTransform.viewToModelPosition(args.position);
-            this.translation = modelViewTransform.modelToViewPosition(model.location);
-        }.bind(this),
-        end: function(evt) {
-            CS.onDrop(model);
-        }
-    }));
+    } );
+    this.addChild(removeButton);
 
     var liquidNode;
-    var redraw = function(size) {
+    var redraw = function() {
       this.removeChild(image);
       this.removeChild(removeButton);
       if(liquidNode) {
@@ -58,24 +49,11 @@ define( function( require ) {
       }
       this.addChild(image);
       this.addChild(removeButton);
-      if(size)
-        this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-            modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
     }.bind(this);
-
-    model.sizeProperty.link(function(size) {
-        console.log("Redrawing")
-        redraw(size);
-    }.bind(this));
-
-    model.locationProperty.link(function(location) {
-        this.translation = modelViewTransform.modelToViewPosition(location);
-    }.bind(this));
 
     model.liquidProperty.link( function() {
       redraw();
     }.bind(this) );
-
     // Scale it so it matches the model width and height
     this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
       modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );

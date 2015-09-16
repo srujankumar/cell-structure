@@ -29,8 +29,6 @@ define(function(require) {
         this.onReceiveDrop = function(model) {
             model.sizeProperty.set(new Dimension2(100, 100));
             model.locationProperty.set(new Vector2(this.location.x, this.location.y - 100));
-            console.log(model.location);
-
         };
 
         this.collidesWith = function(model) {

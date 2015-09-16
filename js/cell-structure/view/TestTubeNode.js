@@ -62,7 +62,6 @@ define(function(require) {
         var liquidNode;
         var redraw = function() {
             this.removeChild(image);
-
             if (liquidNode) {
                 this.removeChild(liquidNode);
             }

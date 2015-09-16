@@ -31,15 +31,26 @@ define(function (require) {
             return true;
         }.bind(this);
 
+        this.collidesWith = function(model) {
+            if (model.type === "liquid") {
+                var dropListenLocation = new Vector2(this.location.x - 50, this.location.y - 50);
+                size = new Dimension2(this.size.width, this.size.height);
+
+                if (CS.positionDelta(model.location, dropListenLocation, size.width, size.height))
+                    this.onReceiveDrop(model);
+            }
+        };
+
         this.onReceiveDrop = function (model) {
             handleLiquid(model);
         };
 
         this.onRemove = function () {
              this.liquidProperty.set(null);
-             if(this.cell)
+             if (this.cell) {
                this.cell.reset();
-             this.cellProperty.set(null);
+               this.cellProperty.set(null);
+             }
              CS.model.experimentArea.stopStopwatch();
         };
 
