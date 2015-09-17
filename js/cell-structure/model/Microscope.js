@@ -1,4 +1,4 @@
-define(function (require) {
+define(function(require) {
     'use strict';
 
     var inherit = require('PHET_CORE/inherit');
@@ -10,7 +10,11 @@ define(function (require) {
     var Dimension2 = require('DOT/Dimension2');
 
     function Microscope() {
-        Apparatus.call(this, {size: new Dimension2(80, 80), location: new Vector2(200, 500), objectUnderLens: null});
+        Apparatus.call(this, {
+            size: new Dimension2(80, 80),
+            location: new Vector2(200, 500),
+            objectUnderLens: null
+        });
 
         this.instrument = new MicroscopeInstrument(new Vector2(0, 50), new Dimension2(150, 150), this);
         this.magnifierView = new MagnifierView(this);
@@ -18,7 +22,7 @@ define(function (require) {
         this.kitImage = this.image = this.instrument.image;
 
         CS.addDroppable(this);
-        this.onReceiveDrop = function (model) {
+        this.onReceiveDrop = function(model) {
             if (model.type !== "cell") return;
             model.attachedToProperty.set(this);
             if (this.objectUnderLens)
@@ -27,17 +31,17 @@ define(function (require) {
             //CS.model.objectKit.removeChild(model);
             this.objectUnderLensProperty.set(model);
         };
-        this.onDragEnd = function () {
+        this.onDragEnd = function() {
             CS.onDrop(this);
         };
 
-        this.onRemove = function () {
+        this.onRemove = function() {
             if (!this.objectUnderLens) return;
             this.objectUnderLens.reset();
             this.objectUnderLensProperty.set(null);
         };
 
-        this.onChildRemoved = function (child) {
+        this.onChildRemoved = function(child) {
             this.objectUnderLensProperty.set(null);
         };
     }

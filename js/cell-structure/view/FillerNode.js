@@ -14,7 +14,6 @@ define( function( require ) {
   var DropNode = require( 'CELL_STRUCTURE/cell-structure/view/DropNode' );
 
   function FillerNode( model, modelViewTransform ) {
-    model.location = new Vector2( 50, 300);
     model.size = new Dimension2(60, 150);
 
     var pos = modelViewTransform.modelToViewPosition(model.location);

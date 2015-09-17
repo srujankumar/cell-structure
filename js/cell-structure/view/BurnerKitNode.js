@@ -17,7 +17,6 @@ define(function(require) {
     var burnerImage = require('image!CELL_STRUCTURE/bunsen_burner.svg');
 
     function BurnerKitNode(model, modelViewTransform) {
-        model.locationProperty.set(new Vector2(300, 473));
         model.size = new Dimension2(200, 200);
         model.standImage = new Image(standImage, {
             x: 10,

@@ -12,6 +12,7 @@ define(function(require) {
         Apparatus.call(this, {
             location: new Vector2(300, 300),
             size: new Dimension2(80, 80),
+            acceptedModels: ["beaker"],
             image: burnerKitImage,
             visibility: true,
             standImage: null,

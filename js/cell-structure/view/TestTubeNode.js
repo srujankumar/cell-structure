@@ -15,8 +15,7 @@ define(function(require) {
     var Path = require('SCENERY/nodes/Path');
 
     function TestTubeNode(model, modelViewTransform) {
-
-        model.size = new Dimension2(90, 108);
+        model.size = new Dimension2(125, 150);
 
         Node.call(this, {
             cursor: 'pointer',

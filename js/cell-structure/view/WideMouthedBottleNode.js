@@ -16,8 +16,7 @@ define(function (require) {
     var DownUpListener = require( 'SCENERY/input/DownUpListener' );
 
     function WideMouthedBottleNode(model, modelViewTransform) {
-        model.locationProperty.set(new Vector2(200, 343));
-        model.size = new Dimension2(130, 200);
+        model.size = new Dimension2(98, 150);
 
         Node.call(this, {
             cursor: 'pointer',
