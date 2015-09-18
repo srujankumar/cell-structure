@@ -18,7 +18,7 @@ define(function(require) {
         PropertySet.call(this, values);
 
         var acceptChild = function(model) {
-            model.locationProperty.set(new Vector2(0, 330));
+            model.locationProperty.set(new Vector2(0, model.tableHeight));
             this.childProperty.set(model);
         }.bind(this);
 

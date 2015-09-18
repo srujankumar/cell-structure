@@ -94,6 +94,7 @@ define(function(require) {
             if (this.stopwatch) return;
             this.stopwatchProperty.set(new Stopwatch(callback));
         };
+
         this.stopStopwatch = function() {
             if (!this.stopwatch) return;
             this.stopwatch.stopTimer();

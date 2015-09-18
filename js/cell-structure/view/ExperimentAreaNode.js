@@ -1,7 +1,7 @@
 /*
  Kit which holds animal cell, plant cell, etc
  */
-define(function (require) {
+define(function(require) {
     'use strict';
     var inherit = require('PHET_CORE/inherit');
     var Rectangle = require('SCENERY/nodes/Rectangle');
@@ -14,9 +14,12 @@ define(function (require) {
     function ExperimentAreaNode(model, options, modelViewTransform) {
         Node.call(this, options);
 
-        var image = new Image(table, {x: model.location.x, y: model.location.y + 300});
+        var image = new Image(table, {
+            x: model.location.x,
+            y: model.location.y + 300
+        });
         image.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / image.width,
-                modelViewTransform.modelToViewDeltaY(model.size.height) / image.height);
+            modelViewTransform.modelToViewDeltaY(model.size.height) / image.height);
         this.addChild(image);
 
         this.scale(1, 1);
@@ -25,12 +28,12 @@ define(function (require) {
             this.addChild(new SlotNode(slot, modelViewTransform));
         }.bind(this));
 
-        model.onRemoveChild = function (index) {
+        model.onRemoveChild = function(index) {
             this.removeChildAt(index + 1);
         }.bind(this);
 
         var stopwatchNode;
-        model.stopwatchProperty.link(function (stopwatch) {
+        model.stopwatchProperty.link(function(stopwatch) {
             if (!stopwatch) {
                 if (stopwatchNode) {
                     this.removeChild(stopwatchNode);

@@ -13,7 +13,8 @@ define(function(require) {
         Apparatus.call(this, {
             size: new Dimension2(80, 80),
             location: new Vector2(200, 500),
-            objectUnderLens: null
+            objectUnderLens: null,
+            tableHeight: 440
         });
 
         this.instrument = new MicroscopeInstrument(new Vector2(0, 50), new Dimension2(150, 150), this);
@@ -36,6 +37,11 @@ define(function(require) {
         };
 
         this.onRemove = function() {
+            CS.model.experimentArea.slots.map(function(slot) {
+                if (slot.child == this) {
+                    slot.child = null;
+                }
+            }.bind(this));
             if (!this.objectUnderLens) return;
             this.objectUnderLens.reset();
             this.objectUnderLensProperty.set(null);

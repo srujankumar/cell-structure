@@ -1,12 +1,17 @@
-define( function( require ) {
-  'use strict';
+define(function(require) {
+    'use strict';
 
-  var inherit = require( 'PHET_CORE/inherit' );
-  var PropertySet = require( 'AXON/PropertySet' );
+    var inherit = require('PHET_CORE/inherit');
+    var PropertySet = require('AXON/PropertySet');
 
-  function Overlay( radius, location, magnifiedImage, tooltip ) {
-    PropertySet.call( this, { location: location, radius: radius, magnifiedImage: magnifiedImage, tooltip: tooltip } );
-  }
+    function Overlay(radius, location, magnifiedImage, tooltip) {
+        PropertySet.call(this, {
+            location: location,
+            radius: radius,
+            magnifiedImage: magnifiedImage,
+            tooltip: tooltip
+        });
+    }
 
-  return inherit( PropertySet, Overlay );
-} );
+    return inherit(PropertySet, Overlay);
+});

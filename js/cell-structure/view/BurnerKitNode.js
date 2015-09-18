@@ -21,13 +21,13 @@ define(function(require) {
         model.standImage = new Image(standImage, {
             x: 10,
             y: 10,
-            scale:0.2
+            scale: 0.2
         });
         model.gauzeImage = new Image(gauzeImage, {
             x: 10,
             y: 0
         });
-        model.gauzeImage.scale(0.25,0.2);
+        model.gauzeImage.scale(0.25, 0.2);
         model.standImage.scale(0.5, 0.6);
         model.burnerImage = new Image(burnerImage, {
             x: 35,
@@ -50,18 +50,18 @@ define(function(require) {
 
                 translate: function(args) {
                     model.location = modelViewTransform.viewToModelPosition(args.position);
-                    var newPositionVector =  modelViewTransform.modelToViewPosition(model.location);
+                    var newPositionVector = modelViewTransform.modelToViewPosition(model.location);
                     image.translation = newPositionVector;
-                    if(model.standImage === image) {
-                        removeButton.translation = new Vector2(newPositionVector.x-10,newPositionVector.y-10);
+                    if (model.standImage === image) {
+                        removeButton.translation = new Vector2(newPositionVector.x - 10, newPositionVector.y - 10);
                     }
                 }
             }));
         }
 
-//        makeDraggable(model.standImage);
-//        makeDraggable(model.burnerImage);
-//        makeDraggable(model.gauzeImage);
+        //makeDraggable(model.standImage);
+        //makeDraggable(model.burnerImage);
+        //makeDraggable(model.gauzeImage);
         this.addChild(model.standImage);
         this.addChild(model.gauzeImage);
         this.addChild(model.burnerImage);
@@ -78,7 +78,7 @@ define(function(require) {
         this.addChild(removeButton);
 
         //this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,
-          //  modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
+        //  modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
     }
 
     return inherit(Node, BurnerKitNode);

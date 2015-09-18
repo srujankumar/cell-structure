@@ -17,7 +17,8 @@ define(function(require) {
             visibility: true,
             standImage: null,
             gauzeImage: null,
-            burnerImage: null
+            burnerImage: null,
+            tableHeight: 560
         });
 
         this.name = "burner kit";
@@ -42,7 +43,11 @@ define(function(require) {
         };
 
         this.onRemove = function() {
-
+            CS.model.experimentArea.slots.map(function(slot) {
+                if (slot.child == this) {
+                    slot.child = null;
+                }
+            }.bind(this));
         };
     }
 

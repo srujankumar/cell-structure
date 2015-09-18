@@ -14,7 +14,8 @@ define(function(require) {
             size: new Dimension2(80, 80),
             visibility: true,
             liquid: null,
-            cell: null
+            cell: null,
+            tableHeight: 490
         });
         this.name = "beaker";
         this.image = this.kitImage = beakerImage;
