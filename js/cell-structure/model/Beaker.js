@@ -39,7 +39,7 @@ define(function(require) {
             if (this.liquid && (typeof model.onDippedInLiquid == "function")) {
                 if (model.onDippedInLiquid(this.liquid)) {
                     this.cellProperty.set(model);
-                    model.locationProperty.set(new Vector2(260, 475));
+                    model.locationProperty.set(new Vector2(this.location.x + 50, this.location.y + 100));
                     model.size = new Dimension2(50, 50);
                     model.attachedToProperty.set(this);
                 } else {

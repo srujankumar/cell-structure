@@ -31,6 +31,7 @@ define(function(require) {
                 return false;
             return true;
         }.bind(this);
+
     }
 
     return inherit(PropertySet, Slot);

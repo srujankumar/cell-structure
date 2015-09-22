@@ -43,7 +43,7 @@ define(function(require) {
 
         this.startTimer = function() {
             var oldTime = this.time;
-            var ttc = 5; // completes in 5 secs
+            var ttc = this.time < 5 ? this.time: 5; // completes in 5 secs
             var interval = ttc * 1000 / this.time;
             this.intervalId = window.setInterval(function() {
                 this.timeProperty.set(this.time - 1);

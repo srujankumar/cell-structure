@@ -20,13 +20,11 @@ define(function(require) {
             x: model.location.x,
             y: model.location.y
         });
-
         var image = new Image(model.image, {
             x: 0,
             y: 0
         });
-        //this.addChild(image);
-
+        this.addChild(image);
         var removeButton = new TextPushButton("X", {
             font: new PhetFont(50),
             baseColor: 'yellow',

@@ -25,7 +25,7 @@ define( function( require ) {
     CS.droppables.forEach( function( droppable){
       if(model == droppable) return;
       if(typeof droppable.collidesWith == "function") {
-        droppable.collidesWith(model)
+        droppable.collidesWith(model);
       }
       else if(CS.positionDelta( model.location, droppable.location, droppable.size.width, droppable.size.height)) {
         if(typeof droppable.onReceiveDrop == "function")
