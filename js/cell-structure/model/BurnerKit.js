@@ -12,11 +12,13 @@ define(function(require) {
         Apparatus.call(this, {
             location: new Vector2(300, 300),
             size: new Dimension2(80, 80),
+            acceptedModels: ["beaker"],
             image: burnerKitImage,
             visibility: true,
             standImage: null,
             gauzeImage: null,
-            burnerImage: null
+            burnerImage: null,
+            tableHeight: 560
         });
 
         this.name = "burner kit";
@@ -41,7 +43,11 @@ define(function(require) {
         };
 
         this.onRemove = function() {
-
+            CS.model.experimentArea.slots.map(function(slot) {
+                if (slot.child == this) {
+                    slot.child = null;
+                }
+            }.bind(this));
         };
     }
 

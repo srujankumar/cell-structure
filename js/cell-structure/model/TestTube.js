@@ -1,4 +1,4 @@
-define(function (require) {
+define(function(require) {
     'use strict';
 
     var inherit = require('PHET_CORE/inherit');
@@ -11,18 +11,19 @@ define(function (require) {
     function TestTube(location, size) {
         Apparatus.call(this, {
             location: new Vector2(300, 300),
-            size: new Dimension2(80, 80),
+            size: new Dimension2(80, 100),
             visibility: true,
             liquid: null,
-            cell: null
+            cell: null,
+            tableHeight: 400
         });
         this.name = "test-tube";
         this.image = this.kitImage = testTubeImage;
-        this.onDragEnd = function () {
+        this.onDragEnd = function() {
             CS.addDroppable(this);
             CS.onDrop(this);
         };
-        var handleLiquid = function (model) {
+        var handleLiquid = function(model) {
             if (model.type !== "liquid") return;
             this.liquidProperty.set(model);
             if (this.cell && (typeof this.cell.onDippedInLiquid == "function")) {
@@ -41,20 +42,25 @@ define(function (require) {
             }
         };
 
-        this.onReceiveDrop = function (model) {
+        this.onReceiveDrop = function(model) {
             handleLiquid(model);
         };
 
-        this.onRemove = function () {
-             this.liquidProperty.set(null);
-             if (this.cell) {
-               this.cell.reset();
-               this.cellProperty.set(null);
-             }
-             CS.model.experimentArea.stopStopwatch();
+        this.onRemove = function() {
+            this.liquidProperty.set(null);
+            if (this.cell) {
+                this.cell.reset();
+                this.cellProperty.set(null);
+            }
+            CS.model.experimentArea.slots.map(function(slot) {
+                if (slot.child == this) {
+                    slot.child = null;
+                }
+            }.bind(this));
+            CS.model.experimentArea.stopStopwatch();
         };
 
-        this.onChildRemoved = function (child) {
+        this.onChildRemoved = function(child) {
             this.cellProperty.set(null);
         };
     }

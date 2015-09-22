@@ -1,4 +1,4 @@
-define(function (require) {
+define(function(require) {
     'use strict';
 
     var inherit = require('PHET_CORE/inherit');
@@ -17,12 +17,13 @@ define(function (require) {
             liquid: null,
             cell: null,
             corkOpen: true,
-            corkImage: null
+            corkImage: null,
+            tableHeight: 507
         });
 
         this.name = "wide-mouthed-bottle";
         this.image = this.kitImage = bottleImage;
-        this.onDragEnd = function () {
+        this.onDragEnd = function() {
             CS.onDrop(this);
             CS.addDroppable(this);
         };
@@ -39,7 +40,7 @@ define(function (require) {
             }
         };
 
-        var handleLiquid = function (model) {
+        var handleLiquid = function(model) {
             if (model.type !== "liquid") return;
             if (!this.corkOpen) return;
             this.liquidProperty.set(model);
@@ -49,7 +50,7 @@ define(function (require) {
             return true;
         }.bind(this);
 
-        var handleCell = function (model) {
+        var handleCell = function(model) {
             if (model.type !== "cell") return;
 
             if (model.cellType == "Leaf Cell") {
@@ -61,16 +62,21 @@ define(function (require) {
             return true;
         }.bind(this);
 
-        this.onReceiveDrop = function (model) {
+        this.onReceiveDrop = function(model) {
             handleLiquid(model) || handleCell(model);
         };
-        this.onRemove = function () {
-            if(this.liquid) this.liquidProperty.set(null);
-            if(this.cell) this.cell.reset();
+        this.onRemove = function() {
+            if (this.liquid) this.liquidProperty.set(null);
+            if (this.cell) this.cell.reset();
+            CS.model.experimentArea.slots.map(function(slot) {
+                if (slot.child == this) {
+                    slot.child = null;
+                }
+            }.bind(this));
             CS.model.experimentArea.stopStopwatch();
         };
 
-        this.onChildRemoved = function (child) {
+        this.onChildRemoved = function(child) {
             this.cellProperty.set(null);
         };
     }

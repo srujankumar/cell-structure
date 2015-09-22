@@ -1,4 +1,4 @@
-define(function (require) {
+define(function(require) {
     'use strict';
 
     // modules
@@ -13,11 +13,10 @@ define(function (require) {
     var PhetFont = require('SCENERY_PHET/PhetFont');
     var corkImage = require('image!CELL_STRUCTURE/cork.svg');
     var blueBlackLeaf = require('image!CELL_STRUCTURE/leaf-blue-black.svg');
-    var DownUpListener = require( 'SCENERY/input/DownUpListener' );
+    var DownUpListener = require('SCENERY/input/DownUpListener');
 
     function WideMouthedBottleNode(model, modelViewTransform) {
-        model.locationProperty.set(new Vector2(200, 343));
-        model.size = new Dimension2(130, 200);
+        model.size = new Dimension2(98, 150);
 
         Node.call(this, {
             cursor: 'pointer',
@@ -28,7 +27,10 @@ define(function (require) {
         function replaceCorkImage(newImage, context) {
             context.removeChild(corkNode);
 
-            corkNode = new Image(newImage, {x: 25, y: -30});
+            corkNode = new Image(newImage, {
+                x: 25,
+                y: -30
+            });
             context.addChild(corkNode);
 
             corkNode.addInputListener(new DownUpListener({
@@ -40,7 +42,10 @@ define(function (require) {
             redraw();
         }
 
-        var image = new Image(model.image, {x: 0, y: 0});
+        var image = new Image(model.image, {
+            x: 0,
+            y: 0
+        });
         //this.addChild(image);
 
         var removeButton = new TextPushButton("X", {
@@ -48,16 +53,19 @@ define(function (require) {
             baseColor: 'yellow',
             x: 0,
             y: 0,
-            listener: function () {
+            listener: function() {
                 CS.trigger('ApparatusRemoved', model);
             }
         });
         this.addChild(removeButton);
 
-        var corkNode = new Image(corkImage, {x: 25, y: -30});
+        var corkNode = new Image(corkImage, {
+            x: 25,
+            y: -30
+        });
         model.corkImageProperty.set(corkImage);
 
-        var onTimeout = function () {
+        var onTimeout = function() {
             replaceCorkImage(corkImage, this);
 
             model.cell.visibility = true;
@@ -78,7 +86,7 @@ define(function (require) {
         });
 
         var liquidNode;
-        var redraw = function () {
+        var redraw = function() {
             this.removeChild(image);
             this.removeChild(removeButton);
             this.removeChild(corkNode);
@@ -103,12 +111,12 @@ define(function (require) {
             replaceCorkImage(corkImage, this);
         }.bind(this));
 
-        model.liquidProperty.link(function () {
+        model.liquidProperty.link(function() {
             redraw();
         }.bind(this));
 
         this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,
-                modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
+            modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
 
     }
 
