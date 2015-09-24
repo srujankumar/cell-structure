@@ -23,6 +23,7 @@ define(function(require) {
         }.bind(this);
 
         this.setChild = function(model) {
+            console.log('sattar');
             if (!this.childProperty.get())
                 acceptChild(model);
             else if (_.contains(this.childProperty.get().acceptedModels, model.name))
@@ -31,7 +32,6 @@ define(function(require) {
                 return false;
             return true;
         }.bind(this);
-
     }
 
     return inherit(PropertySet, Slot);

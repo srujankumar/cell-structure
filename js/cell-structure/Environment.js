@@ -3,6 +3,7 @@ define( function( require ) {
   window.CS = {};
   CS.droppables = [];
   CS.addDroppable = function(model) {
+    if(model && (typeof model.getGlobalBounds !== 'function')) return;
     CS.droppables.push(model);
   };
 
@@ -21,17 +22,30 @@ define( function( require ) {
     });
   };
 
-  CS.onDrop = function(model) {
-    CS.droppables.forEach( function( droppable){
-      if(model == droppable) return;
-      if(typeof droppable.collidesWith == "function") {
-        droppable.collidesWith(model);
-      }
-      else if(CS.positionDelta( model.location, droppable.location, droppable.size.width, droppable.size.height)) {
+  CS.onDrop = function(node, model) {
+    CS.droppables.forEach( function( droppable ){
+      if(node == droppable) return;
+      //if(typeof droppable.collidesWith == "function") {
+      //  droppable.collidesWith(model);
+      //}
+      if(CS.isNodeOnDroppable(node, droppable)) {
+        console.log('on');
         if(typeof droppable.onReceiveDrop == "function")
           droppable.onReceiveDrop(model);
       }
     });
+  };
+
+  CS.isNodeOnDroppable = function(node, droppable) {
+      var within = function(value, lowerBound, upperBound) {
+        return lowerBound < value && value < upperBound;
+      };
+
+      var droppableBounds = droppable.getGlobalBounds();
+      var nodeBounds = node.getGlobalBounds();
+
+      debugger;
+      return within(nodeBounds.minX, droppableBounds.minX, droppableBounds.maxX) && within(nodeBounds.minY, droppableBounds.minY, droppableBounds.maxY);
   };
 
   CS.positionDelta = function( position1, position2, deltaX, deltaY){

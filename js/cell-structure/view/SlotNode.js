@@ -32,6 +32,9 @@ define(function (require) {
         }.bind(this));
 
         this.scale(1, 1);
+
+        CS.addDroppable(this);
+        this.onReceiveDrop = model.setChild;
     }
     return inherit(Node, SlotNode);
 });

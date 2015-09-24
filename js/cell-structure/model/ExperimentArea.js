@@ -70,7 +70,7 @@ define(function(require) {
         this.onReceiveDrop = function(model) {
             addChild(model);
         };
-        CS.addDroppable(this);
+        //CS.addDroppable(this);
         CS.addEventHandler('ApparatusRemoved', function(child) {
             CS.model.apparatusKit.addChild(child);
             this.removeChild(child);

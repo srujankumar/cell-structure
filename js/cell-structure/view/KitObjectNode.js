@@ -75,9 +75,9 @@ define( function( require ) {
           model.attachedToProperty.set(null);
         },
         end: function( event ) {
-          if( typeof model.onDragEnd == "function" ) {
-            model.onDragEnd();
-          }
+          //if( typeof model.onDragEnd == "function" ) {
+          //  model.onDragEnd();
+          CS.onDrop(this, model);
         }.bind(this)
       } ) );
 
