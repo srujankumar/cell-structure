@@ -14,7 +14,7 @@ define(function(require) {
     var PhetFont = require('SCENERY_PHET/PhetFont');
     var standImage = require('image!CELL_STRUCTURE/stand.svg');
     var gauzeImage = require('image!CELL_STRUCTURE/gauze.svg');
-    var burnerImage = require('image!CELL_STRUCTURE/bunsen_burner.svg');
+    var burnerImage = require('image!CELL_STRUCTURE/burner-kit.svg');
 
     function BurnerKitNode(model, modelViewTransform) {
         model.size = new Dimension2(200, 200);
@@ -31,8 +31,9 @@ define(function(require) {
         model.standImage.scale(0.5, 0.6);
         model.burnerImage = new Image(burnerImage, {
             x: 35,
-            y: 28
+            y: 30
         });
+        model.burnerImage.scale(0.5,0.5);
         Node.call(this, {
             cursor: 'pointer',
             x: model.location.x,
