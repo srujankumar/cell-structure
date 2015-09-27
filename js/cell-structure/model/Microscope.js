@@ -22,7 +22,7 @@ define(function(require) {
 
         this.kitImage = this.image = this.instrument.image;
 
-        CS.addDroppable(this);
+//        CS.addDroppable(this);
         this.onReceiveDrop = function(model) {
             if (model.type !== "cell") return;
             model.attachedToProperty.set(this);

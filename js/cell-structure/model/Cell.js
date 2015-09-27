@@ -36,7 +36,7 @@ define(function(require) {
             // Increase it's size if it's floating
             if (!attachedTo) this.sizeProperty.reset();
         }.bind(this));
-        CS.addDroppable(this);
+//        CS.addDroppable(this);
     }
 
     return inherit(PropertySet, Cell, {

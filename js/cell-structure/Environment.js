@@ -1,10 +1,10 @@
 define( function( require ) {
   
   window.CS = {};
-  CS.droppables = [];
-  CS.addDroppable = function(model) {
-    if(model && (typeof model.getGlobalBounds !== 'function')) return;
-    CS.droppables.push(model);
+  CS.dropListeners = [];
+  CS.addDropListener = function(node) {
+    if(node && (typeof node.getGlobalBounds !== 'function')) return;
+    CS.dropListeners.push(node);
   };
 
   CS.eventHandlers = {};
@@ -23,29 +23,27 @@ define( function( require ) {
   };
 
   CS.onDrop = function(node, model) {
-    CS.droppables.forEach( function( droppable ){
-      if(node == droppable) return;
-      //if(typeof droppable.collidesWith == "function") {
-      //  droppable.collidesWith(model);
+    CS.dropListeners.forEach( function( dropListener ){
+      if(node == dropListener) return;
+      //if(typeof dropListener.collidesWith == "function") {
+      //  dropListener.collidesWith(model);
       //}
-      if(CS.isNodeOnDroppable(node, droppable)) {
-        console.log('on');
-        if(typeof droppable.onReceiveDrop == "function")
-          droppable.onReceiveDrop(model);
+      if(CS.isNodeOnDroppable(node, dropListener)) {
+        if(typeof dropListener.onReceiveDrop == "function")
+          dropListener.onReceiveDrop(model);
       }
     });
   };
 
-  CS.isNodeOnDroppable = function(node, droppable) {
+  CS.isNodeOnDroppable = function(node, dropListener) {
       var within = function(value, lowerBound, upperBound) {
         return lowerBound < value && value < upperBound;
       };
 
-      var droppableBounds = droppable.getGlobalBounds();
+      var dropListenerBounds = dropListener.getGlobalBounds();
       var nodeBounds = node.getGlobalBounds();
 
-      debugger;
-      return within(nodeBounds.minX, droppableBounds.minX, droppableBounds.maxX) && within(nodeBounds.minY, droppableBounds.minY, droppableBounds.maxY);
+      return within(nodeBounds.minX, dropListenerBounds.minX, dropListenerBounds.maxX) && within(nodeBounds.minY, dropListenerBounds.minY, dropListenerBounds.maxY);
   };
 
   CS.positionDelta = function( position1, position2, deltaX, deltaY){

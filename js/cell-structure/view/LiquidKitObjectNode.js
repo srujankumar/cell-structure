@@ -56,7 +56,9 @@ define( function( require ) {
         },
         end: function( event ) {
           if( typeof model.onDragEnd == "function" ) {
-            model.onDragEnd();
+//            model.onDragEnd();
+            CS.onDrop( this, model);
+            model.reset();
           }
         }.bind(this)
       } ) );

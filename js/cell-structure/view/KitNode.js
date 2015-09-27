@@ -41,7 +41,6 @@ define( function( require ) {
     model.childrenProperty.link(resetChildren);
 
   }
-
   return inherit ( Node, KitNode);
 
 });

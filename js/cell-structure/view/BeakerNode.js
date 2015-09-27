@@ -17,8 +17,10 @@ define(function(require) {
 
         Node.call(this, {
             cursor: 'pointer',
-            x: model.location.x,
-            y: model.location.y
+            x: 0,
+            y: 0
+          //  x: model.location.x,
+           // y: model.location.y
         });
         var image = new Image(model.image, {
             x: 0,
@@ -31,8 +33,8 @@ define(function(require) {
             x: 0,
             y: 0,
             listener: function() {
-                CS.trigger('ApparatusRemoved', model);
-            }
+                CS.trigger('ApparatusRemoved',{ model: model, node: this});
+            }.bind(this)
         });
         this.addChild(removeButton);
 
@@ -55,16 +57,28 @@ define(function(require) {
             this.addChild(removeButton);
         }.bind(this);
 
-        model.liquidProperty.link(function() {
-            redraw();
-        }.bind(this));
-        // Scale it so it matches the model width and height
+        model.liquidProperty.link( redraw);
+
+        var setChild = function( cell){
+            debugger;
+            if(!cell) return;
+            var bounds = modelViewTransform.viewToModelBounds(this.getGlobalBounds());
+            cell.locationProperty.set(new Vector2((bounds.minX + bounds.maxX)/2, bounds.maxY));
+            cell.size = new Dimension2(50, 50);
+        }.bind(this);
+
+        model.cellProperty.link( setChild);
+
         this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,
             modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
-        // Register for synchronization with model.
-        /*model.locationProperty.link( function( location ) {
-          this.translation = modelViewTransform.modelToViewPosition( location );
-        }.bind(this) );*/
+
+        this.onReceiveDrop = model.onReceiveDrop;
+
+        this.unregisterObservers = function() {
+            model.liquidProperty.unlink( redraw);
+            model.cellProperty.unlink( setChild);
+        };
+        CS.addDropListener(this);
 
     }
 

@@ -11,15 +11,20 @@ define(function(require) {
     var StopwatchNode = require('CELL_STRUCTURE/cell-structure/view/StopwatchNode');
     var SlotNode = require('CELL_STRUCTURE/cell-structure/view/SlotNode');
 
-    function ExperimentAreaNode(model, options, modelViewTransform) {
-        Node.call(this, options);
+    function ExperimentAreaNode(model, modelViewTransform) {
+        Node.call(this, {
+            x: modelViewTransform.modelToViewDeltaX(model.location.x),
+            y: modelViewTransform.modelToViewDeltaY(model.location.y)
+        } );
 
         var image = new Image(table, {
-            x: model.location.x,
-            y: model.location.y + 300
+            left: 0,
+            bottom: modelViewTransform.modelToViewDeltaY(model.size.height)
+//            x: model.location.x,
+ //           y: model.location.y
         });
         image.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / image.width,
-            modelViewTransform.modelToViewDeltaY(model.size.height) / image.height);
+            modelViewTransform.modelToViewDeltaY( 118) / image.height);
         this.addChild(image);
 
         this.scale(1, 1);

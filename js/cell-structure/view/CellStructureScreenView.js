@@ -40,7 +40,7 @@ define( function( require ) {
     CS.modelViewTransform = modelViewTransform;
 
 
-    cellStructureScreenView.addChild( new ExperimentAreaNode( model.experimentArea, {}, modelViewTransform ));
+    cellStructureScreenView.addChild( new ExperimentAreaNode( model.experimentArea, modelViewTransform ));
     cellStructureScreenView.addChild( new KitNode( model.liquidKit, { }, modelViewTransform, LiquidKitObjectNode ));
     cellStructureScreenView.addChild( new KitNode( model.objectKit, {}, modelViewTransform ));
     cellStructureScreenView.addChild( new KitNode( model.apparatusKit, {}, modelViewTransform ));

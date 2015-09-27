@@ -9,7 +9,7 @@ define( function( require ) {
     var defaults = { location: '', text: '', size: '', visibility: true, children: []};
     var values = _.merge( defaults, properties );
     PropertySet.call( this, values );
-    CS.addDroppable(this);
+//    CS.addDroppable(this);
     this.onReceiveDrop = function(model) {
       model.reset();
     };

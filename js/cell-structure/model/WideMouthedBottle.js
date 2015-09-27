@@ -25,7 +25,7 @@ define(function(require) {
         this.image = this.kitImage = bottleImage;
         this.onDragEnd = function() {
             CS.onDrop(this);
-            CS.addDroppable(this);
+//            CS.addDroppable(this);
         };
 
         this.collidesWith = function(model) {

@@ -25,7 +25,6 @@ define(function(require) {
         this.image = this.kitImage = burnerKitImage;
         this.onDragEnd = function() {
             CS.onDrop(this);
-            CS.addDroppable(this);
         };
 
         this.onReceiveDrop = function(model) {

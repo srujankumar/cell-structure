@@ -24,19 +24,19 @@ define(function(require) {
         this.slots = [
             new Slot({
                 location: new Vector2(0, 0),
-                size: new Dimension2(250, 250)
+                size: new Dimension2(250, 350)
             }),
             new Slot({
                 location: new Vector2(250, 0),
-                size: new Dimension2(250, 250)
+                size: new Dimension2(250, 350)
             }),
             new Slot({
                 location: new Vector2(500, 0),
-                size: new Dimension2(250, 250)
+                size: new Dimension2(250, 350)
             }),
             new Slot({
                 location: new Vector2(750, 0),
-                size: new Dimension2(250, 250)
+                size: new Dimension2(250, 350)
             })
         ];
 
@@ -71,12 +71,16 @@ define(function(require) {
             addChild(model);
         };
         //CS.addDroppable(this);
-        CS.addEventHandler('ApparatusRemoved', function(child) {
-            CS.model.apparatusKit.addChild(child);
-            this.removeChild(child);
-            if (typeof child.onRemove == "function") {
-                child.onRemove();
+        CS.addEventHandler('ApparatusRemoved', function( event) {
+            var apparatus = event.model;
+            var apparatusNode = event.node;
+            CS.model.apparatusKit.addChild( apparatus);
+//            this.removeChild( apparatus);
+            if (typeof apparatus.onRemove == "function") {
+                 apparatus.onRemove();
             }
+            if ( typeof apparatusNode.unregisterObservers == "function")
+                apparatusNode.unregisterObservers();
         }.bind(this));
 
         this.removeChild = function(child) {

@@ -20,7 +20,7 @@ define(function(require) {
             tableHeight: 370
         });
         this.image = this.kitImage = fillerImage;
-        CS.addDroppable(this);
+//        CS.addDroppable(this);
         this.onDragEnd = function() {
             CS.onDrop(this);
         };

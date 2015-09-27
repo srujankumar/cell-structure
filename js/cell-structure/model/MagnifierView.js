@@ -21,11 +21,9 @@ define( function( require ) {
   function MagnifierView(microscope) {
     PropertySet.call( this, { location: undefined, magnifiedImage: undefined } );
     this.microscope = microscope;
-
     CS.addEventHandler('MagnifiedImageChanged', function(magnifiedImage){
       this.magnifiedImageProperty.set(magnifiedImage);
     }.bind(this));
-
 
     this.microscope.objectUnderLensProperty.link(function(object) {
       var image = object && object.magnifiedImage;

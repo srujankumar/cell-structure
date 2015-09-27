@@ -20,7 +20,7 @@ define(function(require) {
         this.name = "test-tube";
         this.image = this.kitImage = testTubeImage;
         this.onDragEnd = function() {
-            CS.addDroppable(this);
+//            CS.addDroppable(this);
             CS.onDrop(this);
         };
         var handleLiquid = function(model) {

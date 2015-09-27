@@ -18,16 +18,17 @@ define(function(require) {
         PropertySet.call(this, values);
 
         var acceptChild = function(model) {
-            model.locationProperty.set(new Vector2(0, model.tableHeight));
+            if (model.type !== "apparatus") return;
+//            model.locationProperty.set(new Vector2(0, model.tableHeight));
             this.childProperty.set(model);
+            CS.model.apparatusKit.removeChild(model);
         }.bind(this);
 
         this.setChild = function(model) {
-            console.log('sattar');
             if (!this.childProperty.get())
                 acceptChild(model);
-            else if (_.contains(this.childProperty.get().acceptedModels, model.name))
-                acceptChild(model);
+//            else if (_.contains(this.childProperty.get().acceptedModels, model.name))
+//                acceptChild(model);
             else
                 return false;
             return true;

@@ -13,11 +13,11 @@ define(function (require) {
         var tmpSize = this.size;
         this.onDragEnd = function () {
             //CS.model.liquidKit.removeChild(this);
-
+/*
             CS.onDrop(this);
             tmpSize = this.size;
             this.reset();
-            this.size = tmpSize;
+            this.size = tmpSize;*/
         };
     }
 
