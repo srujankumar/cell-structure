@@ -27,6 +27,7 @@ define( function( require ) {
    */
   function KitObjectNode( model, modelViewTransform ) {
 
+    model.view = this;
     Node.call( this, {
       x: model.location.x,
       y: model.location.y,
@@ -68,9 +69,9 @@ define( function( require ) {
         translate: function (args) {
           //this.translation = args.position;
           model.location = modelViewTransform.viewToModelPosition( args.position );
-        },
+        }.bind(this),
         start: function( event ) {
-          if(!model.attachedTo) return;
+          if(!model.attachedTo || model.type != "cell") return;
           model.attachedTo.onChildRemoved(model);
           model.attachedToProperty.set(null);
         },

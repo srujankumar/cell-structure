@@ -28,8 +28,8 @@ define(function(require) {
             x: 0,
             y: 50,
             listener: function() {
-                CS.trigger('ApparatusRemoved', model);
-            }
+                CS.trigger('ApparatusRemoved', { model: model, node: this });
+            }.bind(this)
         });
         this.addChild(removeButton);
         this.addChild(instrumentNode);
@@ -39,6 +39,11 @@ define(function(require) {
         this.scale(1, 1);
         //this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
         //modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+        CS.addDropListener(this);
+        this.onReceiveDrop = model.onReceiveDrop;
+        this.unregisterObservers = function() {
+            CS.removeDropListener(this);
+        };
     }
     return inherit(Node, MicroscopeNode);
 });

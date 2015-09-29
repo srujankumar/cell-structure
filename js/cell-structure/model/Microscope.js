@@ -31,7 +31,7 @@ define(function(require) {
             //CS.model.objectKit.addChild(this.objectUnderLens);
             //CS.model.objectKit.removeChild(model);
             this.objectUnderLensProperty.set(model);
-        };
+        }.bind(this);
         this.onDragEnd = function() {
             CS.onDrop(this);
         };

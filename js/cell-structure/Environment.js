@@ -7,6 +7,12 @@ define( function( require ) {
     CS.dropListeners.push(node);
   };
 
+  CS.removeDropListener = function(node) {
+    var nodeIndex = CS.dropListeners.indexOf(node);
+    if(node &&  nodeIndex != -1)
+      CS.dropListeners.splice( nodeIndex, 1);
+  };
+
   CS.eventHandlers = {};
   CS.addEventHandler = function(eventName, handler) {
     CS.eventHandlers[eventName] = CS.eventHandlers[eventName] || [];

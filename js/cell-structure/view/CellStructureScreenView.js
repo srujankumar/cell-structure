@@ -36,7 +36,7 @@ define( function( require ) {
       bottom: this.layoutBounds.maxY - 10
     } );
 
-    var modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( new Vector2( 10, 10 ), 1 );
+    var modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( new Vector2( 0, 0), 1 );
     CS.modelViewTransform = modelViewTransform;
 
 

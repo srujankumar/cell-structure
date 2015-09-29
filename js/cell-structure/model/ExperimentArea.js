@@ -24,19 +24,23 @@ define(function(require) {
         this.slots = [
             new Slot({
                 location: new Vector2(0, 0),
-                size: new Dimension2(250, 350)
+                size: new Dimension2(250, 350),
+                slotno: 0
             }),
             new Slot({
                 location: new Vector2(250, 0),
-                size: new Dimension2(250, 350)
+                size: new Dimension2(250, 350),
+                slotno: 1
             }),
             new Slot({
                 location: new Vector2(500, 0),
-                size: new Dimension2(250, 350)
+                size: new Dimension2(250, 350),
+                slotno: 2
             }),
             new Slot({
                 location: new Vector2(750, 0),
-                size: new Dimension2(250, 350)
+                size: new Dimension2(250, 350),
+                slotno: 3
             })
         ];
 

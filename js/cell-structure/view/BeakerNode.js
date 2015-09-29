@@ -22,6 +22,7 @@ define(function(require) {
           //  x: model.location.x,
            // y: model.location.y
         });
+
         var image = new Image(model.image, {
             x: 0,
             y: 0
@@ -46,7 +47,7 @@ define(function(require) {
                 this.removeChild(liquidNode);
             }
             if (model.liquid) {
-                liquidNode = new Rectangle(103, 175, 313, 295, 0, 0, {
+                liquidNode = new Rectangle( 90, 175, 335, 300, 0, 0, {
                     lineWidth: 0,
                     stroke: '#000',
                     fill: model.liquid.color
@@ -59,16 +60,6 @@ define(function(require) {
 
         model.liquidProperty.link( redraw);
 
-        var setChild = function( cell){
-            debugger;
-            if(!cell) return;
-            var bounds = modelViewTransform.viewToModelBounds(this.getGlobalBounds());
-            cell.locationProperty.set(new Vector2((bounds.minX + bounds.maxX)/2, bounds.maxY));
-            cell.size = new Dimension2(50, 50);
-        }.bind(this);
-
-        model.cellProperty.link( setChild);
-
         this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,
             modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
 
@@ -76,8 +67,8 @@ define(function(require) {
 
         this.unregisterObservers = function() {
             model.liquidProperty.unlink( redraw);
-            model.cellProperty.unlink( setChild);
-        };
+            CS.removeDropListener(this);
+        }.bind(this);
         CS.addDropListener(this);
 
     }

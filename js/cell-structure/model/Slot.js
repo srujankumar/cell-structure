@@ -11,7 +11,8 @@ define(function(require) {
             location: '',
             size: '',
             visibility: true,
-            child: null
+            child: null,
+            slotno: 0
         };
 
         var values = _.merge(defaults, properties);

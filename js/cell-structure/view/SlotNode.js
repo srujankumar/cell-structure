@@ -7,12 +7,11 @@ define(function (require) {
     var Rectangle = require('SCENERY/nodes/Rectangle');
 
     function SlotNode(model, modelViewTransform) {
-        var pos = modelViewTransform.modelToViewPosition(model.location);
 
         Node.call(this, {
             cursor: 'pointer',
-            x: pos.x,
-            y: pos.y
+            x: model.location.x,
+            y: model.location.y
         });
 
         var rect = new Rectangle( 0, 0, model.size.width, model.size.height, 0, 0, { fill: "transparent", lineWidth: 2, stroke: "#000000" });
@@ -24,10 +23,10 @@ define(function (require) {
             var view = CS.views[child.constructor.name];
             var viewNode = new view(child, modelViewTransform);
             rect.addChild(viewNode);
-            debugger;
-            viewNode.setLeft(50);
-            viewNode.setBottom(350);
-        });
+            child.attachedTo = model;
+            viewNode.setLeft(modelViewTransform.modelToViewDeltaX(50));
+            viewNode.setBottom(modelViewTransform.modelToViewDeltaY(350));
+        }.bind(this));
 
         this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,
           modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);

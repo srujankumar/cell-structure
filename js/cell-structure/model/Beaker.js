@@ -38,6 +38,8 @@ define(function(require) {
             if (this.liquid && (typeof model.onDippedInLiquid == "function")) {
                 if (model.onDippedInLiquid(this.liquid)) {
                     this.cellProperty.set(model);
+                    this.cell.sizeProperty.set( new Dimension2( 50, 50));
+                    this.cell.locationProperty.set(new Vector2(this.attachedTo.slotno * 250 + 100, 600));
                     model.attachedToProperty.set(this);
                 } else {
                     model.reset();
