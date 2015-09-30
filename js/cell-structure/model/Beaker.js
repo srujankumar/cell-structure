@@ -19,9 +19,6 @@ define(function(require) {
         });
         this.name = "beaker";
         this.image = this.kitImage = beakerImage;
-        this.onDragEnd = function() {
-            CS.onDrop(this);
-        };
 
         var handleLiquid = function(model) {
             if (model.type !== "liquid") return;

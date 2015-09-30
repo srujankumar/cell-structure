@@ -36,8 +36,8 @@ define(function(require) {
         model.burnerImage.scale(0.5,0.5);
         Node.call(this, {
             cursor: 'pointer',
-            x: model.location.x,
-            y: model.location.y
+            x: 0,
+            y: 0
         });
 
         var image = new Image(model.image, {
@@ -73,11 +73,13 @@ define(function(require) {
             x: 0,
             y: 0,
             listener: function() {
-                CS.trigger('ApparatusRemoved', model);
-            }
+                CS.trigger('ApparatusRemoved', { model: model, node: this });
+            }.bind(this)
         });
         this.addChild(removeButton);
 
+        this.setLeft(50);
+        this.setBottom(350);
         //this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,
         //  modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
     }

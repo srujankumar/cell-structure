@@ -10,15 +10,13 @@ define( function( require ) {
   function Cutter( location, size ) {
     PropertySet.call( this, { location: new Vector2(300, 300), size: new Dimension2( 80, 80 ), visibility: true, cell: null, image: cutterImage} );
     this.kitImage = this.image;
-    this.onDragEnd = function() {
-      CS.onDrop(this);
-      CS.model.apparatusKit.removeChild(this);
-      CS.model.apparatusKit.addChild(this);
-    };
+
     this.collidesWith = function( model){
       if(CS.positionDelta( this.location, model.location, model.size.width, model.size.height))
         if(typeof model.onCut === "function")
           model.onCut();
+      CS.model.apparatusKit.removeChild(this);
+      CS.model.apparatusKit.addChild(this);
     }
   }
   return inherit( PropertySet, Cutter );

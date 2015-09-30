@@ -19,10 +19,6 @@ define(function(require) {
         });
         this.name = "test-tube";
         this.image = this.kitImage = testTubeImage;
-        this.onDragEnd = function() {
-//            CS.addDroppable(this);
-            CS.onDrop(this);
-        };
         var handleLiquid = function(model) {
             if (model.type !== "liquid") return;
             this.liquidProperty.set(model);
@@ -32,7 +28,7 @@ define(function(require) {
             return true;
         }.bind(this);
 
-        this.collidesWith = function(model) {
+/*        this.collidesWith = function(model) {
             if (model.type === "liquid") {
                 var dropListenLocation = new Vector2(this.location.x - 50, this.location.y - 50);
                 size = new Dimension2(this.size.width, this.size.height);
@@ -40,7 +36,7 @@ define(function(require) {
                 if (CS.positionDelta(model.location, dropListenLocation, size.width, size.height))
                     this.onReceiveDrop(model);
             }
-        };
+        }.bind(this);*/
 
         this.onReceiveDrop = function(model) {
             handleLiquid(model);

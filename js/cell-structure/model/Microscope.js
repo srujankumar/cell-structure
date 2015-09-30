@@ -22,7 +22,6 @@ define(function(require) {
 
         this.kitImage = this.image = this.instrument.image;
 
-//        CS.addDroppable(this);
         this.onReceiveDrop = function(model) {
             if (model.type !== "cell") return;
             model.attachedToProperty.set(this);
@@ -32,9 +31,6 @@ define(function(require) {
             //CS.model.objectKit.removeChild(model);
             this.objectUnderLensProperty.set(model);
         }.bind(this);
-        this.onDragEnd = function() {
-            CS.onDrop(this);
-        };
 
         this.onRemove = function() {
             CS.model.experimentArea.slots.map(function(slot) {

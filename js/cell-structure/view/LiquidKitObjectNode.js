@@ -55,11 +55,8 @@ define( function( require ) {
           model.location = modelViewTransform.viewToModelPosition( args.position );
         },
         end: function( event ) {
-          if( typeof model.onDragEnd == "function" ) {
-//            model.onDragEnd();
-            CS.onDrop( this, model);
-            model.reset();
-          }
+          CS.onDrop( this, model);
+          model.reset();
         }.bind(this)
       } ) );
 

@@ -44,6 +44,8 @@ define(function (require) {
                 CS.model.experimentArea.stopStopwatch();
             }
         });
+
+        CS.addDropListener(this);
     }
 
     return inherit(Cell, PlantRootCell, {

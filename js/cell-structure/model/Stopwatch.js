@@ -20,9 +20,6 @@ define(function(require) {
             tableHeight: 370
         });
         this.image = this.kitImage = stopWatchImage;
-        this.onDragEnd = function() {
-            CS.onDrop(this);
-        };
 
         this.onRemove = function() {};
 

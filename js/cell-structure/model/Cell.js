@@ -36,7 +36,6 @@ define(function(require) {
             // Increase it's size if it's floating
             if (!attachedTo) this.sizeProperty.reset();
         }.bind(this));
-//        CS.addDroppable(this);
     }
 
     return inherit(PropertySet, Cell, {
@@ -44,10 +43,6 @@ define(function(require) {
             if (model instanceof Filler)
                 model.collidesWith(this);
             return false;
-        },
-
-        onDragEnd: function() {
-            CS.onDrop(this);
         },
 
         onDippedInLiquid: function(liquid) {

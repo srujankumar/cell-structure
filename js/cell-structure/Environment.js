@@ -3,7 +3,6 @@ define( function( require ) {
   window.CS = {};
   CS.dropListeners = [];
   CS.addDropListener = function(node) {
-    if(node && (typeof node.getGlobalBounds !== 'function')) return;
     CS.dropListeners.push(node);
   };
 

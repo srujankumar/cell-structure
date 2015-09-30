@@ -14,7 +14,7 @@ define(function (require) {
             y: model.location.y
         });
 
-        var rect = new Rectangle( 0, 0, model.size.width, model.size.height, 0, 0, { fill: "transparent", lineWidth: 2, stroke: "#000000" });
+        var rect = new Rectangle( 0, 0, model.size.width, model.size.height, 0, 0, { fill: "transparent", lineWidth: 0, stroke: "#000000" });
         this.addChild(rect);
         model.childProperty.link(function(child) {
             rect.removeAllChildren();

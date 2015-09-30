@@ -23,10 +23,6 @@ define(function(require) {
 
         this.name = "wide-mouthed-bottle";
         this.image = this.kitImage = bottleImage;
-        this.onDragEnd = function() {
-            CS.onDrop(this);
-//            CS.addDroppable(this);
-        };
 
         this.collidesWith = function( model, node, dropListener) {
             if (model.type === "liquid" || (model.type === "cell" && model.cellType === 'Leaf Cell')) {

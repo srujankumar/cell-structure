@@ -23,9 +23,6 @@ define(function(require) {
 
         this.name = "burner kit";
         this.image = this.kitImage = burnerKitImage;
-        this.onDragEnd = function() {
-            CS.onDrop(this);
-        };
 
         this.onReceiveDrop = function(model) {
             model.sizeProperty.set(new Dimension2(100, 100));
