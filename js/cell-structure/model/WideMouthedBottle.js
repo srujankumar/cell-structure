@@ -28,14 +28,16 @@ define(function(require) {
 //            CS.addDroppable(this);
         };
 
-        this.collidesWith = function(model) {
+        this.collidesWith = function( model, node, dropListener) {
             if (model.type === "liquid" || (model.type === "cell" && model.cellType === 'Leaf Cell')) {
-                var locationOffset = 100;
+                var dropListenerBounds = dropListener.getGlobalBounds();
+                var nodeBounds = node.getGlobalBounds();
+                var locationOffset = 20;
+                var nodeLocation = new Vector2( nodeBounds.minX, nodeBounds.minY );
+                var dropListenLocation = new Vector2( dropListenerBounds.minX - locationOffset, dropListenerBounds.minY );
+                size = new Dimension2( dropListenerBounds.maxX - dropListenerBounds.minX, dropListenerBounds.maxY - dropListenerBounds.minY);
 
-                var dropListenLocation = new Vector2(this.location.x, this.location.y - locationOffset);
-                size = new Dimension2(this.size.width, this.size.height);
-
-                if (CS.positionDelta(model.location, dropListenLocation, size.width, size.height))
+                if (CS.positionDelta( nodeLocation, dropListenLocation, size.width, size.height))
                     this.onReceiveDrop(model);
             }
         };
@@ -68,6 +70,8 @@ define(function(require) {
         this.onRemove = function() {
             if (this.liquid) this.liquidProperty.set(null);
             if (this.cell) this.cell.reset();
+            this.cellProperty.set(null);
+            this.corkOpenProperty.set(true);
             CS.model.experimentArea.slots.map(function(slot) {
                 if (slot.child == this) {
                     slot.child = null;

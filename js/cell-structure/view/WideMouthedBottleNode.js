@@ -20,18 +20,18 @@ define(function(require) {
 
         Node.call(this, {
             cursor: 'pointer',
-            x: model.location.x,
-            y: model.location.y
+            x: 0,
+            y: 0
         });
 
-        function replaceCorkImage(newImage, context) {
-            context.removeChild(corkNode);
+        var replaceCorkImage = function( newImage) {
+            this.removeChild(corkNode);
 
             corkNode = new Image(newImage, {
                 x: 25,
                 y: -30
             });
-            context.addChild(corkNode);
+            this.addChild(corkNode);
 
             corkNode.addInputListener(new DownUpListener({
                 up: function() {
@@ -40,7 +40,7 @@ define(function(require) {
             }));
 
             redraw();
-        }
+        }.bind(this);
 
         var image = new Image(model.image, {
             x: 0,
@@ -54,8 +54,8 @@ define(function(require) {
             x: 0,
             y: 0,
             listener: function() {
-                CS.trigger('ApparatusRemoved', model);
-            }
+                CS.trigger('ApparatusRemoved', { model: model, node: this });
+            }.bind(this)
         });
         this.addChild(removeButton);
 
@@ -66,14 +66,14 @@ define(function(require) {
         model.corkImageProperty.set(corkImage);
 
         var onTimeout = function() {
-            replaceCorkImage(corkImage, this);
+            replaceCorkImage(corkImage);
 
             model.cell.visibility = true;
-            model.cell.locationProperty.set(new Vector2(210, 243));
+            model.cell.locationProperty.set(new Vector2( model.attachedTo.slotno * 250 + 75, 400));
             model.cell.co2removed = true;
-        }.bind(this);
+        };
 
-        model.corkOpenProperty.link(function(corkOpen) {
+        var onCorkOpen = function(corkOpen) {
             corkNode.y = corkOpen ? -30 : 10;
 
             if (!corkOpen && model.cell && model.liquid) {
@@ -83,7 +83,8 @@ define(function(require) {
                     CS.showMessageBox("Potassium hydroxide absorbs carbon dioxide", true, 2000, location);
                 }
             }
-        });
+        };
+        model.corkOpenProperty.link( onCorkOpen);
 
         var liquidNode;
         var redraw = function() {
@@ -107,17 +108,26 @@ define(function(require) {
             this.addChild(corkNode);
         }.bind(this);
 
-        model.corkImageProperty.link(function(corkImage) {
-            replaceCorkImage(corkImage, this);
-        }.bind(this));
+        model.corkImageProperty.link( replaceCorkImage);
 
-        model.liquidProperty.link(function() {
-            redraw();
-        }.bind(this));
+        model.liquidProperty.link( redraw);
 
         this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,
             modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
 
+        this.setLeft(50);
+        this.setBottom(350);
+        CS.addDropListener(this);
+
+        this.unregisterObservers = function() {
+            model.corkOpenProperty.unlink( onCorkOpen);
+            model.corkImageProperty.unlink( replaceCorkImage);
+            model.liquidProperty.unlink( redraw);
+            CS.removeDropListener(this);
+        };
+
+        this.onReceiveDrop = model.onReceiveDrop;
+        this.collidesWith = model.collidesWith;
     }
 
     return inherit(Node, WideMouthedBottleNode);
