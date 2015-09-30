@@ -24,8 +24,6 @@ define(function (require) {
             var viewNode = new view(child, modelViewTransform);
             rect.addChild(viewNode);
             child.attachedTo = model;
-            viewNode.setLeft(modelViewTransform.modelToViewDeltaX(50));
-            viewNode.setBottom(modelViewTransform.modelToViewDeltaY(350));
         }.bind(this));
 
         this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,

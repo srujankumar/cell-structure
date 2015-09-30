@@ -31,10 +31,10 @@ define( function( require ) {
   CS.onDrop = function(node, model) {
     CS.dropListeners.forEach( function( dropListener ){
       if(node == dropListener) return;
-      //if(typeof dropListener.collidesWith == "function") {
-      //  dropListener.collidesWith(model);
-      //}
-      if(CS.isNodeOnDroppable(node, dropListener)) {
+      if(typeof dropListener.collidesWith == "function") {
+        dropListener.collidesWith( model, node, dropListener);
+      }
+      else if(CS.isNodeOnDroppable(node, dropListener)) {
         if(typeof dropListener.onReceiveDrop == "function")
           dropListener.onReceiveDrop(model);
       }

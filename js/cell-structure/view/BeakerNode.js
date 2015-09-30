@@ -19,8 +19,6 @@ define(function(require) {
             cursor: 'pointer',
             x: 0,
             y: 0
-          //  x: model.location.x,
-           // y: model.location.y
         });
 
         var image = new Image(model.image, {
@@ -62,6 +60,9 @@ define(function(require) {
 
         this.scale(modelViewTransform.modelToViewDeltaX(model.size.width) / this.width,
             modelViewTransform.modelToViewDeltaY(model.size.height) / this.height);
+
+        this.setLeft(50);
+        this.setBottom(350);
 
         this.onReceiveDrop = model.onReceiveDrop;
 

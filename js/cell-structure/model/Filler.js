@@ -45,7 +45,7 @@ define(function(require) {
                 this.cellProperty.set(model);
                 model.attachedToProperty.set(this);
                 model.sizeProperty.set(new Dimension2(50, 50));
-                model.locationProperty.set(new Vector2(50, 495));
+                model.locationProperty.set(new Vector2( this.attachedTo.slotno * 250 + 65, 575 ));
                 return true;
             } else {
                 model.reset();
@@ -71,35 +71,38 @@ define(function(require) {
             }.bind(this));
         };
 
-        this.collidesWith = function(model) {
+        this.collidesWith = function( model, node, dropListener) {
             //Filler's listening area should start from 100points left from the beginning of
             //Filler
-            var locationOffset = 100;
-            var dropListenLocation = new Vector2(this.location.x - locationOffset, 430);
-            var size = new Dimension2(200, 200);
+            var dropListenerBounds = dropListener.getGlobalBounds();
+            var nodeBounds = node.getGlobalBounds();
+            var nodeLocation = new Vector2( nodeBounds.minX, nodeBounds.minY);
+            var locationOffset = 20;
+            var dropListenLocation = new Vector2(dropListenerBounds.minX - locationOffset, dropListenerBounds.minY);
+            var size = new Dimension2( dropListenerBounds.maxX - dropListenerBounds.minX, 175);
             if (model.type == "liquid") {
-                dropListenLocation = new Vector2(this.location.x - 20, this.location.y);
-                size = new Dimension2(this.size.width, this.size.height);
+                dropListenLocation = new Vector2( dropListenerBounds.minX - locationOffset, dropListenerBounds.minY);
+                size = new Dimension2( dropListenerBounds.maxX - dropListenerBounds.minX, dropListenerBounds.maxY - dropListenerBounds.minY);
             }
-            if (CS.positionDelta(model.location, dropListenLocation, size.width, size.height))
+            if (CS.positionDelta( nodeLocation, dropListenLocation, size.width, size.height))
                 this.onReceiveDrop(model);
         };
 
         this.drop = new Drop({
-            location: new Vector2(15, 120)
+            location: new Vector2( 25, 120)
         });
 
         this.onKnobPressed = function() {
             var intervalId = window.setInterval(function() {
                 if (!(this.cell && this.liquid)) {
                     window.clearInterval(intervalId);
-                    this.drop.locationProperty.set(new Vector2(15, 120));
+                    this.drop.locationProperty.set(new Vector2( 25, 120));
                     CS.showMessageBox("Fill the filler with any liquid and place any cell under it before you press the knob");
                     return;
                 }
-                if (this.drop.location.y + 295 > this.cell.location.y) {
+                if (this.drop.location.y + 400 > this.cell.location.y) {
                     window.clearInterval(intervalId);
-                    this.drop.locationProperty.set(new Vector2(15, 120));
+                    this.drop.locationProperty.set(new Vector2( 25, 120));
                     if (typeof this.cell.onLiquidDropped == "function") {
                         this.cell.onLiquidDropped(this.liquid);
                     }

@@ -16,11 +16,10 @@ define( function( require ) {
   function FillerNode( model, modelViewTransform ) {
     model.size = new Dimension2(60, 150);
 
-    var pos = modelViewTransform.modelToViewPosition(model.location);
     Node.call( this, {
       cursor: 'pointer',
-      x: pos.x,
-      y: pos.y
+      x: model.location.x,
+      y: model.location.y
     } );
 
     var image = new Image( model.image, { x: 0, y: 0 } );
@@ -32,7 +31,7 @@ define( function( require ) {
       x: 0,
       y: 0,
       listener: function() {
-        CS.trigger('ApparatusRemoved',model);
+        CS.trigger('ApparatusRemoved',{ model: model, node: this });
       }.bind(this)
     } );
     this.addChild(removeButton);
@@ -52,7 +51,7 @@ define( function( require ) {
     this.addChild(knobButton);
 
     var liquidNode;
-    model.liquidProperty.link( function( liquid ) {
+    var redraw = function( liquid ) {
       this.removeChild(image);
       this.removeChild(knobButton);
       this.removeChild(removeButton);
@@ -68,10 +67,21 @@ define( function( require ) {
       this.addChild(knobButton);
       this.addChild(removeButton);
       this.addChild(dropNode);
-    }.bind(this) );
+    }.bind(this);
+    model.liquidProperty.link( redraw);
 
     this.scale(1,1);
+    this.setLeft(50);
+    this.setBottom(250);
 
+    CS.addDropListener(this);
+    this.onReceiveDrop = model.onReceiveDrop;
+    this.collidesWith = model.collidesWith;
+
+    this.unregisterObservers = function() {
+      model.liquidProperty.unlink( redraw);
+      CS.removeDropListener(this);
+    }.bind(this);
   }
 
   return inherit( Node, FillerNode );

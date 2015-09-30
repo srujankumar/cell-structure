@@ -37,8 +37,10 @@ define(function(require) {
 
         // Scale it so it matches the model width and height
         this.scale(1, 1);
-        //this.scale( modelViewTransform.modelToViewDeltaX( model.size.width ) / this.width,
-        //modelViewTransform.modelToViewDeltaY( model.size.height ) / this.height );
+
+        this.setLeft(50);
+        this.setBottom(350);
+
         CS.addDropListener(this);
         this.onReceiveDrop = model.onReceiveDrop;
         this.unregisterObservers = function() {
