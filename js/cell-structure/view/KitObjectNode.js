@@ -79,6 +79,16 @@ define( function( require ) {
           //if( typeof model.onDragEnd == "function" ) {
           //  model.onDragEnd();
           CS.onDrop(this, model);
+          if( !model.attachedTo) {
+            if(model.type === "apparatus") {
+              CS.model.apparatusKit.removeChild(model);
+              CS.model.apparatusKit.addChild(model);
+            }
+            else if(model.type === "cell") {
+              model.reset();
+            }
+          }
+
         }.bind(this)
       } ) );
 

@@ -33,14 +33,14 @@ define( function( require ) {
       if(typeof dropListener.collidesWith == "function") {
         dropListener.collidesWith( model, node, dropListener);
       }
-      else if(CS.isNodeOnDroppable(node, dropListener)) {
+      else if(CS.isNodeOnDropListener(node, dropListener)) {
         if(typeof dropListener.onReceiveDrop == "function")
           dropListener.onReceiveDrop(model);
       }
     });
   };
 
-  CS.isNodeOnDroppable = function(node, dropListener) {
+  CS.isNodeOnDropListener = function(node, dropListener) {
       var within = function(value, lowerBound, upperBound) {
         return lowerBound < value && value < upperBound;
       };

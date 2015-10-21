@@ -38,6 +38,7 @@ define(function(require) {
                     slot.child = null;
                 }
             }.bind(this));
+            this.attachedToProperty.set(null);
             if (!this.objectUnderLens) return;
             this.objectUnderLens.reset();
             this.objectUnderLensProperty.set(null);

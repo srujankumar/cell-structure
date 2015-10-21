@@ -44,6 +44,7 @@ define(function(require) {
                     slot.child = null;
                 }
             }.bind(this));
+            this.attachedToProperty.set(null);
         };
     }
 

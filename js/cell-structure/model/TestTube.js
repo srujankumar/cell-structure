@@ -48,6 +48,7 @@ define(function(require) {
                 this.cell.reset();
                 this.cellProperty.set(null);
             }
+            this.attachedToProperty.set(null);
             CS.model.experimentArea.slots.map(function(slot) {
                 if (slot.child == this) {
                     slot.child = null;

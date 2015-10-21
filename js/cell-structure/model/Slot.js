@@ -20,7 +20,6 @@ define(function(require) {
 
         var acceptChild = function(model) {
             if (model.type !== "apparatus") return;
-//            model.locationProperty.set(new Vector2(0, model.tableHeight));
             this.childProperty.set(model);
             CS.model.apparatusKit.removeChild(model);
         }.bind(this);
@@ -28,8 +27,6 @@ define(function(require) {
         this.setChild = function(model) {
             if (!this.childProperty.get())
                 acceptChild(model);
-//            else if (_.contains(this.childProperty.get().acceptedModels, model.name))
-//                acceptChild(model);
             else
                 return false;
             return true;
