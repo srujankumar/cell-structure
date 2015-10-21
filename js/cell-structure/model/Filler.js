@@ -37,7 +37,7 @@ define(function(require) {
                 model.reset();
                 var location = new Vector2(this.location.x + this.size.width, this.location.y);
                 CS.showMessageBox("Fill the Filler with any liquid before you place an object under it", true, 5000, location);
-            } else if (model.onDippedInLiquid(this.liquid)) {
+            } else if (model.onLiquidDropped(this.liquid)) {
                 this.cellProperty.set(model);
                 model.attachedToProperty.set(this);
                 model.sizeProperty.set(new Dimension2(50, 50));
@@ -46,7 +46,10 @@ define(function(require) {
             } else {
                 model.reset();
                 var location = new Vector2(this.location.x + this.size.width, this.location.y);
-                CS.showMessageBox(model.cellType + " does not react with " + this.liquid.text, true, 5000, location);
+                if(model.cellType === "Plant Stem Cell")
+                    CS.showMessageBox(model.cellType + " has to be dipped in beaker with " + this.liquid.text, true, 5000, location);
+                else
+                    CS.showMessageBox(model.cellType + " does not react with " + this.liquid.text, true, 5000, location);
             }
         }.bind(this);
 

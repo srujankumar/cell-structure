@@ -62,7 +62,7 @@ define(function(require) {
                 this.image = blueBlackLeaf;
             }
 
-            this.onDippedInLiquid(liquid);
+            return this.onDippedInLiquid(liquid);
         }
     });
 });

@@ -38,6 +38,10 @@ define(function (require) {
             }
         }.bind(this);
 
+        this.onLiquidDropped = function ( liquid) {
+            return false;
+        };
+
         this.attachedToProperty.link(function (attachedTo) {
             if (!CS.model) return; // still initializing
             if (!attachedTo) {
