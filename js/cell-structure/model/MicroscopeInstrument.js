@@ -16,7 +16,7 @@ define( function( require ) {
       this.objectUnderLensProperty.set(object);
 
       if(!object) return;
-      object.locationProperty.set(new Vector2(this.microscope.attachedTo.slotno * 250 + 150, 580));
+      object.locationProperty.set(new Vector2(this.microscope.attachedTo.slotno * 250 + 100, 580));
       object.sizeProperty.set(new Dimension2( 30, 30 ));
     }.bind(this));
   }

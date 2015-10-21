@@ -38,7 +38,7 @@ define(function(require) {
         // Scale it so it matches the model width and height
         this.scale(1, 1);
 
-        this.setLeft(50);
+        this.setLeft(0);
         this.setBottom(350);
 
         CS.addDropListener(this);
