@@ -20,13 +20,13 @@ define(function(require) {
         var instrumentNode = new MicroscopeInstrumentNode(model.instrument, {}, modelViewTransform);
         var magnifierViewNode = new MagnifierViewNode(model.magnifierView, {
             x: -20,
-            y: -175
+            y: -130
         }, modelViewTransform);
         var removeButton = new TextPushButton("X", {
             font: new PhetFont(16),
             baseColor: 'yellow',
             x: 0,
-            y: 50,
+            y: 70,
             listener: function() {
                 CS.trigger('ApparatusRemoved', { model: model, node: this });
             }.bind(this)
