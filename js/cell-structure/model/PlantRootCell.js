@@ -31,11 +31,14 @@ define(function (require) {
 
         this.onDippedInLiquid = function (liquid) {
             if (liquid.text === "Red Water") {
-                CS.model.experimentArea.createStopwatch(onTimeout);
+                if( this.image === treeRedImage || this.image === treeRedCutImage)
+                    CS.showMessageBox("Plant is already dipped in Red Water", true, 3000);
+                else
+                    CS.model.experimentArea.createStopwatch(onTimeout);
                 return true;
-            } else {
-                return false;
             }
+            else
+                return false;
         }.bind(this);
 
         this.onLiquidDropped = function ( liquid) {
