@@ -37,7 +37,7 @@ define(function(require) {
                 //model.reset();
                 var location = new Vector2(this.location.x + this.size.width, this.location.y);
                 CS.showMessageBox("Fill the Filler with any liquid before you place an object under it", true, 5000, location);
-            } else if (model.onLiquidDropped(this.liquid)) {
+            } else if (model.onDippedInLiquid(this.liquid)) {
                 this.cellProperty.set(model);
                 model.attachedToProperty.set(this);
                 model.sizeProperty.set(new Dimension2(50, 50));

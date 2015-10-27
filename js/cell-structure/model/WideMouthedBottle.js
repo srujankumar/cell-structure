@@ -55,6 +55,8 @@ define(function(require) {
                 this.corkImageProperty.set(corkWithLeafImage);
                 this.cellProperty.set(model);
                 model.visibility = false;
+                var location = new Vector2(this.location.x + this.size.width, this.location.y);
+                CS.showMessageBox( "Click on the cork for the reaction to take place", true, 5000, location);
             }
 
             return true;
