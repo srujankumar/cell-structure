@@ -34,7 +34,7 @@ define(function(require) {
                 this.cell.reset();
             }
             if (this.liquid == null) {
-                model.reset();
+                //model.reset();
                 var location = new Vector2(this.location.x + this.size.width, this.location.y);
                 CS.showMessageBox("Fill the Filler with any liquid before you place an object under it", true, 5000, location);
             } else if (model.onLiquidDropped(this.liquid)) {
@@ -44,7 +44,7 @@ define(function(require) {
                 model.locationProperty.set(new Vector2( this.attachedTo.slotno * 250 + 65, 575 ));
                 return true;
             } else {
-                model.reset();
+                //model.reset();
                 var location = new Vector2(this.location.x + this.size.width, this.location.y);
                 if(model.cellType === "Plant Stem Cell")
                     CS.showMessageBox(model.cellType + " has to be dipped in beaker with " + this.liquid.text, true, 5000, location);

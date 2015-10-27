@@ -48,8 +48,9 @@ define(function(require) {
             stopwatchNode = new StopwatchNode(stopwatch, modelViewTransform);
             this.addChild(stopwatchNode);
         }.bind(this));
-    }
 
+        CS.experimentAreaNode = this;
+    }
 
     return inherit(Node, ExperimentAreaNode);
 

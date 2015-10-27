@@ -72,7 +72,8 @@ define( function( require ) {
         }.bind(this),
         start: function( event ) {
           if(!model.attachedTo || model.type != "cell") return;
-          model.attachedTo.onChildRemoved(model);
+          if( typeof model.attachedTo.onChildRemoved === "function")
+            model.attachedTo.onChildRemoved(model);
           model.attachedToProperty.set(null);
         },
         end: function( event ) {

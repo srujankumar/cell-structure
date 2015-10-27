@@ -38,6 +38,8 @@ define( function( require ) {
           dropListener.onReceiveDrop(model);
       }
     });
+    if( model.type === "cell" && model.attachedTo === null && CS.isNodeOnDropListener( node, CS.experimentAreaNode) )
+      model.attachedToProperty.set(CS.experimentAreaNode);
   };
 
   CS.isNodeOnDropListener = function(node, dropListener) {

@@ -27,6 +27,10 @@ define( function( require ) {
 
     this.microscope.objectUnderLensProperty.link(function(object) {
       var image = object && object.magnifiedImage;
+      if( object && !object.magnifiedImage){
+        if(object.cellType === "Plant Stem Cell")
+        CS.showMessageBox("Plant should be dipped in Red Water and its stem should be trimmed before placing under microscope", true, 5000);
+      }
       this.magnifiedImageProperty.set(image);
     }.bind(this));
   }
