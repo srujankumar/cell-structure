@@ -19,6 +19,7 @@ define(function(require) {
             cell: null,
             tableHeight: 370
         });
+        this.klass = 'Filler';
         this.image = this.kitImage = fillerImage;
 
         var handleLiquid = function(model) {

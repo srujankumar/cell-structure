@@ -19,6 +19,7 @@ define(function(require) {
             timeVisible: true,
             tableHeight: 370
         });
+        this.klass = 'Stopwatch';
         this.image = this.kitImage = stopWatchImage;
 
         this.onRemove = function() {};

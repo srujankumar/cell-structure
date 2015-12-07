@@ -22,6 +22,7 @@ define(function(require) {
         });
 
         this.name = "burner kit";
+        this.klass = 'BurnerKit';
         this.image = this.kitImage = burnerKitImage;
 
         this.onReceiveDrop = function(model) {

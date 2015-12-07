@@ -17,6 +17,8 @@ define(function(require) {
             tableHeight: 440
         });
 
+        this.klass = 'Microscope';
+
         this.instrument = new MicroscopeInstrument(new Vector2(0, 50), new Dimension2(150, 150), this);
         this.magnifierView = new MagnifierView(this);
 

@@ -22,6 +22,7 @@ define(function(require) {
         });
 
         this.name = "wide-mouthed-bottle";
+        this.klass = 'WideMouthedBottle';
         this.image = this.kitImage = bottleImage;
 
         this.collidesWith = function( model, node, dropListener) {

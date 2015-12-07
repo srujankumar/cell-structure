@@ -18,6 +18,7 @@ define(function(require) {
             tableHeight: 490
         });
         this.name = "beaker";
+        this.klass = 'Beaker';
         this.image = this.kitImage = beakerImage;
 
         var handleLiquid = function(model) {

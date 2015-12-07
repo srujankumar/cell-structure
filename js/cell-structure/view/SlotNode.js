@@ -20,7 +20,7 @@ define(function (require) {
             rect.removeAllChildren();
             if (!child) return;
 
-            var view = CS.views[child.constructor.name];
+            var view = CS.views[child.klass];
             var viewNode = new view(child, modelViewTransform);
             rect.addChild(viewNode);
             child.attachedTo = model;

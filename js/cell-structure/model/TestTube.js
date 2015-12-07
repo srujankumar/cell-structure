@@ -19,6 +19,7 @@ define(function(require) {
         });
         this.name = "test-tube";
         this.image = this.kitImage = testTubeImage;
+        this.klass = 'TestTube';
         var handleLiquid = function(model) {
             if (model.type !== "liquid") return;
             this.liquidProperty.set(model);

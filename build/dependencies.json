@@ -1,5 +1,5 @@
 {
-  "comment": "# cell-structure 1.0.0-dev.1 Mon Dec 07 2015 13:03:34 GMT+0530 (IST)",
+  "comment": "# cell-structure 1.0.0-dev.1 Mon Dec 07 2015 15:29:37 GMT+0530 (IST)",
   "assert": {
     "sha": "3921bc3784dc67e9cbfa31cdec52b582fcfc68e7",
     "branch": "master"
@@ -13,7 +13,7 @@
     "branch": "master"
   },
   "cell-structure": {
-    "sha": "168a3d11c79a7b7da49f2ae3cf961d20dfe2992d",
+    "sha": "115295290c9796634de4c91af1f523a5cb63e88e",
     "branch": "master"
   },
   "chipper": {
