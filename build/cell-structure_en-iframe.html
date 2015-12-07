@@ -19,6 +19,11 @@
 <h1>Iframe Embedding Test</h1>
 
 <p>The simulation should be embedded below:</p>
-<iframe src="cell-structure_en.html" width="600" height="400" allowfullscreen></iframe>
+
+<iframe id="iframe" width="600" height="400" allowfullscreen scrolling="no"></iframe>
+<script type="application/javascript">
+  var suffix = window.location.search || '';
+  document.getElementById( 'iframe' ).setAttribute( 'src', 'cell-structure_en.html' + suffix );
+</script>
 </body>
 </html>

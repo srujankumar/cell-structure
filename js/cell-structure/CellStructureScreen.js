@@ -9,7 +9,7 @@ define( function( require ) {
   var Screen = require( 'JOIST/Screen' );
 
   // strings
-  var cellStructureSimString = require('string!CELL_STRUCTURE/cell-structure.name');
+  var cellStructureSimString = require('string!CELL_STRUCTURE/cell-structure.title');
 
   /**
    * @constructor

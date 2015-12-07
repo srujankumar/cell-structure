@@ -12,7 +12,7 @@ define( function( require ) {
   var SimLauncher = require( 'JOIST/SimLauncher' );
 
   // strings
-  var simTitle = require( 'string!CELL_STRUCTURE/cell-structure.name' );
+  var simTitle = require( 'string!CELL_STRUCTURE/cell-structure.title' );
 
   var simOptions = {
     credits: {
